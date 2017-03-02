@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mcpfp.web.modules.dao.SensorDao">
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		 id, user_id, sen_name, sen_type, sen_chan, curve, sen_open, sen_time
+	</sql>
+	
+	
+	<resultMap type="Sensor" id="SensorResult">
+		<id column="id" property="id"/>
+		<result column="user_id" property="userId"/>
+		<result column="sen_name" property="senName"/>
+		<result column="sen_type" property="senType"/>
+		<result column="sen_chan" property="senChan"/>
+		<result column="curve"  property="curve"/>
+		<result column="sen_open" property="senOpen"/>
+		<result column="sen_time" property="senTime"/>
+	</resultMap>
+
+	<select id="findAll" resultMap="SensorResult">
+		select * from sensor where 1 = 1 order by sen_time		
+	</select>
+	
+	<select id="find" parameterType="Long" resultMap="SensorResult">
+		select * from sensor where 1 =1 and id=#{value}
+	</select>
+	
+	<select id="findByUserId" parameterType="Long" resultMap="SensorResult">
+		select * from sensor where 1 =1 and user_id=#{value}
+	</select>
+	
+	<!-- 分页查询 -->
+    <select id="findPage" parameterType="Long" resultMap="SensorResult">
+        SELECT * FROM sensor where user_id=#{value}
+    </select>
+	<!-- 新增 -->
+	<insert id="insert" parameterType="Sensor" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+		INSERT INTO `sensor` ( `id`, `user_id`,  `sen_name`,`sen_type`, `sen_chan`, `curve`, `sen_open`, `sen_time`)  
+		VALUES (#{id}, #{userId}, #{senName},  #{senType}, #{senChan},  #{curve}, #{senOpen}, #{senTime}) 
+	</insert>
+	
+	<!-- 修改 -->
+	<update id="update" parameterType="Sensor">
+		UPDATE 
+	  	`sensor` 
+	  	<set>
+	  		<trim prefix="" suffixOverrides=",">
+			  	<if test="senName != null">
+		  			`sen_name` = #{senName},
+		  		</if>
+		  		<if test="senType != null">
+		  			 `sen_type` = #{senType},
+		  		</if>
+			  	<if test="senChan != null">
+			  		`sen_chan` = #{senChan},
+			  	</if>
+			  	<if test="curve != null">
+				  `curve` = #{curve},
+			  	</if>
+			 	<if test="senOpen != null">
+			 		 `sen_open` = #{senOpen},
+			 	</if>
+			  	<if test="senTime != null">
+			  		 `sen_time` = #{senTime},	
+			  	</if>
+	  		</trim>
+	  	</set>
+		WHERE `id` = #{id} 
+	</update>
+	
+	<!-- 删除 -->
+	<delete id="delete" parameterType="Long">
+		 delete from sensor where id = ${value}
+	</delete>
+
+</mapper>

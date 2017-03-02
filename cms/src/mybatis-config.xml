@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<settings>
+		<setting name="lazyLoadingEnabled" value="false" />
+		<setting name="cacheEnabled" value="false" />
+		<setting name="logPrefix" value="dao." />
+		<setting name="aggressiveLazyLoading" value="false" />
+		<!-- 启用下划线与驼峰式命名规则的映射 -->
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings>
+
+	<!-- Mapper.xml无需挨个引入，全部命名规范：以Dao.xml结尾会自动引入 如：publicDao.xm -->
+	<plugins>
+		<plugin interceptor="com.framework.generic.plugin.SQLPrintPlugin" />
+		<plugin interceptor="com.framework.generic.plugin.IndexingPlugin" />
+		<plugin interceptor="com.framework.generic.page.PageInterceptor">
+            <property name="dialectClass" value="com.framework.generic.page.dialect.MySQLDialect"/>
+     	</plugin>
+	</plugins>
+	
+</configuration>

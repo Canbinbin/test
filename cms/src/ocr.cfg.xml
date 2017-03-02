@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">  
+<properties>  
+<comment>ABBYY OCR引擎参数配置</comment>
+<!--在这里配置ABBYY引擎的动态链接库的位置 -->
+<entry key="OCR_DLL_PATH_32">/opt/ABBYY/FREngine11/Bin</entry>
+<entry key="OCR_DLL_PATH_64">/opt/ABBYY/FREngine11/Bin</entry>
+<!--在这里配置ABBYY引擎的激活码-->
+<entry key="OCR_ACTIVE_CODE_DEV_0">SWTD11311004527048103415</entry>
+<entry key="OCR_ACTIVE_CODE_SRV_1">SWTR11311004527049987569</entry>
+<entry key="OCR_ACTIVE_CODE_SRV_2">SWTR11311004527064112250</entry>
+
+<!--在这里配置ABBYY引擎所在的服务器-->
+<entry key="DEV_SERVER_1">zsl-test</entry>
+<entry key="RUN_SERVER_1">zsl-server01</entry>
+<entry key="RUN_SERVER_2">zsl-server02</entry>
+
+</properties>

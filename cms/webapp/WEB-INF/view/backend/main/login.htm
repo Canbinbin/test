@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html style="overflow-x:hidden;overflow-y:auto;">
+	<head>
+  	[#include "/backend/include/header.htm"]
+	<script type="text/javascript">
+		$(document).ready(function() {
+			
+			var $isRememberUsername = $("#rememberMe");
+			var $username = $("#username");
+			var $password = $("#password");
+			
+			// 用户账户密码验证
+			$("#loginForm").submit( function() {
+				if ($username.val() == "") {
+					layer.tips("用户名不能为空",$username);
+					return false;
+				}
+				if ($password.val() == "") {
+					layer.tips("密码不能为空",$password);
+					return false;
+				}
+				/* if ($validateCode.val() == "") {
+					layer.tips("��������֤��",$validateCode);
+					return false;
+				} */
+				
+				/* if ($isRememberUsername.prop("checked")) {
+					addCookie("adminUsername", $username.val(), {expires: 7 * 24 * 60 * 60});
+				} else {
+					removeCookie("adminUsername");
+				} */
+			});
+		});
+		// ����ڿ���У�����תˢ���ϼ�ҳ��
+		if(self.frameElement && self.frameElement.tagName=="IFRAME"){
+			parent.location.reload();
+		}
+	</script>
+
+	</head>
+<body class="login_body">
+    <div class="login_wrapper">
+        <h1>物联网管理平台</h1>
+        <div class="login_content">
+            <form id="loginForm" method="post" action="/admin/main/login">
+                <div class="list_b05">
+                    <ul>
+                        <li class="clearfix">
+                            <label>账号：</label>
+                            <input type="text" id="username" name="username" maxlength="20" class="te_c16" />
+                        </li>
+                        <li class="clearfix">
+                            <label>密码：</label>
+                            <input type="password" id="password" name="password" maxlength="20" class="te_c16" />
+                        </li>
+                        <!--<li class="clearfix">
+                            <label>验证码</label>
+                            <div class="st_g01 wh_a12"><input type="text" name="captcha" maxlength="4" class="te_c10" /></div>
+                            <div class="st_g01 wh_a11"><img alt="" id="captchaimage" width="90" height="30" src="/admin/common/captcha" /></div>
+                            <div class="st_g01"><a href="javascript:void(0);" id="captchaimagelink" class="a_a02">{lang captcha_change}</a></div>
+                        </li> 
+                        <li class="clearfix">
+                            <label>&nbsp;</label>
+                            <input type="checkbox" name="autologin" value="1" class="st_d01" />
+                            <span class="auto_login">{lang autologin}</span>
+                            <input type="hidden" name="referer" value="{$referer}" />
+                        </li>-->
+                        <li class="clearfix">
+                            <label>&nbsp;</label>
+                            <input type="submit" value="登录" class="sl_c10" />
+                            <a style="margin-left: 15px;" href="/register">注册</a>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>        
+    </div>
+</body>
+</html>

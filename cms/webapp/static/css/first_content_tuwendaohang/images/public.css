@@ -1,0 +1,16 @@
+@charset "utf-8";
+/* CSS Document */
+	*{ margin:0px; padding:0px;}
+	.content_One a{ text-decoration:none;}
+	.content_One a:hover{cursor:pointer;text-decoration:underline;}
+	.content_One ul{ list-style-type:none;}
+	.content_One li{ list-style-type:none;}
+    .content_One img{border:none;} 
+	.fl{ float:left;}
+	.fr{ float:right;}
+	.text{overflow:hidden;word-break:keep-all; white-space:nowrap; text-overflow:ellipsis;}
+	.content_One{font-size:12px;font-family:"宋体","黑体";}
+	.more1{ color:#fff; float:right; margin:7px 10px 0 0; background-color:#3fa9ff; padding:0 5px; line-height:16px;-moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px;} 
+
+	
+	

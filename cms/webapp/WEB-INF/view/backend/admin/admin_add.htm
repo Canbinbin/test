@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html style="overflow-x:hidden;overflow-y:auto;">
+	<head>
+	<title>主页</title>
+	[#include "/backend/include/header.htm"]
+	<script src="${base}/static/js/admin/public/treeSelect.js" type="text/javascript"></script>
+<body>
+<div class="container-fluid pad_t25">
+    <div class="row">
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <li><a href="${base}/admin/admin">用户列表</a></li>
+                <li class="active"><a href="javascript:void(0);">用户添加</a></li>
+            </li>
+        </ul>
+    </div>
+
+    <div class="row mar_t20">
+        <form id="myform" method="post" action="save" autocomplete="off">
+            <div class="input_group">
+                <span class="input_text"><i class="red">*</i>登录名：</span>
+                <input type="text" id="username" name="username" class="required" value="" />
+            </div>
+            <div class="input_group">
+                <span class="input_text"><i class="red">*</i>密码：</span>
+                <input type="text" name="password" class="required" value="" />
+            </div>
+            <div class="input_group">
+                <span class="input_text">姓名：</span>
+                <input type="text" name="name" class="" value="" />
+            </div>
+            <div class="input_group">
+                <span class="input_text">性别：</span>
+                <select name="sex" class="">
+                    [#list sexValues as s]
+                    	<option value="${s.key}">${s.value}</option>
+                    [/#list]
+                </select>
+            </div>
+            <div class="input_group">
+                <span class="input_text"><i class="red">*</i>部门：</span>
+                <input type="text"  name="org_name"  id="org_name" class="required" value="" readonly="readonly" data_val="" />
+                <input type="hidden" name="orgId" id="org_id" value="" />
+            </div>
+            <div class="input_group">
+                <span class="input_text"><i class="red">*</i>岗位：</span>
+                <input type="text"  name="duty_name" id="duty_name" class="required" value="" readonly="readonly" data_val=""/>
+                <input type="hidden"  name="dutyId" id="duty_id" value="" />
+            </div>
+            <div class="input_group">
+                <span class="input_text"><i class="red">*</i>角色：</span>
+                <select name="roleId" class="required">
+                    [#list roles as r]
+                   	 	<option value="${r.id}" >${r.name!}</option>
+                    [/#list]
+                </select>
+            </div>
+            <!-- <div class="input_group">
+                <span class="input_text"><i class="red">*</i>入职时间：</span>
+                <input type="text" name="entryDate" class="required Wdate" value="" onclick="WdatePicker()" readonly/>
+            </div> -->
+            <div class="input_group">
+                <span class="input_text">手机：</span>
+                <input type="text" name="mobile" value="" class="isMobile" />
+            </div>
+            <!-- <div class="input_group">
+                <span class="input_text">固定电话：</span>
+                <input type="text" name="tel" value="" class="isTelephone" />
+            </div>
+            <div class="input_group">
+                <span class="input_text">分机号：</span>
+                <input type="text" name="ext" value="" />
+            </div> -->
+            <div class="input_group">
+                <span class="input_text">QQ：</span>
+                <input type="text" name="qq" class="isQQ" value="" />
+            </div>
+            <div class="input_group">
+                <span class="input_text"><i class="red">*</i>邮箱：</span>
+                <input type="email" name="email" class="email" class="required" value="" />
+            </div>
+            <div class="input_group">
+                <span class="input_text">&nbsp;</span>
+                <span class="text"><input type="submit" class="btn btn_submit" value="提交"></span>
+                <input type="hidden" name="id" value="" />
+            </div>
+        </form>
+    </div>
+</div>
+<div id="treeDemo" style="width:300px;height:350px;display:none;" class="ztree"></div>
+<script type="text/javascript">
+    $(function(){
+        //选择管理员
+        $.treeSelect("/admin/org/tree_select","treeDemo","org_name","org_id");
+        $.treeSelect("/admin/duty/tree_select","treeDemo","duty_name","duty_id");
+
+        //表单验证
+        var usernameValue;
+        var $username = $("#username");
+        var initUsernameValue = $.trim($username.val()); 
+        var checkUsernameIsExistPromise = null;               
+        $("#myform").validate({
+            submitHandler: function(form){
+                usernameValue = $.trim($username.val());
+                if(initUsernameValue !== usernameValue){
+                    if(checkUsernameIsExistPromise){
+                        checkUsernameIsExistPromise.abort();   
+                        checkUsernameIsExistPromise = null; 
+                    }
+                    $(form).find(".btn_submit").prop("disabled", true);
+                    checkUsernameIsExistPromise = $.get("/admin/admin/is_exist_username", {
+                        username: usernameValue
+                    }).done(function(result){
+                        if(result ===  true){
+                            form.submit();                         
+                        }else{
+                            layer.msg("用户名称已存在" , {
+                                time: 1500
+                            }); 
+                            $(form).find(".btn_submit").prop("disabled", false);          
+                        }  
+                    }).fail(function(jqXHR, textStatus){
+                        if(textStatus !== "abort"){
+                            layer.msg("校验用户名称是否存在失败");       
+                        }
+                        $(form).find(".btn_submit").prop("disabled", false);     
+                    });
+                }else{
+                    $(form).find(".btn_submit").prop("disabled", false).val("提交中...");
+                    form.submit();
+                }  
+            }
+        });
+    });
+</script>
+</body>
+</html>

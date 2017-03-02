@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<!-- saved from url=(0038)http://www.zhiyun360.com/Home/Projects -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="keywords"
+	content="物联网,物联网中间件,物联网数据接入,物联网数据远程控制,Android,云计算,大数据,云平台">
+<meta name="description" content="公共物联网应用接入，共享云端数据服务，开放接口源码共享。">
+<title>物联网云服务平台</title>
+<link href="${base}/static/image/home/favicon.ico" type="image/x-icon"
+	rel="icon">
+<link href="${base}/static/image/home/favicon.ico" type="image/x-icon"
+	rel="shortcut icon">
+<link href="${base}/static/css/index/bootstrap.css" rel="stylesheet">
+
+<link href="${base}/static/css/index/new_style.css" rel="stylesheet">
+
+<script src="${base}/static/js/home/index/jquery-1.11.0.min.js"></script>
+
+<script src="${base}/static/js/home/index/bootstrap.min.js"></script>
+
+<script src="${base}/static/js/home/index/head-nav.js"></script>
+
+<script
+	src="http://api.map.baidu.com/api?v=2.0&amp;ak=82b93035a35bd582c977b5bc20bbda84"></script>
+<style type="text/css"></style>
+<script type="text/javascript"
+	src="http://api.map.baidu.com/getscript?v=2.0&amp;ak=82b93035a35bd582c977b5bc20bbda84&amp;services=&amp;t=20170207140543"></script>
+
+<script type="text/javascript">
+	$(function() {
+
+		//鼠标经过明星项目标题
+		$("span.body-img-title").hide();
+		$(".body-img").hover(function() {
+			$("span.body-img-title", this).slideToggle(200);
+		});
+
+	});
+</script>
+<style type="text/css">
+
+
+
+</style>
+</head>
+<body>
+	<div id="wrap">
+		<!--页头-->
+
+		<div id="header">
+			<div id="header_body" class="container">
+				<div class="col-xs-12">
+					<div class="row">
+						<!--360logo-->
+						<div class="col-md-4 col-xs-3">
+							<img id="logo"
+								src="${base}/static/image/home/index/first/favicon.png"
+								alt="360logo" width="77">
+						</div>
+						<!--导航栏-->
+						<div class="col-sm-6 col-xs-6">
+							<ul id="nav" class="list-inline">
+								<li><a href="/index" class="">首页</a></li>
+								<li><a href="/exam" class="active">案例</a></li>
+								<li><a href="/doc" class="">文档</a></li>
+								<li><a href="/support" class="">支持</a></li>
+							</ul>
+						</div>
+						<!--联系电话/注册/登录-->
+						<div id="login" class="col-md-2 col-xs-3">
+							<div id="login_body">
+								<div id="loginDiv">
+									<a href="/admin/main/login">登录</a>│ <a
+										href="/admin/main/register">注册</a>
+								</div>
+								<div id="loggedDiv" style="display:none;">
+									<a id="loggerUserName" href="" style="color:#37b0e9"></a>│ <a
+										href="javascript:LogOut()">退出</a>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--页中-->
+		<div class="bc_01">
+			<!--主要内容-->
+			<div id="case" class="container ptb20">
+				<!--明星案例-->
+				<table id="startCase" width="100%">
+					<tbody>
+						<tr>
+							<td id="startCase-body" width="80%">
+								<div class="head-title">
+									<h2>
+										<img
+											src="${base}/static/image/home/index/second/mxal_title.png"
+											alt="">明星设备
+									</h2>
+								</div>
+								<div class="bc_03 tab-content startCase-body">
+									<div class="tab-pane fade in active" id="title1">
+										<div class="body-text">
+											<h4>
+												<a href="" target="">通用平台管理系统</a>
+											</h4>
+											<p>通用平台管理系统分为后台数据管理与前台页面展示，后台数据管理主要是处理数据库的交互与远程设备的交互。响应式页面的设计，使系统兼容各种终端。</p>
+										</div>
+										<div class="body-img-box">
+											<div class="body-img">
+												<a href="#" target=""><img
+													src="${base}/static/image/home/index/second/mxsb-01.jpg"
+													alt=""></a> <span class="body-img-title"
+													style="display: none;">通用平台管理系统</span>
+											</div>
+										</div>
+									</div>
+									<div class="tab-pane fade" id="title2">
+										<div class="body-text">
+											<h4>
+												<a href="" target="">智能农业管理系统</a>
+											</h4>
+											<p>智能农业管理系统通过实时采集的信息，可以实现自动浇灌与遮阳等功能。用户通过web端不仅可以看到实时的数据，也可以看到农业生长的历史情况。</p>
+										</div>
+										<div class="body-img-box">
+											<div class="body-img">
+												<a href="#" target=""><img
+													src="${base}/static/image/home/index/second/mxsb-02.jpg"
+													alt=""></a> <span class="body-img-title"
+													style="display: none;">智能农业管理系统</span>
+											</div>
+										</div>
+									</div>
+									<div class="tab-pane fade" id="title3">
+										<div class="body-text">
+											<h4>
+												<a href="#" target="">仪器预约管理系统</a>
+											</h4>
+											<p>产品设计思想：利用计算机软、硬件技术、数据库技术和标准的实验室管理思想进行有机结合，从而形成全面、规范、高效的实验室仪器设备预约管理平台，为仪器使用者提供有效的机时保障，使管理部门真正的解放人力，保障实验仪器高效、有序的共享，实现仪器预览、仪器机时等信息的自动查询和统计，提高实验室自动化管理水平。</p>
+										</div>
+										<div class="body-img-box">
+											<div class="body-img">
+												<a href="#" target=""><img
+													src="${base}/static/image/home/index/second/mxsb-03.jpg"
+													alt=""></a> <span class="body-img-title"
+													style="display: none;">仪器预约管理系统</span>
+											</div>
+										</div>
+									</div>
+									<div class="tab-pane fade" id="title4">
+										<div class="body-text">
+											<h4>
+												<a href="" target="">智能家居管理系统</a>
+											</h4>
+											<p>智能家居管理系统，主要是实现远程观测家居环境的系统。通过传感器模块，采集家庭环境数据，例如：温度、湿度、空气质量等参数。</p>
+										</div>
+										<div class="body-img-box">
+											<div class="body-img">
+												<a href="#" target=""><img
+													src="${base}/static/image/home/index/second/mxsb-04.jpg"
+													alt=""></a> <span class="body-img-title"
+													style="display: none;">智能家居管理系统</span>
+											</div>
+										</div>
+									</div>
+									<div class="tab-pane fade" id="title5">
+										<div class="body-text">
+											<h4>
+												<a href="#" target="">远程抄表管理系统</a>
+											</h4>
+											<p>远程抄表管理系统主要是实现家庭电表数据的采集与电表的控制。用户可以通过web端，查看电表实时的运行情况。</p>
+										</div>
+										<div class="body-img-box">
+											<div class="body-img">
+												<a href="" target=""><img
+													src="${base}/static/image/home/index/second/mxsb-05.jpg"
+													alt=""></a> <span class="body-img-title"
+													style="display: none;">远程抄表管理系统</span>
+											</div>
+										</div>
+									</div>
+									<div class="tab-pane fade" id="title6">
+										<div class="body-text">
+											<h4>
+												<a href="" target="">智能水产养殖系统</a>
+											</h4>
+											<p>智能水产养殖系统主要是实现远程监控养殖区域。通过实时采集的数据，用户可以清楚地了解养殖水域的各种指标。</p>
+										</div>
+										<div class="body-img-box">
+											<div class="body-img">
+												<a href="" target=""><img
+													src="${base}/static/image/home/index/second/mxsb-06.jpg"
+													alt=""></a> <span class="body-img-title"
+													style="display: none;">智能水产养殖系统</span>
+											</div>
+										</div>
+									</div>
+									<div class="tab-pane fade" id="title7">
+										<div class="body-text">
+											<h4>
+												<a href="" target="">智慧家庭监控系统</a>
+											</h4>
+											<p>本例展示了智慧家庭中最为常用的"环境监测"、"安防系统"、用户可以从本例看到实时数据网页推送，多样化数据展示，实时控制的应用效果。</p>
+										</div>
+										<div class="body-img-box">
+											<div class="body-img">
+												<a href="" target=""><img
+													src="${base}/static/image/home/index/second/mxsb-07.jpg"
+													alt=""></a> <span class="body-img-title"
+													style="display: none;">智慧家庭监控系统</span>
+											</div>
+										</div>
+									</div>
+									<div class="tab-pane fade" id="title8">
+										<div class="body-text">
+											<h4>
+												<a href="" target="">智慧家庭实时监控系统</a>
+											</h4>
+											<p>智慧家庭实时监控系统提供随时随地访问视频监控流，配置了操作界面面可以远程控制摄像头的转动。</p>
+										</div>
+										<div class="body-img-box">
+											<div class="body-img">
+												<a href="" target=""><img
+													src="${base}/static/image/home/index/second/mxsb-08.jpg"
+													alt=""></a> <span class="body-img-title"
+													style="display: none;">智慧家庭实时监控系统</span>
+											</div>
+										</div>
+									</div>
+									<div class="tab-pane fade" id="title9">
+										<div class="body-text">
+											<h4>
+												<a href="" target="">RFID考勤系统</a>
+											</h4>
+											<p>RFID考勤系统具有远程、实时，显示员工打卡信息的功能。</p>
+										</div>
+										<div class="body-img-box">
+											<div class="body-img">
+												<a href="" target=""><img
+													src="${base}/static/image/home/index/second/mxsb-09.jpg"
+													alt=""></a> <span class="body-img-title"
+													style="display: none;">RFID考勤系统</span>
+											</div>
+										</div>
+									</div>
+									<div class="tab-pane fade" id="title10">
+										<div class="body-text">
+											<h4>
+												<a href="" target="">车辆定位系统</a>
+											</h4>
+											<p>车辆定位系统通过终端控制软件把车辆的各种信息，通过无线移动网络传送到服务器，服务器端支持将数据进行存储以及缝隙管理，并支持浏览器方式访问。</p>
+										</div>
+										<div class="body-img-box">
+											<div class="body-img">
+												<a href="" target=""><img
+													src="${base}/static/image/home/index/second/mxsb-10.jpg"
+													alt=""></a> <span class="body-img-title"
+													style="display: none;">车辆定位系统</span>
+											</div>
+										</div>
+									</div>
+									<div class="tab-pane fade" id="title11">
+										<div class="body-text">
+											<h4>
+												<a href="" target="">wifi定位系统</a>
+											</h4>
+											<p>Wi-Fi定位系统提供主流Wi-Fi定位硬件部署及定位算法的原型验证；水平定位精度3-5米，垂直方向可区分楼层；抗干扰，解决人体对Wi-Fi定位影响较大的问题。</p>
+										</div>
+										<div class="body-img-box">
+											<div class="body-img">
+												<a href="" target=""><img
+													src="${base}/static/image/home/index/second/mxsb-11.jpg"
+													alt=""></a> <span class="body-img-title"
+													style="display: none;">wifi定位系统</span>
+											</div>
+										</div>
+									</div>
+									<div class="tab-pane fade" id="title12">
+										<div class="body-text">
+											<h4>
+												<a href="#" target="">无线点菜系统</a>
+											</h4>
+											<p>无线点菜APP端点菜后，数据更新到无线点菜数据库。该应用端为无线点菜系统服务器端，用于无线点菜的数据查看与管理。</p>
+										</div>
+										<div class="body-img-box">
+											<div class="body-img">
+												<a href="#" target=""><img
+													src="${base}/static/image/home/index/second/mxsb-12.jpg"
+													alt=""></a> <span class="body-img-title"
+													style="display: none;">无线点菜系统</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</td>
+							<td>
+								<div class="gundongtiao">
+									<ul>
+										<li class="active"><a href="" data-toggle="tab">通用平台管理系统
+												<p>设备编号：000000</p>
+										</a></li>
+										<li><a href="#" data-toggle="tab">智能农业管理系统
+												<p>设备编号：000000</p>
+										</a></li>
+										<li><a href="#" data-toggle="tab">仪器预约管理系统
+												<p>设备编号：000000</p>
+										</a></li>
+										<li><a href="#" data-toggle="tab">智能家居管理系统
+												<p>设备编号：000000</p>
+										</a></li>
+										<li><a href="#" data-toggle="tab">远程抄表管理系统
+												<p>设备编号：000000</p>
+										</a></li>
+										<li><a href="#" data-toggle="tab">智能水产养殖系统
+												<p>设备编号：000000</p>
+										</a></li>
+										<li><a href="#" data-toggle="tab">智慧家庭监控系统
+												<p>设备编号：000000</p>
+										</a></li>
+										<li><a href="#" data-toggle="tab">智慧家庭实时监控系统
+												<p>设备编号：000000</p>
+										</a></li>
+										<li><a href="#" data-toggle="tab">RFID考勤系统
+												<p>设备编号：000000</p>
+										</a></li>
+										<li><a href="#" data-toggle="tab">车辆定位系统
+												<p>设备编号：000000</p>
+										</a></li>
+										<li><a href="#" data-toggle="tab">wifi定位系统
+												<p>设备编号：000000</p>
+										</a></li>
+										<li><a href="#" data-toggle="tab">无线点菜系统
+												<p>设备编号：000000</p>
+										</a></li>
+									</ul>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<!--用户列表-->
+				<div id="userList" class="row pt20">
+					<div class="col-xs-3">
+						<h2>
+							用户列表
+						</h2>
+						<p>基于物联平台创建的用户应用项目</p>
+					</div>
+					<div id="myCarousel" class="col-xs-9 carousel slide">
+						<!-- 轮播（Carousel）项目 -->
+						<div id="userProList" class="carousel-inner">
+							<div class="item active">
+								<ul class="userList-ul">
+									<li><div>
+											<a href="#"
+												target="_blank"><img
+												src="http://www.zhiyun360.com/Uploads/Thumbnail/smarthomethumb_1.jpg"
+												class="img-responsive" alt=""></a><span class="box"
+												style="display: none;">武汉理工大学智能家居</span>
+										</div></li>
+									<li><div>
+											<a href="#"
+												target="_blank"><img
+												src="http://www.zhiyun360.com/Uploads/Thumbnail/zonesion_xthumb_1.jpg"
+												class="img-responsive" alt=""></a><span class="box"
+												style="display: none;">智能家居商业版</span>
+										</div></li>
+									<li><div>
+											<a href="#"
+												target="_blank"><img
+												src="http://www.zhiyun360.com/Content/images/thumbnail1.jpg"
+												class="img-responsive" alt=""></a><span class="box"
+												style="display: none;">广工智能农业演示项目</span>
+										</div></li>
+									<li><div>
+											<a href="#"
+												target="_blank"><img
+												src="${base}/static/image/home/index/second/jordaonethumb_1.jpg"
+												class="img-responsive" alt=""></a> <span class="box"
+												style="display: none;">小高的测试平台</span>
+										</div></li>
+									<li>
+										<div>
+											<a href="#"
+												target="_blank"> <img
+												src="${base}/static/image/home/index/second/carrotthumb_1.jpg"
+												class="img-responsive" alt=""></a> <span class="box"
+												style="display: none;">武汉办公室环境</span>
+										</div>
+									</li>
+								</ul>
+							</div>
+							<div class="item">
+								<ul class="userList-ul"></ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--页尾-->
+		<div id="footer">
+			<div class="container">
+				<div class="row">
+					<!--关于我们-->
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <h5>关于我们</h5>
+                    <p>物联网作为一个新鲜事物，发展潜力巨大，本毕业设计是物联网重要的的组成部分——物联网的管理平台</p>
+                </div>
+                <!--联系我们-->
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <h5>联系我们</h5>
+                    <ul>
+                        <li><a href="http://www.jnu.edu.cn/" target="_blank">暨南大学</a></li>
+                        <li>地址：广州市天河区黄埔大道西601号暨南大学</li>
+                        <li>电话：020-12345678</li>
+                    </ul>
+                </div>
+                <!--合作-->
+                <div class="col-md-4 col-xs-12">
+                    <h5>合作伙伴</h5>
+                    <a id="partners_wx" href="http://zhiyun360.com/Home/Index#"></a>
+                    <a id="partners_qq" href="http://zhiyun360.com/Home/Index#"></a>
+                    <a id="partners_zone" href="http://zhiyun360.com/Home/Index#"></a>
+                </div>
+            </div>
+        </div>
+        <!--版权-->
+        <div id="footer_copyright"><span>© 2017 - PowerBy JNU  |  
+		</span></div>
+
+			<!-- 通知 -->
+			<script>
+				
+			</script>
+		
+		</div>
+	</div>
+
+
+
+</body>
+</html>

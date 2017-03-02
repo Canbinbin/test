@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html style="overflow-x:hidden;overflow-y:auto;">
+	<head>
+	[#include "/backend/include/header.htm"]
+	<script src="${base}/static/js/admin/index/index.js" type="text/javascript"></script>
+	</head>
+<body>
+	<div id="top">
+	    <div id="logo"></div>
+	    <div id="nav">
+	        <ul class="nav_ul">
+	              [#list navList as cm]
+	              	[#if nav_index == 0][#assign firstNav='${base}/admin/menu/menuTree/${nav.id}?now=${.now}'][/#if]
+	           		 <li data-id="${cm.id!0}"><a href="javascript:void(0)" target="my_article">${cm.name}</a></li>
+	           	  [/#list]
+	        </ul>
+	        <div class="username">
+	            <a href="/" target="_blank">网站首页</a> | 
+	            ${principal.username} | 
+	            <a href="/admin/main/logout">退出</a>
+	        </div>
+	    </div>
+	    
+	</div>
+	<div id="wrap">
+	    <div id="left">
+	        [#list navList as nav]
+		        <div class="menu" style="display:none;">
+		            <div class="title">${nav.name!}</div>
+		            <ul>
+		             [#list nav.childMenus as cm]
+		                	[#if cm.name == '跟进人通知' && number > 0]
+		                		<li data-id="${cm.id!0}"><a href="${cm.url!'#'}" id="remind" target="my_article">${cm.name}<span class="red">  (+${number})</span>
+		                	[#else]
+		                		<li data-id="${cm.id!0}"><a href="${cm.url!'#'}" target="my_article">${cm.name}</a></li>
+		                	[/#if]
+		             [/#list]
+		            </ul>
+		        </div>
+	        [/#list]
+	    </div>
+	    <div id="open_close">
+	        <div class="toggle"></div>
+	    </div>
+	    <div id="right">
+	        <iframe src="${firstNav}" frameborder="0" scrolling="auto" name="my_article" id="my_iframe" width="100%" ></iframe>
+	    </div>
+	</div>
+</body>
+<script type="text/javascript">
+	$(function(){
+		$("#remind").on("click",function(){
+			$("#number").remove();
+		})
+	})
+
+</script>
+</html>

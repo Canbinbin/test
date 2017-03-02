@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mcpfp.web.modules.dao.GylRoleDao">
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		 id, name, tag, flag, create_time, modify_time
+	</sql>
+	
+	<resultMap type="GylRole" id="GylRoleResult">
+		<id column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="tag" property="tag"/>
+		<result column="flag" property="flag"/>
+		<result column="create_time" property="createTime"/>
+		<result column="modify_time" property="modifyTime"/>
+	</resultMap>
+	
+	
+	<select id="find" parameterType="Long" resultMap="GylRoleResult">
+   		SELECT 
+    		*
+    	FROM
+    		mcpfp_gyl_role
+    	<where>
+    		flag = 1 and id = #{value}
+    	</where>
+    	order by id
+    </select>
+	
+	<select id="findAll" resultMap="GylRoleResult">
+   		SELECT 
+    		*
+    	FROM
+    		mcpfp_gyl_role
+    	<where>
+    		flag = 1
+    	</where>
+    	order by id
+    </select>
+    
+    <!-- 新增角色 -->
+    <insert id="insert" parameterType="GylRole" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+    	INSERT INTO mcpfp_gyl_role ( id,  name, tag, flag, create_time, modify_time ) 
+		VALUES ( #{id}, #{name}, #{tag}, #{flag}, #{createTime}, #{modifyTime}) 
+    </insert>
+    
+    <!-- 更新角色 -->
+    <update id="update" parameterType="GylRole">
+    	UPDATE 
+  			mcpfp_gyl_role 
+		SET
+		  name = #{name},
+		  tag = #{tag},
+		  flag = ${flag},
+		  create_time = #{createTime},
+		  modify_time = #{modifyTime} 
+		WHERE id = #{id} 
+    </update>
+
+	<!-- 删除 -->
+	<delete id="delete" parameterType="Long" >
+		UPDATE 	mcpfp_gyl_role SET flag =-1 where id = ${value}
+	</delete>
+
+
+</mapper>

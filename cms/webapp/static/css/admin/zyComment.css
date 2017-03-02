@@ -1,0 +1,460 @@
+@CHARSET "UTF-8"; 
+
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+.comments a{
+    color: #000000;
+    outline: 0 none;
+    text-decoration: none;
+    transition: all 0.5s ease 0s;
+}
+
+.comments a:hover{
+	text-decoration: none;
+}
+
+.date{
+	font-size: 13px;
+}
+
+.text{
+	font-family: Microsoft YaHei;
+	font-size: 14px;
+}
+
+#replyBoxAri {
+    max-width: 100%;
+}
+.ui.threaded.comments .comment .comments{
+	box-shadow: 0px 0 0 rgba(0, 0, 0, 0.05);
+}
+#collect{
+	background-image:linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));
+	box-shadow:0 0 0 0px rgba(0, 0, 0, 0) inset;
+}
+#collect:hover{
+	background-color: #DB3E3A !important;
+}
+
+form{  
+	backface-visibility: hidden;  
+}  
+.form .input{  
+	position: relative;  
+	float: left;  
+	margin: 10px;  
+}  
+.form input,.form textarea{  
+	border: 1px solid #eee;  
+	padding: 1.2em .5em;  
+	outline: none;  
+}  
+
+textarea + label,input + label,.inputdefault {   
+	position: absolute;  
+	left:10px;  
+	top:50%;  
+	transform:translateY(-50%);  
+	color:#aaa;  
+	transition:all .2s ease;  
+}  
+
+.field{
+	position: relative;  
+    float: left;  
+    margin: 10px; 
+}
+.foucs {  
+	color: #52A5FB!important;  
+	font-size: 0.75em!important;  
+	top: 1%!important;  
+	transform: none;  
+}  
+
+.blur-foucs {
+	color: #aaa;  
+}
+
+.not-empty + label {  
+	color:#aaa;  
+}  
+.ui.form .field > label {
+    color: #aaa;
+    display: block;
+    font-size: 1.2em; 
+    margin: 0 0 0.3em;
+}
+.ui.form .field > input,.ui.form .field > textarea{
+    padding: 1em 0.5em!important;
+    border-radius: 0em!important;
+    font-size:15px;
+    padding-bottom:5px!important;
+}
+.userEmailLabel{
+	margin-left:5px!important;
+}
+.contentField{
+	float:none!important;
+}
+
+.ui.form input[type="text"]:focus,
+.ui.form input[type="email"]:focus,
+.ui.form input[type="date"]:focus,
+.ui.form input[type="password"]:focus,
+.ui.form input[type="number"]:focus,
+.ui.form input[type="tel"]:focus,
+.ui.form textarea:focus {
+	color: rgba(0, 0, 0, 0.85);
+	border-color: rgba(0, 0, 0, 0.2);
+	border-bottom-left-radius: 0;
+	border-top-left-radius: 0;
+	-webkit-appearance: none;
+	-webkit-box-shadow: 0em 0em 0em 0em rgba(0, 0, 0, 0) inset;
+	box-shadow: 0em 0em 0em 0em rgba(0, 0, 0, 0) inset;
+}
+#submitComment{
+	float: right;
+	font-size:16px;
+	background-image: none;
+	background-color: #1BA7D5;
+}
+#submitComment:hover{
+	background-color: #008CBA;
+}
+#submitComment:active {
+	background-color: #006D9B;
+}
+#post-header h3{
+	line-height: 1.5;
+	margin-top:2px!important;
+}
+textarea + label,.areadefault{
+	top:20px;
+}
+@media screen and (-webkit-min-device-pixel-ratio:0){ 
+	input + label, .inputdefault {
+		top:50%;
+	} 
+	textarea + label,.areadefault{
+		top:20px;
+	}
+	.foucs {  
+		color: #52A5FB!important;  
+		font-size: 0.75em!important;  
+		top: 1%!important;  
+		transform: none;  
+	}  
+}
+
+.ui.comments .comment .reply.form {
+    margin-left: 4.5em!important;
+}
+
+.author{
+	font-size: 15px;	
+}
+
+#publicComment {
+    background-color: #1BA7D5;
+    background-image: none !important;
+}
+
+.topStyle{
+	border-top: 1px solid #dfdfdf;
+}
+.metadata {
+    float: right;
+    display: inline-block;
+    /* margin-left: 0.3em; */
+    color: rgba(0, 0, 0, 0.4);
+}
+.ui.comments .comment {
+    position: relative;
+    margin-top: 0.5em;
+    padding-top: 0.5em;
+}
+
+.comment > .avatar {
+    display: block;
+}
+.ui.comments .comment .avatar {
+    display: block;
+    float: left;
+    width: 4em;
+}
+.ui.comments a {
+    cursor: pointer;
+}
+.ui.comments .comment .avatar img {
+    display: block;
+    margin: 0em auto;
+    width: 3em;
+    height: 3em;
+    border-radius: 500px;
+}
+.ui.comments .comment .text {
+    margin: 0.25em 0em 0.5em;
+    word-wrap: break-word;
+}
+.ui.comments .comment .actions a {
+    display: inline-block;
+    margin: 0em 0.3em 0em 0em;
+    color: rgba(0, 0, 0, 0.3);
+}
+.ui.comments .comment:first-child {
+    margin-top: 0em;
+    padding-top: 0em;
+}
+.ui.comments .comment {
+    position: relative;
+    margin-top: 0.5em;
+    padding-top: 0.5em;
+}
+.ui.comments .comment > .avatar ~ .content {
+    padding-top: 0.25em;
+    margin-left: 3.5em;
+}
+.ui.comments .comment .avatar ~ .content {
+    padding: 0em 1em;
+}
+.ui.comments .comment > .content, .ui.comments .comment > .avatar {
+    display: block;
+}
+body {
+    -webkit-transition: margin 0.3s ease, -webkit-transform 0.3s ease;
+    transition: margin 0.3s ease,
+ transform 0.3s ease;
+}
+
+.ui.comments .comment .metadata > * {
+    display: inline-block;
+    margin: 0em 0.3em 0em 0em;
+}
+.ui.comments .comment .metadata {
+    display: inline-block;
+    margin-left: 0.3em;
+    color: rgba(0, 0, 0, 0.4);
+}
+.ui.comments .comment .actions {
+    font-size: 0.9em;
+}
+.ui.threaded.comments .comment .comments {
+    margin-left: 2em !important;
+    padding-left: 2em !important;
+    -webkit-box-shadow: -1px 0px 0px rgba(0, 0, 0, 0.05);
+    box-shadow: -1px 0px 0px rgba(0, 0, 0, 0.05);
+}
+.ui.comments .comment .comments {
+    margin-top: 0.5em;
+    padding-top: 0.5em;
+    padding-bottom: 1em;
+}
+.ui.comments .comment .comments:before {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+.ui.large.form {
+    font-size: 1.125em;
+}
+.ui.form :last-child {
+    margin-bottom: 0em;
+}
+.ui.form :first-child {
+    margin-top: 0em;
+}
+.ui.form {
+    position: relative;
+    max-width: 100%;
+}
+.ui.form .fields {
+    clear: both;
+}
+.ui.form :first-child {
+    margin-top: 0em;
+}
+.ui.form .fields:after {
+    content: ' ';
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+.ui.form textarea, .ui.form input[type="text"], .ui.form input[type="email"], .ui.form input[type="date"], .ui.form input[type="password"], .ui.form input[type="number"], .ui.form input[type="tel"] {
+    margin: 0em;
+    padding: 0.85em 1.2em;
+    font-size: 0.875em;
+    background-color: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    outline: none;
+    color: rgba(0, 0, 0, 0.7);
+    border-radius: 0.3125em;
+    -webkit-transition: background-color 0.3s ease-out, -webkit-box-shadow 0.2s ease, border-color 0.2s ease;
+    transition: background-color 0.3s ease-out, box-shadow 0.2s ease, border-color 0.2s ease;
+    -webkit-box-shadow: 0em 0em 0em 0em rgba(0, 0, 0, 0.3) inset;
+    box-shadow: 0em 0em 0em 0em rgba(0, 0, 0, 0.3) inset;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.ui.form textarea, .ui.form input[type="text"], .ui.form input[type="email"], .ui.form input[type="date"], .ui.form input[type="password"], .ui.form input[type="number"], .ui.form input[type="tel"], .ui.form .ui.input {
+    width: 100%;
+}
+.ui.form :first-child {
+    margin-top: 0em;
+}
+.ui.labeled.icon.buttons .button, .ui.labeled.icon.button {
+    position: relative;
+}
+.ui.teal.buttons .button, .ui.teal.button {
+    background-color: #00B5AD;
+    color: #FFFFFF;
+}
+.ui.icon.buttons .button, .ui.icon.button {
+    padding: 0.8em;
+}
+.ui.form :last-child {
+    margin-bottom: 0em;
+}
+.ui.buttons .button, .ui.button {
+    font-size: 1rem;
+}
+.ui.button {
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+    min-height: 1em;
+    outline: none;
+    border: none;
+    background-color: #FAFAFA;
+    color: #808080;
+    margin: 0em;
+    padding: 0.8em 1.5em;
+    font-size: 1rem;
+    text-transform: uppercase;
+    line-height: 1;
+    font-weight: bold;
+    font-style: normal;
+    text-align: center;
+    text-decoration: none;
+    background-image: -webkit-gradient(linear, top left, bottom left, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.05)));
+    background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.05));
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.05));
+    border-radius: 0.25em;
+    -webkit-box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.08) inset;
+    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.08) inset;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-transition: opacity 0.25s ease, background-color 0.25s ease, color 0.25s ease, background 0.25s ease, -webkit-box-shadow 0.25s ease;
+    transition: opacity 0.25s ease, background-color 0.25s ease, color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+.ui.labeled.icon.buttons > .button > .icon, .ui.labeled.icon.button > .icon {
+    position: absolute;
+    top: 0em;
+    left: 0em;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 2.75em;
+    height: 100%;
+    padding-top: 0.8em;
+    background-color: rgba(0, 0, 0, 0.05);
+    text-align: center;
+    border-radius: 0.25em 0px 0px 0.25em;
+    line-height: 1;
+    -webkit-box-shadow: -1px 0px 0px 0px rgba(0, 0, 0, 0.05) inset;
+    box-shadow: -1px 0px 0px 0px rgba(0, 0, 0, 0.05) inset;
+}
+.ui.icon.buttons .button > .icon, .ui.icon.button > .icon {
+    opacity: 0.9;
+    margin: 0em;
+    vertical-align: top;
+}
+.ui.button > .icon {
+    margin-right: 0.6em;
+    line-height: 1;
+    -webkit-transition: opacity 0.1s ease;
+    transition: opacity 0.1s ease;
+}
+.ui.form :last-child {
+    margin-bottom: 0em;
+}
+.ui.form :first-child {
+    margin-top: 0em;
+}
+i.icon {
+    font-size: 1em;
+}
+i.icon {
+    display: inline-block;
+    opacity: 0.75;
+    margin: 0em 0.25em 0em 0em;
+    width: 1.23em;
+    height: 1em;
+    font-family: 'Icons';
+    font-style: normal;
+    line-height: 1;
+    font-weight: normal;
+    text-decoration: inherit;
+    text-align: center;
+    speak: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+}
+.ui.form textarea, .ui.form input[type="checkbox"] {
+    vertical-align: top;
+}
+.ui.textarea, .ui.form textarea {
+    line-height: 1.33;
+    min-height: 8em;
+    height: 12em;
+    max-height: 24em;
+    resize: vertical;
+}
+
+.ui.form .fields:after {
+    content: ' ';
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+.ui.comments .reply.form {
+    margin-top: 0.75em;
+    width: 100%;
+    max-width: 30em;
+}
+.ui.form .field {
+    clear: both;
+    margin: 0em 0em 1em;
+}
+.post-tail-wrap {
+    float: right;
+    color: #999;
+    position: relative;
+}
+.post-tail-wrap .tail-info {
+    display: inline-block;
+    margin: 0 4px;
+    color: #999;
+}

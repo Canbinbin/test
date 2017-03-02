@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html style="overflow-x:hidden;overflow-y:auto;">
+	<head>
+		[#include "/backend/include/header.htm"]
+		<script src="${base}/static/js/admin/public/treeSelect.js" type="text/javascript"></script>
+	</head>
+<body>
+<div class="container-fluid pad25">
+    <div class="row">
+        <ul class="nav nav-tabs">
+            <li><a href="/admin/menu">传感器列表</a></li>
+            <li class="active"><a href="javascript:void(0);">传感器修改</a></li>
+        </ul>
+    </div>
+
+    <div class="row mar_t20">
+        <form id="myform" method="post" action="updatesave">
+        <input type="hidden" name="id" class="required" value="${sensor.id}" />
+        <input type="hidden" name="userId" class="required" value="${sensor.userId}" />
+            <div class="input_group">
+                <span class="input_text"><i class="red">*</i>传感器名称：</span>
+                <input type="text" name="senName" class="required" value="${sensor.senName}" />
+            </div>
+            <div class="input_group">
+                <span class="input_text"><i class="red">*</i>数据流通道	：</span>
+                <input type="text" name="senChan" class="required" value="${sensor.senChan}" />
+            </div>
+           
+            <div class="input_group">
+                <span class="input_text"><i class="red">*</i>传感器类型：</span>
+                <select name="senType">
+                    <option value="温度" [#if sensor.senType=='温度']selected[/#if]>温度</option>
+                    <option value="湿度" [#if sensor.senType=='湿度']selected[/#if]>湿度</option>
+                    <option value="光照" [#if sensor.senType=='光照']selected[/#if]>光照</option>
+                </select>
+            </div>
+            <div class="input_group">
+                <span class="input_text"><i class="red">*</i>曲线形状：</span>
+                <select name="curve">
+                    <option value="平滑" [#if sensor.curve=="平滑"]selected[/#if]>平滑</option>
+                    <option value="阶梯" [#if sensor.curve=="阶梯"]selected[/#if]>阶梯</option>
+                </select>
+            </div>
+            <div class="input_group">
+                <span class="input_text"><i class="red">*</i>是否公开：</span>
+                <select name="senOpen">
+                   <option value="是" [#if sensor.senOpen=="是"]selected[/#if]>是</option>
+                   <option value="否" [#if sensor.senOpen=="否"]selected[/#if] >否</option>
+                    
+                </select>
+            </div>
+            <div class="input_group">
+                <span class="input_text">&nbsp;</span>
+                <span class="text"><input type="submit" class="btn" value="提交"></span>
+                <input type="hidden" name="id" value="${menu.id}" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="treeDemo" style="width:300px;height:350px;display:none;" class="ztree"></div>
+
+<script type="text/javascript">
+    $(function(){
+    	 $("#myform").validate();
+        //选择管理员
+        
+    });
+</script>
+
+</body>
+	

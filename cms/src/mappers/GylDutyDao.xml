@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mcpfp.web.modules.dao.GylDutyDao">
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		 id, pid, name, sort, tree_path, flag, create_time, modify_time
+	</sql>
+
+
+	<resultMap type="GylDuty" id="GylDutyResult">
+		<id column="id" property="id"/>
+		<result column="pid" property="pid"/>
+		<result column="name" property="name"/>
+		<result column="sort" property="sort"/>
+		<result column="tree_path" property="treePath"/>
+		<result column="flag" property="flag"/>
+		<result column="create_time" property="createTime"/>
+		<result column="modify_time" property="modifyTime"/>
+	</resultMap>
+	
+	<insert id="insert" keyColumn="id" keyProperty="id" useGeneratedKeys="true" parameterType="GylDuty">
+		INSERT INTO `mcpfp_gyl_duty` (
+		  `id`,
+		  `pid`,
+		  `name`,
+		  `sort`,
+		  `tree_path`,
+		  `flag`,
+		  `create_time`,
+		  `modify_time`
+		) 
+		VALUES (  #{id}, #{pid},  #{name},   #{sort}, #{treePath},  #{flag}, #{createTime},  #{modifyTime})
+	</insert>
+	
+	<update id="update" parameterType="GylDuty">
+		UPDATE 
+		  `mcpfp_gyl_duty` 
+		SET
+		<trim prefix="" suffixOverrides=",">
+			<if test="pid != null">
+			  `pid` = #{pid},
+			</if>
+			<if test="name != null">
+			  `name` = #{name},
+			</if>
+			<if test="sort != null">
+			  `sort` = #{sort},
+			</if>
+			<if test="treePath != null">
+			  `tree_path` = #{treePath},
+			</if>
+			<if test="flag != null">
+			 `flag` = #{flag},
+			</if>
+			<if test="createTime != null">
+			`create_time` = #{createTime},
+			</if>
+			<if test="modifyTime != null">
+			 `modify_time` = #{modifyTime} 
+			</if>
+		</trim>
+		WHERE `id` = #{id} 
+	</update>
+	
+	<delete id="delete" parameterType="Long">
+		update mcpfp_gyl_duty set flag = -1 where id = #{value}
+	</delete>
+	
+	<select id="find" parameterType="Long" resultMap="GylDutyResult">
+		select * from mcpfp_gyl_duty where flag = 1 and id = #{value}
+	</select>
+	
+	
+	<select id="findAll" resultMap="GylDutyResult">
+		select * from mcpfp_gyl_duty where flag = 1 order by sort
+	</select>
+	
+	<select id="findByPid" resultMap="GylDutyResult">
+		select * from mcpfp_gyl_duty where flag = 1 and pid = #{pid}
+	</select>
+</mapper>

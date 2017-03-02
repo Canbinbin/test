@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mcpfp.web.modules.dao.GylAdminDao">
+
+	<resultMap type="GylAdmin" id="GylAdminResult">
+		<id property="id" column="id"/>
+		<result property="username" column="username"/>
+		<result property="password" column="password"/>
+		<result property="name" column="name"/>
+		<result property="sex" column="sex"/>
+		<result property="mobile" column="mobile"/>
+		<result property="email" column="email"/>
+		<result property="tel" column="tel"/>
+		<result property="ext" column="ext"/>
+		<result property="qq" column="qq"/>
+		<result property="flag" column="flag"/>
+		<result property="orgId" column="org_id"/>
+		<result property="dutyId" column="duty_id"/>
+		<result property="roleId" column="role_id"/>
+		<result property="entryDate" column="entry_date"/>
+		<result property="createTime" column="create_time"/>
+		<result property="modifyTime" column="modify_time"/>
+		<result property="org.name" column="org_name"/>
+		<result property="duty.name" column="duty_name"/>
+		<result property="role.name" column="role_name"/>
+	</resultMap>
+
+	<sql id="base_column">
+		  id,
+		  username,
+		  password,
+		  NAME,
+		  sex,
+		  mobile,
+		  tel,
+		  ext,
+		  qq,
+		  email,
+		  flag,
+		  org_id,
+		  duty_id,
+		  role_id,
+		  entry_date,
+		  create_time,
+		  modify_time 
+	</sql>
+	<sql id="base_column_role">
+		  a.id,
+		  a.username,
+		  a.password,
+		  a.name,
+		  a.sex,
+		  a.mobile,
+		  a.tel,
+		  a.ext,
+		  a.qq,
+		  a.email,
+		  a.flag,
+		  a.org_id,
+		  a.duty_id,
+		  a.role_id,
+		  a.entry_date,
+		  a.create_time,
+		  a.modify_time 
+	</sql>
+	<sql id="base_value_column">
+		#{id}, #{username}, #{password}, #{name}, #{sex}, #{mobile}, #{tel}, #{ext}, #{qq}
+		, #{email}, #{flag}, #{orgId}, #{dutyId}, #{roleId}, #{entryDate}, #{createTime}, #{modifyTime}
+	</sql>
+	
+	<sql id="set_column">
+		<trim prefix="" prefixOverrides=",">
+			<if test="username != null and username !=''">
+			  username = #{username},
+			</if>
+			<if test="password != null and password !=''">
+			  PASSWORD = #{password},
+			</if>
+			<if test="name != null and name !=''">
+			  NAME = #{name},
+			</if>
+			<if test="sex != null and sex !=''">
+			  sex = #{sex},
+			</if>
+			<if test="mobile != null and mobile !=''">
+			  mobile = #{mobile},
+			</if>
+			<if test="tel != null and tel !=''">
+			  tel = #{tel},
+			</if>
+			<if test="ext != null and ext !=''">
+			  ext = #{ext},
+			</if>
+			<if test="qq != null and qq != ''">
+			  qq = #{qq},
+			</if>
+			<if test="email != null and email != ''">
+				 email = #{email},
+			</if>
+			<if test="flag != null">
+			 	 flag = #{flag},
+			</if>
+			<if test="orgId != null">
+			  org_id = #{orgId},
+			</if>
+			<if test="dutyId != null">
+			  duty_id = #{dutyId},
+			</if>
+			<if test="roleId != null">
+			 role_id = #{roleId},
+			</if>
+			<if test="entryDate != null">
+				entry_date = #{entryDate},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime},
+			</if>
+			<if test="modifyTime != null">
+				modify_time = #{modifyTime},
+			</if>
+			
+		</trim>
+		
+	</sql>
+	
+	<sql id="where_column">
+		1 = 1
+		<if test="username != null and username !=''">
+		 	and  username = #{username}
+		</if>
+		<if test="username != null and username !=''">
+		  	and PASSWORD = #{password}
+		</if>
+		<if test="name != null and name !=''">
+		  	and NAME = #{name}
+		</if>
+		<if test="sex != null and sex !=''">
+		  	and sex = #{sex}
+		</if>
+		<if test="mobile != null and mobile !=''">
+		  	and mobile = #{mobile}
+		</if>
+		<if test="tel != null and tel !=''">
+		 	and tel = #{tel}
+		</if>
+		<if test="ext != null and ext !=''">
+		  	and ext = #{ext}
+		</if>
+		<if test="qq != null and qq != ''">
+		  	and qq = #{qq}
+		</if>
+		<if test="email != null and email != ''">
+		  	and email = #{email}
+		</if>
+		<if test="flag != null">
+		  	and	 flag = #{flag}
+		</if>
+		<if test="orgId != null">
+		  	and org_id = #{orgId}
+		</if>
+		<if test="dutyId != null">
+		 	and duty_id = #{duty_id}
+		</if>
+		<if test="roleId != null">
+		  	and role_id = #{roleId}
+		</if>
+		<if test="entryDate != null">
+		 	and entry_date = #{entryDate} 
+		</if>
+		<if test="createTime != null">
+			 and create_time = #{createTime}
+		</if>
+		<if test="createTime != null">
+		 	and modify_time = #{modifyTime}
+		</if>
+	</sql>
+	
+	
+	<!-- 添加用户 -->
+	
+	<insert id="insert" parameterType="GylAdmin" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+		insert into mcpfp_gyl_admin(
+			<include refid="base_column"></include>
+		) values(
+			<include refid="base_value_column"></include>
+		)
+	</insert>
+	
+	<!-- 修改用户 -->
+	<update id="update" parameterType="GylAdmin">
+		update mcpfp_gyl_admin
+			<set>
+				<include refid="set_column"></include>
+			</set>
+		where 
+			id = #{id}
+	</update>
+	<!-- 删除用户 -->
+	<delete id="delete" parameterType="Long">
+		update mcpfp_gyl_admin set flag=-1 where id = #{value}
+	</delete>
+	<!-- 删除多个 -->
+	<delete id="deleteAll">
+		delete	from mcpfp_gyl_admin
+		where	id	in
+    	<foreach item="userId" index="index" collection="ids" open="(" separator="," close=")">
+	  		#{userId} 
+		</foreach>
+	</delete>
+	
+	<!-- 分页查询 -->
+    <select id="findPage" parameterType="com.mcpfp.web.modules.dto.GylAdminDto" resultMap="GylAdminResult">
+        SELECT 
+		  a.*,
+		  o.name AS org_name,
+		  d.name AS duty_name,
+		  r.name AS role_name 
+		FROM
+		  mcpfp_gyl_admin a 
+		  LEFT JOIN mcpfp_gyl_org o 
+		    ON o.id = a.org_id 
+		  LEFT JOIN mcpfp_gyl_duty d 
+		    ON d.id = a.duty_id 
+		  LEFT JOIN mcpfp_gyl_role r 
+		    ON r.id = a.role_id 
+        <where>
+            	a.flag = 1
+            <if test="username !=null and username!=''">
+                AND(a.username LIKE CONCAT('%',#{username},'%') )
+            </if>
+            <if test="orgId != null and orgId != 0">
+            	AND a.org_id = #{orgId}
+            </if>
+            <if test="name!=null and name!=''">
+                AND(a.name LIKE CONCAT('%',#{name},'%') )
+            </if>
+        </where>
+         ORDER BY a.id
+    </select>
+    
+    
+    <!-- 根据用户名查询 -->
+    <select id="findByUsername" parameterType="string" resultMap="GylAdminResult">
+    	SELECT 
+    		<include refid="base_column" />
+    	FROM
+    		mcpfp_gyl_admin 
+    	WHERE 
+    		mcpfp_gyl_admin.username = #{username}
+    </select>
+    
+    <!-- 根据标签查找 -->
+    <select id="findByRoleTag" parameterType="String" resultMap="GylAdminResult">
+    	select a.* from 
+    	mcpfp_gyl_admin a 
+    	inner join 
+    	mcpfp_gyl_role r on a.role_id = r.id
+    	where r.tag=#{value} and r.flag=1 and a.flag = 1 
+    </select>
+    
+    
+    
+    <!-- 根据用户名查询 -->
+    <select id="findByUsernameLike" parameterType="string" resultMap="GylAdminResult">
+    	SELECT 
+    		<include refid="base_column" />
+    	FROM
+    		mcpfp_gyl_admin 
+    	WHERE 
+    		mcpfp_gyl_admin.username like CONCAT('%',#{value},'%')
+    </select>
+    
+    
+    <!-- 根据id查询 -->
+    <select id="find" parameterType="Long" resultMap="GylAdminResult">
+   		 SELECT 
+		  a.*,
+		  o.name AS org_name,
+		  d.name AS duty_name,
+		  r.name AS role_name 
+		FROM
+		  mcpfp_gyl_admin a 
+		  LEFT JOIN mcpfp_gyl_org o 
+		    ON o.id = a.org_id 
+		  LEFT JOIN mcpfp_gyl_duty d 
+		    ON d.id = a.duty_id 
+		  LEFT JOIN mcpfp_gyl_role r 
+		    ON r.id = a.role_id 
+		  where  
+    		a.id = #{value}
+    </select>
+    
+    <select id="findAll" resultMap="GylAdminResult">
+   		SELECT 
+    		*
+    	FROM
+    		mcpfp_gyl_admin 
+    	<where>
+    		flag = 1
+    	</where>
+    	order by id
+    </select>
+    <!-- 根据条件查询 -->
+    <select id="findByParams" resultMap="GylAdminResult">
+		SELECT	<include refid="base_column" />
+		FROM 	mcpfp_gyl_admin
+		<where>
+			<include refid="where_column"></include>
+		</where>
+	</select>
+	
+	
+	<select id="findByOrgId" resultMap="GylAdminResult">
+		select * from mcpfp_gyl_admin where flag = 1 and org_id = #{orgId}
+	</select>
+    
+	<select id="findByDutyId" resultMap="GylAdminResult">
+		select * from mcpfp_gyl_admin where flag = 1 and duty_id = #{dutyId}
+	</select>
+	<select id="setFollow" resultType="long">
+		SELECT a.id FROM mcpfp_gyl_admin a LEFT JOIN mcpfp_gyl_role r ON r.id=a.role_id WHERE a.flag=1 AND r.flag=1 AND r.tag='TRANZ' AND a.id NOT IN(4,5) ORDER BY  RAND() LIMIT 1;
+	</select>
+	
+	<select id="findCustomerList" resultMap="GylAdminResult">
+		SELECT a.name,a.id FROM mcpfp_gyl_admin  a LEFT JOIN mcpfp_gyl_role r ON r.id=a.role_id WHERE a.flag=1 AND r.flag=1 AND r.tag='CUSTOMER';
+	</select>
+	
+	
+	<select  id="findTranzList"  parameterType="Long" resultMap="GylAdminResult">
+		SELECT 
+			za.id,za.username,za.org_id FROM mcpfp_gyl_admin za 
+		LEFT JOIN 
+			mcpfp_gyl_role gr 
+		ON 
+			gr.id=za.role_id 
+		WHERE 
+			za.flag=1 AND gr.tag='TRANZ' and za.org_id = #{orgId} GROUP BY za.id
+	</select>
+	
+	
+
+	
+	
+	
+	<!-- 获取所有的交易员 -->
+	<select id="getAllTranz" resultMap="GylAdminResult">
+		select a.* from 
+    	mcpfp_gyl_admin a 
+    	inner join 
+    	mcpfp_gyl_role r on a.role_id = r.id
+    	where r.tag='Tranz'
+	</select>
+</mapper>

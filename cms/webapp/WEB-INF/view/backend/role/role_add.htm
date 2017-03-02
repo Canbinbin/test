@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html style="overflow-x:hidden;overflow-y:auto;">
+	<head>
+		[#include "/backend/include/header.htm"]
+		<style type="text/css">
+		    .input_group_no_float{height: auto; line-height: normal; margin-bottom: 20px;}
+		</style>
+	</head>
+<body>
+    <div class="container-fluid pad25">
+        <div class="row">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <li><a href="/admin/role">角色列表</a></li>
+                    <li class="active"><a href="javascript:void(0);">角色添加</a></li>
+                </li>
+            </ul>
+        </div>
+
+        <div class="row mar_t20">
+            <form id="myform" method="post">
+                <div class="input_group">
+                    <span class="input_text"><i class="red">*</i>角色名称：</span>
+                    <input type="text" name="name" class="required" value="" />
+                </div>
+                <div class="input_group">
+                    <span class="input_text"><i class="red">*</i>角色标签：</span>
+                    <select name="tag">
+                        [#list roleTags as t]
+                        	<option value="${t.key}" >${t.value}</option>
+                        [/#list]
+                    </select>
+                </div>
+                <div class="input_group input_group_no_float clearfix">
+                    <span class="input_text"><i class="red">*</i>角色授权：</span>
+                    <div class="row pull-left">
+                        <div id="treeDemo" class="ztree layui-layer-wrap"></div>
+                    </div>
+                </div>
+                <div class="input_group">
+                    <span class="input_text">&nbsp;</span>
+                    <span class="text"><input type="submit" class="btn btn-submit" value="提交"></span>
+                    <input type="hidden" name="id" value="" />
+                    <input type="hidden" name="menu_id"  id="menu_id" value="" />
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <script type="text/javascript">
+        $(function(){
+
+            var arr=$("#menu_id").val().split(',');
+            console.log(arr)
+
+            $("#myform").validate({
+                submitHandler: function(form){
+                    if($.trim($("#menu_id").val())){
+                        $(form).find(".btn-submit").prop("disabled", true).val("提交中..."); 
+                        form.submit();
+                    }else{
+                        layer.msg("请选择角色授权", {
+                            timeout: 1000
+                        });
+                    }
+                }
+            });
+            var setting = {
+                check: {
+                    enable: true
+                },
+                data: {
+                    simpleData: {
+                        enable: true,
+                        idKey: "id",
+                        pIdKey: "pid",
+                        rootPId: 0  
+                    }
+                },
+                callback:{
+                    onCheck:checkCallback
+                }
+            };
+            function checkCallback(){
+                var json={};
+                var treeObj = $.fn.zTree.getZTreeObj("treeDemo");
+                var nodes = treeObj.getCheckedNodes(true);
+                for(var i=0;i<nodes.length;i++){
+                    if(!json.list){
+                        json.list=[];
+                    }
+                    json.list.push(nodes[i].id);
+                }
+                $("#menu_id").val(json.list);
+            }
+         
+            $.ajax({
+                'url':'/admin/menu/get_list',
+                'type':'get',
+                'dataType':'json',
+                "beforeSend":function(){
+                    idx=layer.load(0, {shade: false});
+                },
+                'success': function(data){
+                    layer.close(idx);
+                    var tree = $.fn.zTree.init($("#treeDemo"), setting, data);
+                    tree.expandAll(true);
+                    if(arr.length>0 && arr[0]!=''){
+                        for(var i=0;i<arr.length;i++){
+                             var nodes = tree.getNodeByParam("id", arr[i], null);
+                             tree.checkNode(nodes, true, null); 
+                        }
+                    }
+                    
+                    
+                }
+            })
+        })
+    </script>
+</body>
+</html>

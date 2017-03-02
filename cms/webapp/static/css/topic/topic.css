@@ -1,0 +1,11 @@
+
+.rsjjy_con_con ul li span{ font-size: 16px;color: #333333; margin-right:10px; float:right;}
+.rsjjy_con ul li{font-size:16px;  height:35px;  line-height: 35px}
+.rsjjy_con_con{ background:url(rsjjy20161028_25.jpg) no-repeat; background-size:100% 430px;width:80%; height:430px; margin:30px 0 0 auto;}
+.rsjjy_con_con .list_tit{ height:57px; line-height:57px; color:#fff; font-size:30px; background:url(rsjjy20161028_22.png) 10px center no-repeat; padding:0 0 0 60px;}
+.rsjjy_con_con .list_tit2{ height:57px; line-height:57px; color:#fff; font-size:30px; background:url(rsjjy20161028_3.png) 10px center no-repeat; padding:0 0 0 60px;}
+.rsjjy_con_con ul{padding-left: 40px;}
+.topicli1{ background:url(ztzr20160912_18.png) left 20px no-repeat; height:60px; line-height:60px; overflow:hidden; border-bottom:1px dashed #c4c4c4; padding-left: 40px; }
+.topicli2{ background:url(rsjjy20161028_27.png) left 20px no-repeat; height:60px; line-height:60px; overflow:hidden; border-bottom:1px dashed #c4c4c4; padding-left: 40px; }
+.rsjjy_con_con ul li a{ font-size:18px; color:#333333;}
+.current{background:#5599ff;}

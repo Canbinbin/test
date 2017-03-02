@@ -1,0 +1,32 @@
+@charset "utf-8";
+/* CSS Document */
+	*{ margin:0px; padding:0px;}
+	a{ text-decoration:none;}
+	a:hover{cursor:pointer;text-decoration:underline;}
+	ul{ list-style-type:none;}
+	li{ list-style-type:none;}
+    img{border:none;} 
+	.fl{ float:left;}
+	.fr{ float:right;}
+	body{ margin:0 auto;  position:relative;} 
+	.clear{ clear:both;}
+	.text{overflow:hidden;word-break:keep-all; white-space:nowrap; text-overflow:ellipsis;}
+	.marginleft12px{ margin-left:12px;}
+	
+
+	.header{ width:985px; background:url("./1.png"); height:23px; margin:0 auto; padding:181px 0 0 17px; color:#595757; line-height:23px; font-weight:800; position:relative;}
+	.header *{ color:#595757; line-height:23px; font-weight:bold; }
+	.indexA{ display:block; position:absolute; width:155px; height:65px; top:30px;top:30px; left:13px;}
+
+	
+	.menu_RDGZ{ width:1002px; height:35px; margin:0 auto; background-color:#efefef;}
+	.menu_RDGZ img{ float:left;}
+	.menu_RDGZ_left{ width:156px; height:35px; float:left; background:url("ico92.png") no-repeat #14b275; background-position:10px 5px;}
+	.menu_RDGZ_left a{ color:#FFF; font-weight:bold; line-height:35px; margin-left:40px;}
+	.menu_RDGZ_center{ width:520px; height:35px; float:left;}
+	.menu_RDGZ_center a{ color:#575757;}
+	.menu_RDGZ_right{ float:left; background-color:#14b275; width:290px;}
+	
+	
+
+	

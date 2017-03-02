@@ -1,0 +1,139 @@
+@charset "utf-8";
+
+/*首页样式start*/
+body,div,form,ul,li,ol,dl,dt,dd,p,h1,h2,h3,h4,h5,h6 {margin:0; padding:0; }
+ul{list-style: none;}
+#top{height:50px;background:#E2E9EA;}
+#nav{height:50px;}
+#nav ul{margin:0;padding:0;}
+#nav .username{float: right;margin:18px 60px;}
+.nav_ul li{float: left;height:50px;line-height: 50px;padding:0 15px;}
+.nav_ul li:not(.active):hover{background:#eee;}
+.nav_ul li a{text-decoration: none;}
+.nav_ul .active{background:#C6CED6;}
+.nav_ul .active a{color:#000;}
+#left{float:left;width:150px;background:#F7FBFC;padding:10px 0 10px 10px;}
+#left .menu .title{height:30px;border-bottom:1px solid #ddd;line-height: 30px;color:#275D96; font-weight: bold;}
+#open_close{width:11px;float:left;position: relative;}
+.toggle{cursor:pointer;width:11px;height: 84px;position: absolute;left:0;top:50%;margin-top:-42px;background:url(../../image/admin/icon1.png) no-repeat;}
+.open_show{cursor:pointer;width:11px;height: 84px;position: absolute;left:0;top:50%;margin-top:-42px;background:url(../../image/admin/icon2.png) no-repeat;}
+.menu ul{padding:6px 10px 0 5px;}
+.menu ul li {height:25px;line-height: 25px;}
+.menu ul li  a{display: block;height: 25px;line-height: 25px;font-size: 12px;color:#000;padding-left:10px;}
+.menu ul li .active{background: #3D71A8;color:#fff;padding-left:10px;}
+#right{margin-left:175px;background:#fff;}
+#logo{width:170px;height:50px;float:left;}
+#nav_box{height:50px;margin-left:175px;}
+input[type="button"], input[type="submit"], input[type="reset"]{
+-webkit-appearance: none;
+}
+textarea , select{  -webkit-appearance: none;}   
+/*首页样式end*/
+/*公用样式start*/
+.pad_t25{padding-top:25px;}
+.pad25{padding:25px;}
+.mar_t20{margin-top:20px;}
+.mar_t10{margin-top:10px;}
+.mar_l15{margin-left: 15px;}
+.mar_l40{margin-left: 40px;}
+.bg_grey{background:#F5F5F5;}
+.red{color:red;}
+.font_style1{color:#FB8B43;font-weight: bold;}
+.select_style{width:120px;height:30px;}
+.fl{float:left;}
+.l_h30{line-height: 30px;}
+.input_h30{height:30px;}
+/*公用样式end*/
+
+/*表单样式start*/
+.input_group input{padding:0;margin:0;}
+.input_group{height:50px;line-height:30px;}
+.input_group .require{float:left;height:30px;line-height: 30px;}
+.input_group .input_text{float: left;width:120px;text-align: right;line-height: 30px;}
+.input_group .input_text2{float: left;width:80px;text-align: right;line-height: 30px;}
+.input_group .input_text3{float: left;width:40px;text-align: right;line-height: 30px;}
+.input_group .text{float: left;text-align: right;line-height: 30px;}
+.input_group .input_text .red{color:red;margin-right:5px;}
+.input_group input{height:30px;padding-left:10px;float:left;}
+.input_group .small_input{height:30px;padding-left:10px;float:left;width:80px;}
+.input_group select{height:30px;padding-left:10px;float:left;width: 160px;}
+.input_group .big_input{width:250px;}
+.input_group .btn{padding:0 15px;background: #337AB7;color:#fff;}
+.input_group .btn:hover{padding:0 15px;background: #336AB6;color:#fff;}
+.input_group .check_text{float:left;height:30px;line-height: 30px;margin:0 5px;}
+.input_group .mar_l25{margin-left: 25px;}
+.input_group .auto-complete-target{height:30px;padding-left:10px;float:left;margin:0;padding:0;border:1px solid #A9A9A9;}
+.input_group .textarea{width:300px;height:35px;}
+/*表单样式end*/
+
+/*列表样面表单样式start*/
+.line{overflow: hidden;}
+.line .line_group{overflow: hidden;height:32px;float: left;}
+.line_group .inp_text .btn{background:#ddd;padding:0 15px;height:30px;background:#337AB7;color:#fff;}
+.line .line_group .inp_text{width:130px;height:30px;line-height: 30px;text-align: right;display: block;float: left;}
+.line .line_group .inp_text2{width:40px;height:30px;line-height: 30px;text-align: right;display: block;float: left;}
+.line .line_group .inp_text3{width:80px;height:30px;line-height: 30px;text-align: right;display: block;float: left;}
+.line .line_group .inp_inp{width:120px;height:30px;line-height: 30px;display: block;float: left;}
+.line .line_group .big_inp{width:300px;height:30px;line-height: 30px;display: block;float: left;}
+.line .line_group select{width:120px;height:30px;display: block;float: left;}
+/*列表样面表单样式end*/
+
+/*上传样式start*/
+.upload_div{width:120px;height:120px;position: relative;margin-bottom: 10px;border:1px solid #FFF;}
+.upload_img{position: absolute;left:0;top:0;width:120px;height:120px;}
+.upload_img img{width: 120px; height: 120px;}
+.upload_input{position: absolute;left:0;top:0;display: block;width:120px;height:120px;opacity: 0;cursor: pointer;}
+/*上传样式end*/
+
+
+/*地区选择start*/
+#dwt{width:478px;border:1px solid #ddd;background:#fff;padding:10px;position:absolute;left:0;top:0;z-index: 99999;left:50%;margin-left:-240px;}
+.p_cont{overflow:hidden;height:25px;}
+.dwt_address{float:left;line-height:25px;display:block;width:150px;}
+.dwt_close{float:right;line-height:25px;display:block;width:25px;height:25px;text-align:center;}
+.dwt_close a:hover{text-decoration:none;}
+.province{padding-right:10px;overflow:hidden;}
+.province a{display:block;float:left;width:50px;height:20px;text-align:center;margin-bottom:5px;}
+.province b{display:block;float:left;padding:3px 5px; margin:3px 8px;color:#FF9900;}
+.city{border:1px solid #ddd;overflow:hidden;margin-top:10px;}
+.city a{display:block;float:left;padding:3px 5px;margin:3px 5px;word-break:keep-all;}
+#dwt a:hover{background:#0088DD;color:#fff;}
+.province .hover{background:#0088DD;color:#fff;}
+#mask{width:100%;height:100%;position:absolute;left:0;top:0;background:#000;opacity:0.6;filter:alpha(opacity=60);z-index:99;display:none;}
+/*地区选择end*/
+
+/*登录页面start*/
+.login_body{background: #edeceb;}
+.login_wrapper{width: 460px; position: absolute; left: 50%; top: 40%; margin-left: -230px; margin-top: -110px;}
+.login_wrapper h1{text-align: center; color: #1a87b4; font-weight: bold;margin: 0 0 20px 0;}
+.login_content{background:#FFFFFF; padding: 40px 0 36px;}
+.login_content ul{margin-bottom: 0;}
+.login_content .title_a02{height:60px;line-height: 60px;text-align: center;font-size: 22px;font-weight: bold;}
+.login_content .list_b05 ul li{margin-bottom: 16px;}
+.login_content .list_b05 ul li:last-child{margin-bottom: 0;}
+.login_content .list_b05 label{color: #0088DD; font-weight: bold; width:116px;height:30px;display: block;float: left;line-height: 40px;text-align: right;margin-bottom: 0;font-size: 20px;}
+.login_content .st_g01{float: left;}
+.login_content .st_g01 a{float: left;width:60px;height:30px;line-height: 30px;}
+.login_content .st_d01{width:15px;height:15px;display: block;float: left;}
+.login_content .auto_login{width:120px;height:30px;line-height: 22px;margin-left:10px;}
+.login_content .te_c16, .login_content .te_c10{width:260px;height:40px;float: left;border-radius: 10px;font-size: 20px;padding-left:5px}
+.login_content .sl_c10{border:0;padding:5px 25px;width: 80px; height: 40px;border-radius: 10px;background:#336AB6;color:#fff;}
+/*登录页面end*/
+
+/*分页样式*/
+.page, .page a ,.page a:hover , .page .on ,.page .total, .page .to ,.page .n ,.page .go ,.page .go:hover{box-sizing:content-box;-webkit-box-sizing:content-box;-moz-box-sizing:content-box;-ms-box-sizing:content-box;}
+.page{clear:left;text-align: center;}
+.page a{display:inline-block;margin:0px 2px;padding:3px 8px;min-width:20px;height:30px;line-height:30px;border:solid 1px #cccccc;text-decoration:none;text-align:center;}
+.page a:hover{border:solid 1px #0088dd;}
+.page .on{display:inline-block;margin:0px 2px;padding:3px 8px;min-width:20px;height:30px;line-height:30px;border:solid 1px #0088dd;text-align:center;background:#0088dd;color:#FFFFFF;}
+.page .total{display:inline-block;margin: 0px 5px;}
+.page .to{display:inline-block;}
+.page .n{border:solid 1px #CCCCCC;padding:5px;width:29px;height:23px;line-height: 18px;text-align:center;}
+.page .go{display:inline-block;margin-left:10px;padding:3px 8px;width:30px;height:30px;line-height:30px;border:solid 1px #cccccc;text-align:center;background:#f5f5f5;cursor:pointer;}
+.page .go:hover{background:#3399ff;color:#fff;}
+/*分页样式end*/
+
+.text_div{overflow: hidden;line-height: 20px;margin:10px 0;}
+.text_div .text{width:120px;text-align: right;float: left;}
+
+.btn-primary.disabled{background-color: #DDD !important; border-color: #DDD !important; color: #333;}
