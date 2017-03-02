@@ -1,0 +1,104 @@
+[#assign shiro=JspTaglibs["/WEB-INF/tld/shiro.tld"] /]
+<!DOCTYPE html>
+<html style="overflow-x:hidden;overflow-y:auto;">
+	<head>
+		<title>主页</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		[#include "/back/include/header.htm"] 
+		<link href="${base}/resources/jquery-jbox/2.3/Skins/Bootstrap/jbox.css?v=2016-01-11-2" rel="stylesheet" />
+		<script src="${base}/resources/jquery-jbox/2.3/jquery.jBox-2.3.min.js?v=2016-01-11-2" type="text/javascript"></script>
+		<script src="${base}/resources/jquery-jbox/2.3/i18n/jquery.jBox-zh-CN.min.js?v=2016-01-11-2" type="text/javascript"></script> 
+		<script src="${base}/resources/common/common.js?v=2016-01-11-2" type="text/javascript"></script>
+	</head>
+	<body>
+		<div id="main">
+			<div id="header" class="navbar navbar-fixed-top">
+		      <div class="navbar-inner">
+		      	 <div class="brand">CRM后台管理</div>
+		         <div class="nav-collapse clearfix">
+					<ul id="menu" class="nav">
+						[#list navList as nav]
+							[#if nav.id != 1]
+								<li class="menu  [#if nav_index == 0]active[#assign firstNav='${base}/admin/menu/menuTree/${nav.id}?now=${.now}'][/#if]"><a class="menu" data-id="${nav.id}" href="${base}/admin/menu/menuTree/${nav.id}?now=${.now}" target="menuFrame" >${nav.name!''}</a></li>	
+							[/#if]
+						[/#list]		 
+					</ul>
+					<ul class="nav pull-right">
+						<!--new-->
+						<li class="pull-left">
+							<a href="javascript:autoMenu(2,200,'${base}/admin/message/unread_list');" class="nav-message-icon-wrapper clearfix" title="消息提醒">
+								<i class="icon-white icon-comment"></i><b id="navMessageCount" class="red-star">0</b>
+							</a>
+						</li>
+						<li class="pull-left dropdown">
+							<a class="dropdown-toggle sub-dropdown-menu-toggle" data-toggle="dropdown" href="#" title="[#if principal.dutyName?? && principal.dutyName !='']${principal.dutyName!}[/#if]">${principal.username!}<span class="caret" style="margin-left:4px;"></span></a>
+							<ul class="dropdown-menu sub-dropdown-menu">
+								<li><a href="${base}/admin/common/logout" title="退出登录">退出</a></li>	
+							</ul>
+						</li>
+						<!--old-->				
+						<!--<li>
+							<a href="javascript:autoMenu(2,200,'${base}/admin/message/unread_list');" class="nav-message-icon-wrapper clearfix">
+								<i class="pull-left display-block nav-message-icon">&nbsp;&nbsp;</i><strong class="pull-left red-star">(<b id="navMessageCount">0</b>)</strong>
+							</a>
+						</li>
+						<li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#" title="个人信息">您好！ ${principal.username!}[#if principal.dutyName?? && principal.dutyName !=''][${principal.dutyName!}][/#if]</a>
+						</li>
+						<li><a href="${base}/admin/common/logout" title="退出登录">退出</a></li>-->
+					</ul>
+		         </div><!--/.nav-collapse -->
+		      </div>
+		    </div>
+		    <div class="container-fluid" style="padding-left:0;padding-right:0;">
+				<div id="content" class="row-fluid">
+					<div id="left">
+						<iframe id="menuFrame" name="menuFrame" src="${firstNav}" style="overflow:visible;"
+							scrolling="yes" frameborder="no" width="100%" height="650"></iframe>
+					</div>
+					<div id="openClose" class="close">&nbsp;</div>
+					<div id="right">
+						<iframe id="mainFrame" name="mainFrame" src="${base}/admin/common/loading" style="overflow:visible;position:relative;"
+							scrolling="yes" frameborder="no" width="100%" height="650"></iframe>
+					</div>
+				</div>
+			    <div id="footer" class="row-fluid">
+		            
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">var _BASE_URL = "${base}"; var _USER_ID = "${userId}"</script>
+		<script type="text/javascript">
+			$(function(){
+				//不缓存数据
+				$.ajaxSetup({cache:false});
+				//导航菜单点击
+				$("#menu a.menu").click(function(){
+					switchNavStyle($(this));
+				});
+				//消息弹框
+				Common.util.getMessageTotalCount();
+				setInterval(function(){
+					Common.util.getMessageTotalCount();
+				}, 30 * 1000);
+			});
+
+			var leftWidth = "220"; // 左侧窗口大小
+			function wSize(){
+				var minHeight = 500, minWidth = 980;
+				var strs=getWindowSize().toString().split(",");
+				$("#menuFrame, #mainFrame, #openClose").height((strs[0]<minHeight?minHeight:strs[0])-$("#header").height()-$("#footer").height());
+				$("#openClose").height($("#openClose").height()-5);
+				if(strs[1]<minWidth){
+					$("#main").css("width",minWidth-10);
+					$("html,body").css({"overflow":"auto","overflow-x":"auto","overflow-y":"auto"});
+				}else{
+					$("#main").css("width","auto");
+					$("html,body").css({"overflow":"hidden","overflow-x":"hidden","overflow-y":"hidden"});
+				}
+				$("#right").width($("#content").width()-$("#left").width()-$("#openClose").width()-5);
+			}
+		</script>
+		<script src="${base}/resources/common/wsize.min.js?v=2016-01-11-2" type="text/javascript"></script>
+	</body>
+</html>

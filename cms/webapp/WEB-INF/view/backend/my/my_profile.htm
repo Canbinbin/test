@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html style="overflow-x:hidden;overflow-y:auto;">
+	<head>
+	<title>主页</title>
+	[#include "/backend/include/header.htm"]
+</style>
+<body>
+    <div class="container-fluid pad25">
+        <div class="row">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a href="javascript:void(0);">修改密码</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="row mar_t20">
+            <form id="myform" method="post">
+            	<input type="hidden" name="id" class="required" value="${admin.id}" />
+                <div class="input_group">
+                    <span class="input_text"><i class="red">*</i>姓名：</span>
+                    <span class="text">${admin.username!}</span>
+                </div>
+                <div class="input_group">
+                    <span class="input_text"><i class="red">*</i>密码：</span>
+                    <input id="password" name="password" type="password" value="" />
+                </div>
+                <div class="input_group">
+                    <span class="input_text"><i class="red">*</i>确认密码：</span>
+                    <input id="confirm_password" name="confirm_password" type="password"  value="" />
+                </div>
+                <div class="input_group">
+                    <span class="input_text">&nbsp;</span>
+                    <span class="text"><input type="submit" class="btn" value="提交"></span>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function(){
+            $("#myform").validate({
+            	rules:{
+            		 password: {
+        			    required: true,
+        			    minlength:6
+        			   
+        			 },
+        			 confirm_password: {
+         			    required: true,
+         			    minlength:6,
+         			    equalTo: "#password"
+         			 }
+            		
+            	},
+            	messages:{
+            		 password: {
+            			required: "请输入密码",
+            			minlength:"密码不能少于六位"
+            			
+            		},
+            		confirm_password: {
+            			required: "请输入确认密码",
+            			minlength:"密码不能少于六位",
+            			equalTo: "两次输入密码不一致不一致"
+            		}
+            	}
+            });
+        })
+    </script>
+</body>
+</html>

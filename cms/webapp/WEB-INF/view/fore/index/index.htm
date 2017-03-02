@@ -1,0 +1,58 @@
+
+<link href="${base}/static/css/home/index.css?v=20160111" type="text/css" rel="stylesheet" />
+<link href="${base}/static/css/home/login.css?v=20160111" type="text/css" rel="stylesheet" />
+<link href="${base}/static/plugin/daterangepicker/daterangepicker-bs3.css?v=20160111" type="text/css" rel="stylesheet" />
+<script src="${base}/static/js/home/index.js?v=20160111" type="text/javascript"></script>
+<script src="${base}/static/plugin/daterangepicker/moment.js?v=20160111" type="text/javascript"></script>
+<script src="${base}/static/plugin/daterangepicker/daterangepicker.js?v=20160111" type="text/javascript"></script>
+
+<div >
+	<!-- 头部  start-->	
+	[#include "/fore/index/header/header.htm"]
+	<!-- 头部 end -->	
+</div>
+<div style="margin-top:10px;" >		
+	<!-- 导航菜单 start -->	
+	[#include "/fore/index/first_content_tuwendaohang/nav.htm"]
+	<!-- 导航菜单  end -->
+</div>
+<div style="margin-top:10px;" >		
+	<!-- 第一部分的栏目 start -->	
+	[#include "/fore/index/first_content_tuwendaohang/first_content.htm"]
+	<!-- 第一部分的栏目  end -->
+</div>
+<div  >
+	<!-- 第二部分的栏目 start -->
+	[#include "fore/index/second_content/second_content.htm"]	
+	<!-- 第二部分的栏目  end -->
+</div>
+<div >
+	<!-- 第三部分的栏目 start -->
+	[#include "/fore/index/third_content/third_content.htm"]
+	<!-- 第三部分的栏目   end -->
+</div>
+<div>
+	<!-- 尾部 -->
+	[#include "/fore/index/footer/footer.html"]
+</div>
+<script>
+	$(function(){
+		//alert(navigator.userAgent);
+		var system = { win: true, mac: true, xll: true };
+		//检测平台      
+		var p = navigator.platform;
+		system.win = p.indexOf("Win") == 0;
+		system.mac = p.indexOf("Mac") == 0;
+		system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+		//如果是PC端浏览器，则显示导航菜单，否则隐藏导航菜单
+		if (system.win || system.mac || system.xll) 
+		{
+		    $("#main-nav").show();
+		}
+		else 
+		{
+		   $("#main-nav").hide();
+		}   
+	});
+</script>
+

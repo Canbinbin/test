@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mcpfp.web.modules.dao.GylOrgDao">
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		 id, pid, name, level, type, sort, tree_path, chief_id, chief_name, higher_id, higher_name, tag, flag, create_time, modify_time
+	</sql>
+	
+	<resultMap type="GylOrg" id="GylOrgResult">
+		<id column="id" property="id"/>
+		<result column="pid" property="pid"/>
+		<result column="name" property="name"/>
+		<result column="level" property="level"/>
+		<result column="type" property="type"/>
+		<result column="sort" property="sort"/>
+		<result column="tree_path" property="treePath"/>
+		<result column="chief_name" property="chiefName"/>
+		<result column="chief_id" property="chiefId"/>
+		<result column="higher_id" property="higherId"/>
+		<result column="higher_name" property="higherName"/>
+		<result column="tag" property="tag"/>
+		<result column="flag" property="flag"/>
+		<result column="create_time" property="createTime"/>
+		<result column="modify_time" property="modifyTime"/>
+	</resultMap>
+	
+	<insert id="insert" keyColumn="id" keyProperty="id" useGeneratedKeys="true" parameterType="GylOrg">
+		INSERT INTO `mcpfp_gyl_org` ( `id`, `pid`,`name`,`level`,`type`,`sort`,`tree_path`, `chief_id`,`chief_name`,`higher_id`,`higher_name`, `tag`,`flag`,`create_time`,`modify_time`) 
+		VALUES (  #{id}, #{pid},  #{name},  #{level},  #{type},  #{sort}, #{treePath}, #{chiefId}, #{chiefName},  #{higherId}, #{higherName}, #{tag}, #{flag}, #{createTime},  #{modifyTime})
+	</insert>
+	
+	<update id="update" parameterType="GylOrg">
+		UPDATE 
+		  `mcpfp_gyl_org` 
+		SET
+		<trim prefix="" suffixOverrides=",">
+			<if test="pid != null">
+			  `pid` = #{pid},
+			</if>
+			<if test="name != null">
+			  `name` = #{name},
+			</if>
+			<if test="level != null">
+			  `level` = #{level},
+			</if>
+			<if test="type != null">
+			  `type` = #{type},
+			</if>
+			<if test="sort != null">
+			  `sort` = #{sort},
+			</if>
+			<if test="treePath != null">
+			  `tree_path` = #{treePath},
+			</if>
+			<if test="chiefId != null">
+			  `chief_id` = #{chiefId},
+			</if>
+			<if test="chiefName != null">
+			`chief_name` = #{chiefName},
+			</if>
+			<if test="higherId != null">
+			 `higher_id` = #{higherId},	
+			</if>
+			<if test="higherName != null">
+			`higher_name` = #{higherName},
+			</if>
+			<if test="tag != null">
+			 `tag` = #{tag},
+			</if>
+			<if test="flag != null">
+			 `flag` = #{flag},
+			</if>
+			<if test="createTime != null">
+			`create_time` = #{createTime},
+			</if>
+			<if test="modifyTime != null">
+			 `modify_time` = #{modifyTime} 
+			</if>
+		</trim>
+		WHERE `id` = #{id} 
+	</update>
+	
+	<delete id="delete" parameterType="Long">
+		update mcpfp_gyl_org set flag = -1 where id = #{value}
+	</delete>
+	
+	<select id="find" parameterType="Long" resultMap="GylOrgResult">
+		select * from mcpfp_gyl_org where flag = 1 and id = #{value}
+	</select>
+	
+	
+	<select id="findAll" resultMap="GylOrgResult">
+		select * from mcpfp_gyl_org where flag = 1 order by sort,level
+	</select>
+	
+	<select id="findByCheifId" parameterType="Long" resultMap="GylOrgResult">
+		select * from mcpfp_gyl_org where flag=1 and chief_id = #{value}
+	</select>
+
+</mapper>

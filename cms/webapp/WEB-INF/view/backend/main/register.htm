@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html style="overflow-x:hidden;overflow-y:auto;">
+	<head>
+  	[#include "/backend/include/header.htm"]
+	<script type="text/javascript">
+		$(document).ready(function() {
+			
+			var $isRememberUsername = $("#rememberMe");
+			var $username = $("#username");
+			var $password = $("#password");
+			
+			// 用户账户密码验证
+			$("#loginForm").submit( function() {
+				if ($username.val() == "") {
+					layer.tips("用户名不能为空",$username);
+					return false;
+				}
+				if ($password.val() == "") {
+					layer.tips("密码不能为空",$password);
+					return false;
+				}
+				/* if ($validateCode.val() == "") {
+					layer.tips("��������֤��",$validateCode);
+					return false;
+				} */
+				
+				/* if ($isRememberUsername.prop("checked")) {
+					addCookie("adminUsername", $username.val(), {expires: 7 * 24 * 60 * 60});
+				} else {
+					removeCookie("adminUsername");
+				} */
+			});
+		});
+		// ����ڿ���У�����תˢ���ϼ�ҳ��
+		if(self.frameElement && self.frameElement.tagName=="IFRAME"){
+			parent.location.reload();
+		}
+	</script>
+
+	</head>
+<body class="login_body">
+    <div class="login_wrapper">
+        <h1>物联网管理平台--注册</h1>
+        <div class="login_content">
+            <form id="myform" method="post" action="/register" autocomplete="off">
+                <div class="list_b05">
+                    <ul>
+                        <li class="clearfix">
+                            <label>用户名：</label><i class="red">*</i>
+                            <input type="text" id="username" name="username" maxlength="20" class="te_c16 required" />
+                        </li>
+                        <li class="clearfix">
+                            <label>密码：</label><i class="red">*</i>
+                            <input type="password" id="password" name="password" maxlength="20" class="te_c16 required" />
+                        </li>
+                        <li class="clearfix">
+                            <label>确认密码：</label><i class="red">*</i>
+                            <input type="password" id="c_password" name="c_password" maxlength="20" class="te_c16 required" />
+                        </li>
+                        <li class="clearfix">
+                            <label>邮箱：</label><i class="red">*</i>
+                            <input type="email" id="email" name="email" maxlength="20" class="te_c16 required" />
+                        </li>
+                       
+                        <li class="clearfix">
+                            <label>&nbsp;</label>
+                            <input type="submit" value="提交" class="sl_c10 btn_submit" />
+                            <a style="margin-left: 15px;" href="/register">直接登录</a>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>        
+    </div>
+    <script type="text/javascript">
+    $(function(){
+        //表单验证
+        var usernameValue;
+        var $username = $("#username");
+        var initUsernameValue = $.trim($username.val()); 
+        var checkUsernameIsExistPromise = null;               
+        $("#myform").validate({
+            rules:{
+                  password: {
+			        required: true,
+			        minlength: 6
+			      },
+			      c_password: {
+			        required: true,
+			        minlength: 6,
+			        equalTo: "#password"
+			      }
+            },
+            messages: {
+               password: {
+		        required: "请输入密码",
+		        minlength: "密码长度不能小于 6 个字母"
+		      },
+		      c_password: {
+		        required: "请输入密码",
+		        minlength: "密码长度不能小于 6 个字母",
+		        equalTo: "两次密码输入不一致"
+		      }
+		    },
+            submitHandler: function(form){
+                usernameValue = $.trim($username.val());
+                if(initUsernameValue !== usernameValue){
+                    $(form).find(".btn_submit").prop("disabled", true);
+                     $.get("/is_exist_username", {
+                        username: usernameValue
+                    }).done(function(result){
+                        if(result ===  true){
+                            form.submit();                         
+                        }else{
+                            layer.msg("用户名称已存在" , {
+                                time: 1500
+                            }); 
+                            $(form).find(".btn_submit").prop("disabled", false);          
+                        }  
+                    }).fail(function(jqXHR, textStatus){
+                        if(textStatus !== "abort"){
+                            layer.msg("校验用户名称是否存在失败");       
+                        }
+                        $(form).find(".btn_submit").prop("disabled", false);     
+                    });
+                }else{
+                    $(form).find(".btn_submit").prop("disabled", false).val("提交中...");
+                    form.submit();
+                }  
+            }
+        });
+    });
+</script>
+</body>
+</html>

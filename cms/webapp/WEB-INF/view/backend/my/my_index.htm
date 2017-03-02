@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html style="overflow-x:hidden;overflow-y:auto;">
+	<head>
+	<title>主页</title>
+	[#include "/backend/include/header.htm"]
+	<style type="text/css">
+	.gutter{padding: 0 20px 0 10px;}
+</style>
+<body>
+<div class="container-fluid pad25">
+	<div class="row">
+		<ul class="nav nav-tabs">
+			<li class="active">
+			    	<a href="javascript:void(0);">工作台首页</a>
+			</li>
+		</ul>
+	</div>
+	<div class="row mar_t20">
+	<h3>当前日期：${now_time}</h3>
+	</div>
+	<div class="row mar_t20 gutter">
+		<table class="table table-bordered">
+			<tr>
+				<td class="text-center"></td>
+				<td class="text-center">成交订单数(单)</td>
+				<td class="text-center">成交量(吨)</td>
+				<td class="text-center">成交额(万)</td>
+				<td class="text-center">维护采购数(条)</td>
+			</tr>
+			<tr>
+				<td class="text-center">今天完成数</td>
+				<td class="text-center">${purchase['day']['total_order']}</td>
+				<td class="text-center">${purchase['day']['total_number']}</td>
+				<td class="text-center">${purchase['day']['total_amount']}</td>
+				<td class="text-center">${purchase['day']['purchase_num']}</td>
+			</tr>
+			<tr>
+				<td class="text-center">本周完成数</td>
+				<td class="text-center">${purchase['week']['total_order']}</td>
+				<td class="text-center">${purchase['week']['total_number']}</td>
+				<td class="text-center">${purchase['week']['total_amount']}</td>
+				<td class="text-center">${purchase['week']['purchase_num']}</td>
+			</tr>
+			<tr>
+				<td class="text-center">本月完成数</td>
+				<td class="text-center">${purchase['month']['total_order']}</td>
+				<td class="text-center">${purchase['month']['total_number']}</td>
+				<td class="text-center">${purchase['month']['total_amount']}</td>
+				<td class="text-center">${purchase['month']['purchase_num']}</td>
+			</tr>									
+		</table>
+	</div>
+</div>
+</body>
+</html>

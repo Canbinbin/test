@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html style="overflow-x:hidden;overflow-y:auto;">
+	<head>
+		[#include "/backend/include/header.htm"]
+		<style type="text/css">
+		    .input_group_no_float{height: auto; line-height: normal; margin-bottom: 20px;}
+		</style>
+	</head>
+<body>
+<div class="container-fluid pad25">
+    <div class="row">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="javascript:void(0);">部门列表</a></li>
+            <li><a href="/admin/org/add">部门添加</a></li>
+        </ul>
+    </div>
+    <div class="row mar_t20">
+        <table class="table table-bordered" id="treeTable">
+            <tbody>
+                <tr>
+                    <th class="text-center">名称</th>
+                    <th class="text-center">排序</th>
+                    <th class="text-center">类型</th>
+                    <th class="text-center">级别</th>
+                    <th class="text-center">数结构</th>
+                    <th class="text-center">负责人</th>
+                    <th class="text-center">上级领导</th>
+                    <th class="text-center">操作</th>
+                </tr>
+               [#list orgList as org]
+                <tr id="${org.id}" pId="${org.pid}">
+                    <td>${org.name}</td>
+                    <td>${org.sort}</td>
+                    <td>${org.type}</td>
+                    <td>${org.level}</td>
+                    <td>${org.treePath}</td>
+                    <td>${org.chiefName}</td>
+                    <td>${org.higherName}</td>
+                    <td>
+                        <a href="/admin/org/update?id=${org.id}">修改</a>
+                        <a data-id="${org.id}" class="delete" href="javascript:void(0);">删除</a>
+                        <a href="/admin/org/add?pid=${org.pid}">添加下级</a>
+                    </td>
+                </tr>
+               [/#list]
+            </tbody>
+        </table>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function(){
+        //树形表
+        $("#treeTable").treeTable({expandLevel : 10});
+        //删除
+        $(".delete").on("click",function(){
+            var $this=$(this);
+            layer.confirm('确定删除？',{icon: 5},function(index){
+                $.getJSON("/admin/org/delete",{"id":$this.data("id")},function(rs){
+                    layer.msg(rs.msg);
+                    if(rs.status>0){
+                    	layer.close(index);
+                        location.reload();
+                    }
+                });
+            });
+        });
+    });
+</script>
+</body>
+</html>

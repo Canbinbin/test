@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html style="overflow-x:hidden;overflow-y:auto;">
+	<head>
+	<title>主页</title>
+	[#include "/backend/include/header.htm"]
+	<script src="${base}/static/js/admin/public/treeSelect.js" type="text/javascript"></script>
+	<style type="text/css">
+	.line{padding:10px 0;}
+	.line_group{float:left;}
+	.line .line_group .inp_text{width:60px;}
+	.line .line_group .inp_inp{width:100px;padding-left:5px;}
+	</style>
+	</head>
+<body>
+<div class="container-fluid pad_t25">
+    <div class="row  bg_grey">
+        <form id="searchForm">
+        	<input id="pageNo" name="pageNo" type="hidden" value="${pageList.page.pageNo!0}"/>
+			<input id="pageSize" name="pageSize" type="hidden" value="${pageList.page.pageSize!0}"/>
+            <div class="line">
+                <div class="line_group">
+                    <span class="inp_text">归属部门：</span>
+                    <input class="inp_inp" type="text" name="orgName" id="org_name" value="${gylAdminDto.orgName}" readonly="readonly" />
+                    <input type="hidden" name="orgId" id="org_id" value="${gylAdminDto.orgId}" />
+                </div>
+                <div class="line_group">
+                    <span class="inp_text">用户名：</span>
+                    <input class="inp_inp" type="text" name="username" value="${gylAdminDto.username}" />
+                </div>
+                <div class="line_group">
+                    <span class="inp_text">姓名：</span>
+                    <input class="inp_inp" type="text" name="name" value="${gylAdminDto.name}" />
+                </div>
+                <div class="line_group">
+                    <span class="inp_text"><input type="submit" class="btn" value="提交"/></span>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="row mar_t20">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th class="text-center">选择</th>
+                    <th class="text-center">部门</th>
+                    <th class="text-center">人员(登录名/姓名)</th>
+                </tr>
+            </thead>
+            <tbody>
+                [#list pageList as v]
+                <tr>
+                    <td><input type="radio" name="radio" id="${v.id}" data-id="${v.id}"  class="selected_radio"/></td>
+                    <td>${v.duty.name}</td>
+                    <td>${v.username}(${v.name})</td>
+                </tr>
+                [/#list]           
+            </tbody>
+        </table>
+    </div>
+    
+   <ul class="pagination pull-right">${pageList.page}</ul>
+
+   <div id="treeDemo" style="width:300px;height:350px;display:none;" class="ztree"></div>
+
+<script type="text/javascript">
+	function page(n,s){
+		$("#pageNo").val(n);
+		$("#pageSize").val(s);
+		$("#searchForm").submit();
+		return false;
+	}
+    $(function(){
+        //选择管理员
+        $.treeSelect("/admin/org/tree_select","treeDemo","org_name","org_id");
+        $('[name="radio"]').click(function(){
+        	$('[name="radio"]').val('');
+        	var str=$(this).closest("tr").find("td").eq(2).html();
+        	$(this).val(str);
+        })
+      
+    });
+</script>
+
+</div>
+</body>
+</html>

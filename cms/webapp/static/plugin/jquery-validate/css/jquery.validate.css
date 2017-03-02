@@ -1,0 +1,14 @@
+label.error {
+	font-size: 10px !important;
+	padding-left: 10px !important; 
+	padding-bottom : 0px !important;
+	font-weight : bold !important; 
+	color : #ea5200 !important; 
+	position :relative !important; 
+	top : 4px !important;
+	margin-left: 126px;
+	line-height: 16px !important;
+	height: 3px !important;
+	width: 160px !important;
+	text-align:left !important
+}

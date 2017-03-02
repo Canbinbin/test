@@ -1,0 +1,50 @@
+@charset "utf-8";
+/* CSS Document */
+.content_One{ width:1002px; margin:8px auto; overflow:hidden;}
+	.content_One_photo{ width:400px; padding:10px 8px; height:313px; background-color:#3fa9ff; float:left; position:relative;}
+	.content_One_photo p{  margin-top:13px; text-align:center;overflow:hidden;word-break:keep-all; white-space:nowrap; text-overflow:ellipsis; display:none;}
+	.content_One_photo p a{ color:#FFF; font-weight:bold; font-size:13px;}
+	.content_One_photo div{ position:absolute; width:400px; height:18px; top:274px; background-color:#000;filter:alpha(opacity=60); -moz-opacity:0.6; opacity:0.6; text-align:right;}
+	.content_One_photo div span{ line-height:18px; color:#FFF; display:inline-block; width:16px; text-align:center;}
+	.content_One_photo div span:hover{ cursor:pointer;}
+	.content_One_photo .content_One_photoA{display:none;}
+	
+	.content_One_threeNews{ width:584px; height:333px; overflow:hidden; float:right; position:relative;}
+	.content_One_threeNews_meunUl{ width:103px; height:333px; float:left;}
+	.content_One_threeNews_meunUl li{ float:left; display:block; width:103px; height:106px; background:url("ico01.png")/*tpa=http://www.szhrss.gov.cn/images/ico01.png*/ no-repeat #3fa9ff; background-position:50% 17px; text-align:center; font-family:"微软雅黑"; font-size:16px; color:#fff; line-height:140px;}
+	.content_One_threeNews_meunUl li+li{ float:left; display:block; width:103px; height:106px; background:url("ico02.png")/*tpa=http://www.szhrss.gov.cn/images/ico02.png*/ no-repeat #ffb43f; background-position:50% 24px; text-align:center; font-family:"微软雅黑"; font-size:16px; color:#fff; line-height:140px; margin-top:7.5px;}
+	.content_One_threeNews_meunUl li+li+li{ float:left; display:block; width:103px; height:106px; background:url("ico03.png")/*tpa=http://www.szhrss.gov.cn/images/ico03.png*/ no-repeat #44bf84; background-position:50% 20px; text-align:center; font-family:"微软雅黑"; font-size:16px; color:#fff; line-height:135px;}
+	.content_One_threeNews_meunUl li:hover{ cursor:pointer;}
+	.content_One_threeNewsIco{ display:block; width:12px; height:22px; left:102px; top:40px; position:absolute;}
+	.threeNewsIcoA{ background:url("ico40.png")/*tpa=http://www.szhrss.gov.cn/images/ico40.png*/;}
+	.threeNewsIcoB{ background:url("ico41.png")/*tpa=http://www.szhrss.gov.cn/images/ico41.png*/;}
+	.threeNewsIcoC{ background:url("ico42.png")/*tpa=http://www.szhrss.gov.cn/images/ico42.png*/;}
+	.content_One_threeNews_Text{ float:left; width:451px; padding:20px 10px 20px 18px; height:291px; border:1px solid #cccdcd; line-height:22px;}
+	.content_One_threeNews_Text h1{ font-size:14px; text-align:center; margin-bottom:5px;}
+	.content_One_threeNews_Text_p{ text-indent:2em;}
+	.content_One_threeNews_Text_p a{ color:#3fa9ff;}
+	.content_One_threeNews_Text ul{ width:100%; overflow:hidden; margin-top:14px;}
+	.content_One_threeNews_Text ul li{ background:url("ico09.jpg")/*tpa=http://www.szhrss.gov.cn/images/ico09.jpg*/ left center no-repeat; line-height:28px; padding-left:15px; overflow:hidden;}
+	.content_One_threeNews_Text ul li a{ float:left; color:#595757; max-width:350px;}
+	.content_One_threeNews_Text ul li span{ float:right;color:#595757;}
+	
+	.content_One_gzryzk,.content_One_shgs_rmgs{ margin-right:8px; width:372px; height:360px; border-left:1px solid #e4e4e4;border-right:1px solid #e4e4e4;border-bottom:1px solid #e4e4e4; position:relative;}
+	.content_One_gzryzk_title{ height:50px; background:url("ico04.png")/*tpa=http://www.szhrss.gov.cn/images/ico04.png*/ no-repeat #3fa9ff; background-position:20px 50%; padding-left:70px; line-height:50px; font-size:16px; font-family:"微软雅黑"; color:#fff;}
+	.content_One_gzryzk ul,.content_One_shgs_rmgs ul,.content_Two_left_wssb_list ul,.content_Two_left_my_wssb_list ul,.content_Two_left_bszn_list ul,.content_Three_myzj_wsdc ul{overflow:hidden; margin-top:12px; *margin-top:0px;}
+	.content_One_gzryzk ul li,.content_One_shgs_rmgs ul li,.content_Two_left_wssb_list ul li,.content_Two_left_my_wssb_list ul li{ background:url("ico09.jpg")/*tpa=http://www.szhrss.gov.cn/images/ico09.jpg*/ no-repeat; background-position:10px 50%; height:29px; line-height:31px; padding:0 10px 0 23px; overflow:hidden; border-bottom:1px dashed #edeeee;}
+	.content_One_gzryzk ul li a,.content_One_shgs_rmgs ul li a,.content_Two_left_wssb_list ul li a,.content_Two_left_my_wssb_list ul li a,.content_Two_left_bszn_list ul li a,.content_Two_left_cjwt_list ul li a,.content_Three_myzj_wsdc ul li a,.content_Three_zxft ul li a,.content_Three_mdml ul li a,.content_Two_left_xzsp_list ul li a{ color:#575757;}
+	.content_One_shgs_rmgs_tilte{height:50px;}
+	.content_One_shgs_rmgs_tilte span{ display:inline-block; line-height:50px; width:115px;background:url("ico05.png")/*tpa=http://www.szhrss.gov.cn/images/ico05.png*/ no-repeat #3fa9ff; background-position:20px 50%;font-size:16px; font-family:"微软雅黑"; color:#fff;padding-left:70px;}
+	.content_One_shgs_rmgs_tilte span+span{ display:inline-block; line-height:50px; width:115px;background:url("ico06.png")/*tpa=http://www.szhrss.gov.cn/images/ico06.png*/ no-repeat #3fa9ff; background-position:20px 50%;font-size:16px; font-family:"微软雅黑"; color:#fff;padding-left:70px;}
+	.content_One_shgs_rmgs_tilte span:hover{ cursor:pointer;}
+	.content_One_shgs_rmgs_tilteIco{ display:block; width:15px; height:8px; left:90px; top:49px; position:absolute;background:url("ico43.png")/*tpa=http://www.szhrss.gov.cn/images/ico43.png*/;}
+	.content_One_wx_xxgkml{ width:235px; height:360px; border-left:1px solid #e4e4e4;border-right:1px solid #e4e4e4;border-bottom:1px solid #e4e4e4; position:relative;}
+	.content_One_wx_xxgkml_tilte{ height:50px; background:url("ico113.png")/*tpa=http://www.szhrss.gov.cn/images/ico113.png*/ no-repeat #3fa9ff; background-position:20px 50%; padding-left:70px; line-height:50px; font-size:16px; font-family:"微软雅黑"; color:#fff;}
+	.content_One_wx_xxgkml li{}
+	
+	.content_One_wx_xxgkml_list1{ overflow:hidden; margin-top:10px;}
+	.content_One_wx_xxgkml_list1 li{ padding:4px 0 4px 30px; background:url("ico114.png")/*tpa=http://www.szhrss.gov.cn/images/ico114.png*/ no-repeat; background-position:10px 50%;}
+	.content_One_wx_xxgkml_list1 li a{ color:#595757; line-height:15px;}
+	.content_One_wx_xxgkml_list2{ overflow:hidden; margin-top:5px;}
+	.content_One_wx_xxgkml_list2 li{ padding:3px 0 3px 5%; width:42%; float:left;}
+	.content_One_wx_xxgkml_list2 li a{ color:#595757; line-height:26px; width:68px; padding-left:31px; height:25px; display:block; background:url("ico115.png")/*tpa=http://www.szhrss.gov.cn/images/ico115.png*/ center no-repeat;}

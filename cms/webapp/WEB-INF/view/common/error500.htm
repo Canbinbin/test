@@ -1,0 +1,13 @@
+<div class="norsSuggest">
+	<h3>温馨提示：</h3>
+	<p>很抱歉，您要访问的页面已出错！请检查您访问的网址是否正确</p>
+	<p>
+		
+		[#if debug]
+			<li>${exception.message!}</li>
+			[#list exception.stackTrace as st]
+				<li style="color: red;">${st}</li>							
+			[/#list]
+		[/#if]
+	</p>
+</div>
