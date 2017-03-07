@@ -13,7 +13,7 @@ import com.framework.generic.model.BaseModel;
  *
  */
 @Data
-public class Sensor implements BaseModel, Serializable {
+public class Actuator implements BaseModel, Serializable {
 
 	public static String TREE_PATH_SEPARATOR = ",";
 
@@ -25,26 +25,26 @@ public class Sensor implements BaseModel, Serializable {
 	/** 用户id */
 	private Long userId;
 	
-	/** 车间id */
+	/** 用户id */
 	private Long orgId;
 
 	/** 名称 */
-	private String senName;
+	private String actName;
 	
 	/** 传感器通道 */
-	private String senChan;
+	private String actMac;
 	
 	/** 传感器类型 */
-	private String senType;
+	private String actType;
 	
 	/** 传感器曲线 */
-	private String curve;
+	private String actOrder;
 	
 	/** 传感器曲线 */
-	private String senOpen;
+	private String actOpen;
 
 	/** 创建时间 */
-	private java.util.Date senTime;
+	private java.util.Date actTime;
 	
 	
 

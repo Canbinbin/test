@@ -96,7 +96,7 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
 			if(!DigestUtils.md5Hex(password).equals(sysUser.getPassword())){
 				throw new AuthenticationException("用户名与密码不正确.");
 			}
-			Principal principal = new Principal(sysUser.getId(),sysUser.getUsername(),sysUser.getRoleId());
+			Principal principal = new Principal(sysUser.getId(),sysUser.getUsername(),sysUser.getRoleId(),sysUser.getOrgId());
 			session.setAttribute(Principal.SESSION_PRINCIPAL_ATTR, principal);
 			return new SimpleAuthenticationInfo(principal, token.getPassword(),token.getUsername());
 		}

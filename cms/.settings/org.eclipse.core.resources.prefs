@@ -1,4 +1,7 @@
 eclipse.preferences.version=1
+encoding//webapp/WEB-INF/view/backend/actuator/act_add.htm=UTF-8
+encoding//webapp/WEB-INF/view/backend/actuator/act_edit.htm=UTF-8
+encoding//webapp/WEB-INF/view/backend/actuator/act_list.htm=UTF-8
 encoding//webapp/WEB-INF/view/backend/admin/admin_add.htm=UTF-8
 encoding//webapp/WEB-INF/view/backend/admin/admin_edit.htm=UTF-8
 encoding//webapp/WEB-INF/view/backend/admin/admin_list.htm=UTF-8
@@ -11,6 +14,8 @@ encoding//webapp/WEB-INF/view/backend/main/main.htm=UTF-8
 encoding//webapp/WEB-INF/view/backend/main/register.htm=UTF-8
 encoding//webapp/WEB-INF/view/backend/menu/menu_add.htm=UTF-8
 encoding//webapp/WEB-INF/view/backend/menu/menu_list.htm=UTF-8
+encoding//webapp/WEB-INF/view/backend/my/my_index.htm=UTF-8
+encoding//webapp/WEB-INF/view/backend/my/my_profile.htm=UTF-8
 encoding//webapp/WEB-INF/view/backend/org/org_add.htm=UTF-8
 encoding//webapp/WEB-INF/view/backend/org/org_edit.htm=UTF-8
 encoding//webapp/WEB-INF/view/backend/org/org_list.htm=UTF-8
