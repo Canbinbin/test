@@ -4,7 +4,7 @@
 
 	<!-- 通用查询结果列-->
 	<sql id="Base_Column_List">
-		 id, user_id, sen_name, sen_type, sen_chan, curve, sen_open, sen_time
+		 id, user_id, sen_name, sen_type, sen_chan, curve, sen_open, sen_time,org_id
 	</sql>
 	
 	
@@ -17,6 +17,7 @@
 		<result column="curve"  property="curve"/>
 		<result column="sen_open" property="senOpen"/>
 		<result column="sen_time" property="senTime"/>
+		<result column="org_id" property="orgId"/>
 	</resultMap>
 
 	<select id="findAll" resultMap="SensorResult">
@@ -37,8 +38,8 @@
     </select>
 	<!-- 新增 -->
 	<insert id="insert" parameterType="Sensor" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
-		INSERT INTO `sensor` ( `id`, `user_id`,  `sen_name`,`sen_type`, `sen_chan`, `curve`, `sen_open`, `sen_time`)  
-		VALUES (#{id}, #{userId}, #{senName},  #{senType}, #{senChan},  #{curve}, #{senOpen}, #{senTime}) 
+		INSERT INTO `sensor` ( `id`, `user_id`,  `sen_name`,`sen_type`, `sen_chan`, `curve`, `sen_open`, `sen_time`, `org_id`)  
+		VALUES (#{id}, #{userId}, #{senName},  #{senType}, #{senChan},  #{curve}, #{senOpen}, #{senTime},#{orgId}) 
 	</insert>
 	
 	<!-- 修改 -->

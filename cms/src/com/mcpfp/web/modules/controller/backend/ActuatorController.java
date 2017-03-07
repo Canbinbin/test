@@ -6,8 +6,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -18,77 +16,73 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.framework.generic.page.domain.Page;
-import com.framework.generic.page.domain.PageList;
 import com.mcpfp.web.common.controller.BaseController;
-import com.mcpfp.web.common.controller.BaseController.MessageTypeEnum;
-import com.mcpfp.web.modules.entity.GylAdmin;
-import com.mcpfp.web.modules.entity.Sensor;
-import com.mcpfp.web.modules.service.SensorService;
+import com.mcpfp.web.modules.entity.Actuator;
+import com.mcpfp.web.modules.service.ActuatorService;
 @Controller
-@RequestMapping(value="/admin/sen")
-public class SensorController extends BaseController {
-	private static Logger log = LoggerFactory.getLogger(SensorController.class);
+@RequestMapping(value="/admin/act")
+public class ActuatorController extends BaseController {
+	private static Logger log = LoggerFactory.getLogger(ActuatorController.class);
 	
-	@Resource(name = "sensorService")
-	private SensorService sensorService;
+	@Resource(name = "actuatorService")
+	private ActuatorService actuatorService;
 	
 	@RequestMapping(value="")
 	public String list(ModelMap model){
 		Long userId = getPrincipal().getUserId();
-		List<Sensor> lists = sensorService.findByUersId(userId);
+		List<Actuator> lists = actuatorService.findByUersId(userId);
 		model.put("pageList", lists);
-		return "/backend/sensor/sen_list";
+		return "/backend/actuator/act_list";
 	}
 	
 	@RequestMapping(value="/add")
-	public String add(Page<Sensor> page, Long userId,ModelMap model){
-		
-		return "/backend/sensor/sen_add";
+	public String add(){
+		return "/backend/actuator/act_add";
 	}
 	
 	@RequestMapping(value = "save")
-	public String save(Sensor sensor,RedirectAttributes redirectAttributes){
+	public String save(Actuator actuator,RedirectAttributes redirectAttributes){
 		try {
 			
-			sensor.setSenTime(new Date());
-			sensor.setUserId(getPrincipal().getUserId());
+			actuator.setActTime(new Date());
+			actuator.setUserId(getPrincipal().getUserId());
 			long orgId = getPrincipal().getOrgId();
-			sensor.setOrgId(orgId);
-			sensorService.save(sensor);
+			actuator.setOrgId(orgId);
+			actuatorService.save(actuator);
 			this.addFlashMessage(redirectAttributes, MessageTypeEnum.SUCCESS, "操作成功");
 		} catch (Exception e) {
 			log.error(e.getMessage(),e);
 			this.addFlashMessage(redirectAttributes, MessageTypeEnum.ERROR, "传感器添加失败:"+e.getMessage());
 		}
-		return "redirect:/admin/sen";
+		return "redirect:/admin/act";
 	}
 	@RequestMapping(value = "updatesave")
-	public String update(Sensor sensor,RedirectAttributes redirectAttributes){
+	public String update(Actuator actuator,RedirectAttributes redirectAttributes){
 		try {
 			
-			sensor.setSenTime(new Date());
-			sensor.setUserId(getPrincipal().getUserId());
-			sensorService.update(sensor);
+			actuator.setActTime(new Date());
+			actuator.setUserId(getPrincipal().getUserId());
+			actuatorService.update(actuator);
 			this.addFlashMessage(redirectAttributes, MessageTypeEnum.SUCCESS, "操作成功");
 		} catch (Exception e) {
 			log.error(e.getMessage(),e);
 			this.addFlashMessage(redirectAttributes, MessageTypeEnum.ERROR, "传感器操作失败:"+e.getMessage());
 		}
-		return "redirect:/admin/sen";
+		return "redirect:/admin/act";
 	}
 	
 	@RequestMapping(value = "update")
 	public String update(Long id,ModelMap model){
-		Sensor sensor = sensorService.find(id);
-		model.put("sensor", sensor);
-		return "/backend/sensor/sen_edit";
+		Actuator actuator = actuatorService.find(id);
+		model.put("actuator", actuator);
+		return "/backend/actuator/act_edit";
 	}
 	
 	@RequestMapping(value = "delete",method = RequestMethod.GET,produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String delete(Long id,RedirectAttributes redirectAttributes){
 		try {
-			sensorService.delete(id);
+			actuatorService.delete(id);
 			return this.jsonPrint(1, "操作成功", null);
 		} catch (Exception e) {
 			log.error(e.getMessage(),e);

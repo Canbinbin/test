@@ -25,5 +25,7 @@ public class Principal implements BaseModel, Serializable {
 	private String username;
 	/** 角色*/
 	private Long roleId;
+	/** 车间ID*/
+	private Long orgId;
 
 }

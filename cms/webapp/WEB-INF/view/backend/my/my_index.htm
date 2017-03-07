@@ -3,9 +3,11 @@
 	<head>
 	<title>主页</title>
 	[#include "/backend/include/header.htm"]
+	<link href="${base}/static/css/admin/index_7db913a.css" type="text/css" rel="stylesheet" />
 	<style type="text/css">
 	.gutter{padding: 0 20px 0 10px;}
 </style>
+ 
 <body>
 <div class="container-fluid pad25">
 	<div class="row">
@@ -15,41 +17,44 @@
 			</li>
 		</ul>
 	</div>
-	<div class="row mar_t20">
-	<h3>当前日期：${now_time}</h3>
-	</div>
+	
 	<div class="row mar_t20 gutter">
-		<table class="table table-bordered">
-			<tr>
-				<td class="text-center"></td>
-				<td class="text-center">成交订单数(单)</td>
-				<td class="text-center">成交量(吨)</td>
-				<td class="text-center">成交额(万)</td>
-				<td class="text-center">维护采购数(条)</td>
-			</tr>
-			<tr>
-				<td class="text-center">今天完成数</td>
-				<td class="text-center">${purchase['day']['total_order']}</td>
-				<td class="text-center">${purchase['day']['total_number']}</td>
-				<td class="text-center">${purchase['day']['total_amount']}</td>
-				<td class="text-center">${purchase['day']['purchase_num']}</td>
-			</tr>
-			<tr>
-				<td class="text-center">本周完成数</td>
-				<td class="text-center">${purchase['week']['total_order']}</td>
-				<td class="text-center">${purchase['week']['total_number']}</td>
-				<td class="text-center">${purchase['week']['total_amount']}</td>
-				<td class="text-center">${purchase['week']['purchase_num']}</td>
-			</tr>
-			<tr>
-				<td class="text-center">本月完成数</td>
-				<td class="text-center">${purchase['month']['total_order']}</td>
-				<td class="text-center">${purchase['month']['total_number']}</td>
-				<td class="text-center">${purchase['month']['total_amount']}</td>
-				<td class="text-center">${purchase['month']['purchase_num']}</td>
-			</tr>									
-		</table>
+		<div class="c-intro">
+        <div class="c-intro-detail ">
+            <h1>物联网开放平台为您推荐全面完备的 IOT 云服务</h1>
+            <div class="quotes-wrapper">
+                <div class="quotes">
+                    <p class="quote" style="opacity: 1; top: 0px;">为IoT开发者提供智能设备自助开发工具、后台技术支持服务，为您提供物联网专网、短彩信、位置定位、设备管理、消息分发、远程升级等基础服务</p>
+                    <p class="quote" style="opacity: 1; top: 50px;">为您提供第三方应用开发平台，快速实现不同业务需求，借助轻应用孵化器快速搭建属于自己的web和APP应用</p>
+                    <p class="quote" style="opacity: 1; top: 100px;">高扩展的数据库、实时数据处理、智能预测离线数据分析、数据可视化展示等为您提供多维度的业务运营服务</p>
+                    <p class="quote" style="opacity: 1; top: 150px;">高频的开发者社区，汇聚着不同的知识源，帮您结交更多的物联网爱好者，让项目与开发成果开始传播</p>
+                </div>
+            </div>
+            <ul class="function-list">
+                <a href="">
+                    <li data-flag-id="0" class="paas">
+                        <p>IoT PaaS 基础能力</p>
+                    </li>
+                </a>
+                <a href="">
+                    <li data-flag-id="1" class="saas">
+                        <p>SaaS 业务服务</p>
+                    </li>
+                </a>
+                <a href="">
+                    <li data-flag-id="2" class="iot">
+                        <p>IOT 数据云</p>
+                    </li>
+                </a>
+                <a href="">
+                    <li data-flag-id="3" class="developer">
+                         <p>开发者社区</p>
+                    </li>
+                </a>
+            </ul>
+        </div>
 	</div>
+	<a class="btn btn-info" style="width:100px;margin-left:45%" href="/admin/sen">开始使用</a>
 </div>
 </body>
 </html>
