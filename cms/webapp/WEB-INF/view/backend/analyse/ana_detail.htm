@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html style="overflow-x:hidden;overflow-y:auto;">
+	<head>
+		[#include "/backend/include/header.htm"]
+		<script src="${base}/static/js/admin/public/treeSelect.js" type="text/javascript"></script>
+	</head>
+<body>
+<div class="container-fluid pad25">
+    <div class="row">
+        <ul class="nav nav-tabs">
+            <li><a href="/admin/act">执行器列表</a></li>
+            <li class="active"><a href="javascript:void(0);">执行器修改</a></li>
+        </ul>
+    </div>
+
+    <div class="row mar_t20">
+        <form id="myform" method="post" action="updatesave">
+        <input type="hidden" name="id" class="required" value="${actuator.id}" />
+        <input type="hidden" name="userId" class="required" value="${actuator.userId}" />
+            <div class="input_group">
+                <span class="input_text"><i class="red">*</i>执行器名称：</span>
+                <input type="text" name="actName" class="required" value="${actuator.actName}" />
+            </div>
+            <div class="input_group">
+                <span class="input_text"><i class="red">*</i>数据流通道	：</span>
+                <input type="text" name="actMac" class="required" value="${actuator.actMac}" />
+            </div>
+           
+            <div class="input_group">
+                <span class="input_text"><i class="red">*</i>执行器类型：</span>
+                <select name="actType">
+                    <option value="温度" [#if actuator.actType=='温度']selected[/#if]>温度</option>
+                    <option value="湿度" [#if actuator.actType=='湿度']selected[/#if]>湿度</option>
+                    <option value="光照" [#if actuator.actType=='光照']selected[/#if]>光照</option>
+                </select>
+            </div>
+            <div class="input_group" style="height:120px">
+                <span class="input_text"><i class="red">*</i>指令内容：</span>
+                <textarea rows="3" cols="30" name="actOrder" id="actOrder">${actuator.actOrder}</textarea>
+            </div>
+            <div class="input_group">
+                <span class="input_text"><i class="red">*</i>是否公开：</span>
+                <select name="actOpen">
+                   <option value="是" [#if actuator.actOpen=="是"]selected[/#if]>是</option>
+                   <option value="否" [#if actuator.actOpen=="否"]selected[/#if] >否</option>
+                    
+                </select>
+            </div>
+            <div class="input_group">
+                <span class="input_text">&nbsp;</span>
+                <span class="text"><input type="submit" class="btn" value="提交"></span>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="treeDemo" style="width:300px;height:350px;display:none;" class="ztree"></div>
+
+<script type="text/javascript">
+    $(function(){
+    	 $("#myform").validate();
+        //选择管理员
+        
+    });
+</script>
+
+</body>
+	
