@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html style="overflow-x:hidden;overflow-y:auto;">
+<head>
+[#include "/backend/include/header.htm"]
+<link href="${base}/static/css/analyse/style.css" type="text/css"
+	rel="stylesheet" />
+<link href="${base}/static/css/analyse/normalize.css" type="text/css"
+	rel="stylesheet" />
+</head>
+<body>
+	<div class="container-fluid pad25">
+		<div class="row">
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="javascript:void(0);">传感器列表</a></li>
+				<li><a href="">数据分析</a></li>
+			</ul>
+		</div>
+
+		<div class="row mar_t20">
+			<div class="wrapMain">
+				<div role="main" class="main">
+					[#list pageList as s]
+					<div class="postExcerpt photography">
+						<div class="postExcerptInner">
+							<div class="titleAndCat">
+								<h2>传感器：&nbsp&nbsp[#if
+									s.senTime??]${s.senTime?string("yyyy-MM-dd hh:mm:ss")}[/#if]</h2>
+								<em class="cat">${s.senName}</em>
+							</div>
+							<div class="imgWrap">
+								<img src="/static/image/admin/timg.jpg" alt="Tulips" width="267"
+									height="190">
+							</div>
+							<a class="view" href="/admin/ana/viewSen?id=${s.id}">View</a>
+						</div>
+					</div>
+					[/#list] [#list actList as s]
+					<div class="postExcerpt photography">
+						<div class="postExcerptInner">
+							<div class="titleAndCat">
+								<h2>执行器：&nbsp&nbsp[#if
+									s.actTime??]${s.actTime?string("yyyy-MM-dd hh:mm:ss")}[/#if]</h2>
+								<em class="cat">${s.actName}</em>
+							</div>
+							<div class="imgWrap">
+								<img src="/static/image/admin/timg.jpg" alt="Tulips" width="267"
+									height="190">
+							</div>
+							<a class="view" href="/admin/ana/viewAct?id=${s.id}">View</a>
+						</div>
+					</div>
+					[/#list]
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<script type="text/javascript">
+		$(function() {
+			//树形表
+			$("#treeTable").treeTable({
+				expandLevel : 10
+			});
+			//删除
+			$(".delete").on("click", function() {
+				var $this = $(this);
+				layer.confirm('确定删除？', {
+					icon : 5
+				}, function() {
+					$.getJSON("/admin/act/delete", {
+						"id" : $this.data("id")
+					}, function(rs) {
+						layer.msg(rs.msg);
+						if (rs.status > 0) {
+							location.reload();
+						}
+					});
+				});
+			});
+		});
+	</script>
+</body>
+</html>
