@@ -5,6 +5,7 @@
             Common.util.switchNav($(".nav_ul").find("li").eq(0));
             Common.util.switchMenu($(".menu").eq(0).find("li").eq(0));
             $(".nav_ul").find("li").click(function(){
+            	
                 var index=$(this).index();
                 Common.util.switchNav($(this));
                 Common.util.switchMenu($(".menu").eq(index).find("li").eq(0));

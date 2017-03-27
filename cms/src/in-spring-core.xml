@@ -101,7 +101,10 @@
 			</bean>
 		</property>
 	</bean>
-	
+	 <!-- -->
+	<bean id="coreService"  
+		class="com.mcpfp.web.modules.service.CoreService" scope="singleton"> 
+	</bean>  
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
 		init-method="init" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />

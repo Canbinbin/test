@@ -1,68 +1,144 @@
 <!DOCTYPE html>
 <html style="overflow-x:hidden;overflow-y:auto;">
-	<head>
-		[#include "/backend/include/header.htm"]
-		<script src="${base}/static/js/admin/public/treeSelect.js" type="text/javascript"></script>
-	</head>
+<head>
+[#include "/backend/include/header.htm"]
+<script src="${base}/static/js/admin/public/treeSelect.js"
+	type="text/javascript"></script>
+<script src="${base}/static/js/home/index/bootstrap.min.js"
+	type="text/javascript"></script>
+<script src="${base}/static/js/echarts.js" type="text/javascript"></script>
+
+<link href="${base}/static/css/analyse/style.css" type="text/css"
+	rel="stylesheet" />
+</head>
+<style>
+#main {
+	background: #FDF8F8 !important;
+}
+</style>
 <body>
-<div class="container-fluid pad25">
-    <div class="row">
-        <ul class="nav nav-tabs">
-            <li><a href="/admin/act">执行器列表</a></li>
-            <li class="active"><a href="javascript:void(0);">执行器修改</a></li>
-        </ul>
-    </div>
+	<div class="container-fluid pad25">
+		<div class="row">
+			<ul class="nav nav-tabs">
+				<li><a href="/admin/ana">终端列表</a></li>
+				<li class="active"><a href="javascript:void(0);">数据分析</a></li>
+			</ul>
+		</div>
+		<div class="row mar_t20">
+			<div class="wrapMain">
+				<div role="main" class="main">
+					<div class="col-md-12 column">
+						<div class="row clearfix">
+							<div class="col-md-8 column">
+								<h3>最新数据</h3>
+								<table class="table table-bordered table-hover">
+									<thead>
+										<tr>
+											<th>编号</th>
+											<th>产品</th>
+											<th>交付时间</th>
+											<th>状态</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>1</td>
+											<td>TB - Monthly</td>
+											<td>01/04/2012</td>
+											<td>Default</td>
+										</tr>
+										<tr class="success">
+											<td>1</td>
+											<td>TB - Monthly</td>
+											<td>01/04/2012</td>
+											<td>Approved</td>
+										</tr>
+										<tr class="error">
+											<td>2</td>
+											<td>TB - Monthly</td>
+											<td>02/04/2012</td>
+											<td>Declined</td>
+										</tr>
+										<tr class="warning">
+											<td>3</td>
+											<td>TB - Monthly</td>
+											<td>03/04/2012</td>
+											<td>Pending</td>
+										</tr>
+										<tr class="info">
+											<td>4</td>
+											<td>TB - Monthly</td>
+											<td>04/04/2012</td>
+											<td>Call in to confirm</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="col-md-4 column">
+								<h3>终端说明</h3>
+								<p>
+									<em>Git</em> 是一个分布式的版本控制系统，最初由 <strong>Linus Torvalds</strong>
+									编写，用作Linux内核代码的管理。在推出后，Git在其它项目中也取得了很大成功，尤其是在 <small>Ruby</small>
+									社区中。
+								</p>
+								<div class="row clearfix">
+									<div class="col-md-6 column">
+										<img alt="140x140" width=140 hieght=140
+											src="/static/image/admin/default3.jpg" class="img-rounded" />
+									</div>
+									<div class="col-md-6 column">
+										<a id="modal-78316" href="#modal-container-78316"
+											role="button" class="btn" data-toggle="modal">配置修改</a>
+										<div class="modal fade" id="modal-container-78316"
+											role="dialog" aria-labelledby="myModalLabel"
+											aria-hidden="true">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header">
+														<button type="button" class="close" data-dismiss="modal"
+															aria-hidden="true">×</button>
+														<h4 class="modal-title" id="myModalLabel">标题</h4>
+													</div>
+													<div class="modal-body">内容...</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-default"
+															data-dismiss="modal">关闭</button>
+														<button type="button" class="btn btn-primary">保存</button>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<hr />
 
-    <div class="row mar_t20">
-        <form id="myform" method="post" action="updatesave">
-        <input type="hidden" name="id" class="required" value="${actuator.id}" />
-        <input type="hidden" name="userId" class="required" value="${actuator.userId}" />
-            <div class="input_group">
-                <span class="input_text"><i class="red">*</i>执行器名称：</span>
-                <input type="text" name="actName" class="required" value="${actuator.actName}" />
-            </div>
-            <div class="input_group">
-                <span class="input_text"><i class="red">*</i>数据流通道	：</span>
-                <input type="text" name="actMac" class="required" value="${actuator.actMac}" />
-            </div>
-           
-            <div class="input_group">
-                <span class="input_text"><i class="red">*</i>执行器类型：</span>
-                <select name="actType">
-                    <option value="温度" [#if actuator.actType=='温度']selected[/#if]>温度</option>
-                    <option value="湿度" [#if actuator.actType=='湿度']selected[/#if]>湿度</option>
-                    <option value="光照" [#if actuator.actType=='光照']selected[/#if]>光照</option>
-                </select>
-            </div>
-            <div class="input_group" style="height:120px">
-                <span class="input_text"><i class="red">*</i>指令内容：</span>
-                <textarea rows="3" cols="30" name="actOrder" id="actOrder">${actuator.actOrder}</textarea>
-            </div>
-            <div class="input_group">
-                <span class="input_text"><i class="red">*</i>是否公开：</span>
-                <select name="actOpen">
-                   <option value="是" [#if actuator.actOpen=="是"]selected[/#if]>是</option>
-                   <option value="否" [#if actuator.actOpen=="否"]selected[/#if] >否</option>
-                    
-                </select>
-            </div>
-            <div class="input_group">
-                <span class="input_text">&nbsp;</span>
-                <span class="text"><input type="submit" class="btn" value="提交"></span>
-            </div>
-        </form>
-    </div>
-</div>
+						<div class="row clearfix" style="border: 2px solid">
+							<div class="col-md-12 column">
+								<div id="main" style="width: 102.6%;height:600px;margin-left: -15px;"></div>
+							</div>
+							
 
-<div id="treeDemo" style="width:300px;height:350px;display:none;" class="ztree"></div>
+						</div>
+						<script src="${base}/static/js/admin/analyse/analyse.js"
+							type="text/javascript"></script>
+					</div>
 
-<script type="text/javascript">
-    $(function(){
-    	 $("#myform").validate();
-        //选择管理员
-        
-    });
-</script>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="treeDemo" style="width:300px;height:350px;display:none;"
+		class="ztree"></div>
+
+	<script type="text/javascript">
+		$(function() {
+			$("#myform").validate();
+			//选择管理员
+
+		});
+	</script>
+
 
 </body>
-	
