@@ -46,60 +46,16 @@ public class AnalyseController extends BaseController {
 		return "/backend/analyse/ana_list";
 	}
 	
-	@RequestMapping(value="/add")
-	public String add(Page<Sensor> page, Long userId,ModelMap model){
-		
-		return "/backend/sensor/sen_add";
-	}
 	
-	@RequestMapping(value = "save")
-	public String save(Sensor sensor,RedirectAttributes redirectAttributes){
-		try {
-			
-			sensor.setSenTime(new Date());
-			sensor.setUserId(getPrincipal().getUserId());
-			long orgId = getPrincipal().getOrgId();
-			sensor.setOrgId(orgId);
-			sensorService.save(sensor);
-			this.addFlashMessage(redirectAttributes, MessageTypeEnum.SUCCESS, "操作成功");
-		} catch (Exception e) {
-			log.error(e.getMessage(),e);
-			this.addFlashMessage(redirectAttributes, MessageTypeEnum.ERROR, "传感器添加失败:"+e.getMessage());
-		}
-		return "redirect:/admin/sen";
-	}
-	@RequestMapping(value = "updatesave")
-	public String update(Sensor sensor,RedirectAttributes redirectAttributes){
-		try {
-			
-			sensor.setSenTime(new Date());
-			sensor.setUserId(getPrincipal().getUserId());
-			sensorService.update(sensor);
-			this.addFlashMessage(redirectAttributes, MessageTypeEnum.SUCCESS, "操作成功");
-		} catch (Exception e) {
-			log.error(e.getMessage(),e);
-			this.addFlashMessage(redirectAttributes, MessageTypeEnum.ERROR, "传感器操作失败:"+e.getMessage());
-		}
-		return "redirect:/admin/sen";
-	}
 	
-	@RequestMapping(value = "update")
-	public String update(Long id,ModelMap model){
-		Sensor sensor = sensorService.find(id);
-		model.put("sensor", sensor);
-		return "/backend/sensor/sen_edit";
+	@RequestMapping(value = "viewAct",method = RequestMethod.GET,produces="application/json;charset=UTF-8")
+	public String viewAct(Long id,ModelMap model){
+		System.out.println("viewAct id = "+id);
+		return "/backend/analyse/ana_detail";
 	}
-	
-	@RequestMapping(value = "delete",method = RequestMethod.GET,produces="application/json;charset=UTF-8")
-	@ResponseBody
-	public String delete(Long id,RedirectAttributes redirectAttributes){
-		try {
-			sensorService.delete(id);
-			return this.jsonPrint(1, "操作成功", null);
-		} catch (Exception e) {
-			log.error(e.getMessage(),e);
-			this.addFlashMessage(redirectAttributes, MessageTypeEnum.ERROR, "操作失败:"+e.getMessage());
-			return this.jsonPrint(-1, "操作失败:"+e.getMessage(), null);
-		}
+	@RequestMapping(value = "viewSen",method = RequestMethod.GET,produces="application/json;charset=UTF-8")
+	public String viewSen(Long id,ModelMap model){
+		System.out.println("viewSen id = "+id);
+		return "/backend/analyse/ana_detail";
 	}
 }

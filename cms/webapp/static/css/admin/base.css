@@ -103,7 +103,7 @@ textarea , select{  -webkit-appearance: none;}
 /*地区选择end*/
 
 /*登录页面start*/
-.login_body{background: #edeceb;}
+.login_body{background: url(/static/image/admin/login_bgx.gif);}
 .login_wrapper{width: 460px; position: absolute; left: 50%; top: 40%; margin-left: -230px; margin-top: -110px;}
 .login_wrapper h1{text-align: center; color: #1a87b4; font-weight: bold;margin: 0 0 20px 0;}
 .login_content{background:#FFFFFF; padding: 40px 0 36px;}
@@ -116,8 +116,8 @@ textarea , select{  -webkit-appearance: none;}
 .login_content .st_g01 a{float: left;width:60px;height:30px;line-height: 30px;}
 .login_content .st_d01{width:15px;height:15px;display: block;float: left;}
 .login_content .auto_login{width:120px;height:30px;line-height: 22px;margin-left:10px;}
-.login_content .te_c16, .login_content .te_c10{width:260px;height:40px;float: left;border-radius: 10px;font-size: 20px;padding-left:5px}
-.login_content .sl_c10{border:0;padding:5px 25px;width: 80px; height: 40px;border-radius: 10px;background:#336AB6;color:#fff;}
+.login_content .te_c16, .login_content .te_c10{outline:none;width:260px;height:40px;float: left;border-radius: 10px;font-size: 20px;padding-left:5px}
+.login_content .sl_c10{outline:none;border:0;padding:5px 25px;width: 80px; height: 40px;border-radius: 10px;background:#336AB6;color:#fff;}
 /*登录页面end*/
 
 /*分页样式*/
