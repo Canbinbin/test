@@ -42,7 +42,7 @@ public class IndexController extends BaseController {
 	
 	@RequestMapping(value = "index",method = RequestMethod.GET)
 	public String index(HttpServletRequest request){
-		return "/fore/index/index_first";
+		return "/fore/index/index";
 	}
 	@RequestMapping(value = "exam",method = RequestMethod.GET)
 	public String indexSecond(HttpServletRequest request){

@@ -1,15 +1,16 @@
 @charset "utf-8";
 
 /*首页样式start*/
-body,div,form,ul,li,ol,dl,dt,dd,p,h1,h2,h3,h4,h5,h6 {margin:0; padding:0; }
+body,div,form,ul,li,ol,dl,dt,dd,p,h1,h2,h3,h4,h5,h6 {margin:0; padding:0; font-size:14px !important}
 ul{list-style: none;}
-#top{height:50px;background:#E2E9EA;}
-#nav{height:50px;}
+#top{height:56px;background: -webkit-linear-gradient(left,#09a4cf 0,#02c8bb 100%);}
+#nav{height:56px;}
 #nav ul{margin:0;padding:0;}
 #nav .username{float: right;margin:18px 60px;}
-.nav_ul li{float: left;height:50px;line-height: 50px;padding:0 15px;}
-.nav_ul li:not(.active):hover{background:#eee;}
-.nav_ul li a{text-decoration: none;}
+.nav_ul li{float: left;height:56px;line-height: 56px;padding:0 15px;}
+.nav_ul li:not(.active):hover{/* background:#eee; */}
+.nav_ul li a{text-decoration: none; color: blanchedalmond;}
+.nav_ul li a:hover{text-decoration: none; color: #000;}
 .nav_ul .active{background:#C6CED6;}
 .nav_ul .active a{color:#000;}
 #left{float:left;width:150px;background:#F7FBFC;padding:10px 0 10px 10px;}
