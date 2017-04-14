@@ -134,7 +134,7 @@ header {
 }
 /*main*/
 .wrapMain {
-    background-color: #eeeff3;
+  /*   background-color: #eeeff3; */
     min-width: 297px;
 }
 .main {

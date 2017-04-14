@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html style="overflow-x:hidden;overflow-y:auto;">
+	<head>
+		[#include "/backend/include/header.htm"]
+		<script src="${base}/static/js/admin/public/treeSelect.js" type="text/javascript"></script>
+<body>
+<div class="container-fluid pad25">
+    <div class="row">
+        <ul class="nav nav-tabs">
+            <li><a href="/admin/camera">摄像头列表</a></li>
+            <li class="active"><a href="javascript:void(0);">摄像头添加</a></li>
+        </ul>
+    </div>
+
+    <div class="row mar_t20">
+        <form id="myform" method="post" action="save"> 
+            <div class="input_group">
+                <span class="input_text"><i class="red">*</i>摄像头名称：</span>
+                <input type="text" name="camName" class="required" value="" />
+            </div>
+            <div class="input_group">
+                <span class="input_text"><i class="red">*</i>物理地址：</span>
+                <input type="text" name="camMac" class="required" value="" />
+            </div>
+           
+             <div class="input_group" >
+                <span class="input_text"><i class="red">*</i>设备序列号：</span>
+                <input type="text" name="deviceSerial" id="deviceSerial" value=""/>
+            </div>
+             <div class="input_group" >
+                <span class="input_text"><i class="red">*</i>设备验证码：</span>
+                <input type="text" name="validateCode" id="validateCode" value=""/>
+            </div>
+             <div class="input_group" >
+                <span class="input_text"><i class="red">*</i>设备序列号：</span>
+                <input type="text" name="deviceSerial" id="deviceSerial" value=""/>
+            </div>
+             <div class="input_group" >
+                <span class="input_text"><i class="red">*</i>通道号：</span>
+                <input type="text" name="channelNo" id="channelNo" value=""/>
+            </div>
+             <div class="input_group" >
+                <span class="input_text"><i class="red">*</i>appkey：</span>
+                <input type="text" name="appkey" id="appkey" value=""/>
+            </div>
+             <div class="input_group" >
+                <span class="input_text"><i class="red">*</i>secret：</span>
+                <input type="text" name="secret" id="secret" value=""/>
+            </div>
+
+            
+            
+            <div class="input_group">
+                <span class="input_text">&nbsp;</span>
+                <span class="text"><input type="submit" class="btn" value="提交"></span>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function(){
+    	 $("#myform").validate();
+        //选择菜单
+    });
+</script>
+
+</body>
+</html>

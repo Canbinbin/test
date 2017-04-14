@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mcpfp.web.modules.dao.CameraDao">
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		 id, user_id, cam_name, cam_mac,deviceSerial,validateCode,accessToken,channelNo,cam_time,org_id
+	</sql>
+	
+	
+	<resultMap type="com.mcpfp.web.modules.entity.Camera" id="CameraResult">
+		<id column="id" property="id"/>
+		<result column="user_id" property="userId"/>
+		<result column="cam_name" property="camName"/>
+		<result column="deviceSerial" property="deviceSerial"/>
+		<result column="validateCode" property="validateCode"/>
+		<result column="cam_mac"  property="camMac"/>
+		<result column="accessToken" property="accessToken"/>
+		<result column="channelNo" property="channelNo"/>
+		<result column="cam_time" property="camTime"/>
+		<result column="org_id" property="orgId"/>
+		<result column="appkey" property="appkey"/>
+		<result column="secret" property="secret"/>
+	</resultMap>
+
+	<select id="findAll" resultMap="CameraResult">
+		select * from camera where 1 = 1 order by cam_time		
+	</select>
+	
+	<select id="find" parameterType="Long" resultMap="CameraResult">
+		select * from camera where 1 =1 and id=#{value}
+	</select>
+	
+	<select id="findByUserId" parameterType="Long" resultMap="CameraResult">
+		select * from camera where 1 =1 and user_id=#{value}
+	</select>
+	
+	<!-- 分页查询 -->
+    <select id="findPage" parameterType="Long" resultMap="CameraResult">
+        SELECT * FROM camera where user_id=#{value}
+    </select>
+	<!-- 新增 -->
+	<insert id="insert" parameterType="com.mcpfp.web.modules.entity.Camera" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+		INSERT INTO `camera` ( `id`, `user_id`,  `cam_name`,`deviceSerial`, `validateCode`, `cam_mac`, `accessToken`, `channelNo`, `cam_time`, `org_id`, `appkey`, `secret`)  
+		VALUES (#{id}, #{userId}, #{camName},  #{deviceSerial}, #{validateCode},  #{camMac}, #{accessToken}, #{channelNo},#{camTime},#{orgId},#{appkey},#{secret}) 
+	</insert>
+	
+	<!-- 修改 -->
+	<update id="update" parameterType="com.mcpfp.web.modules.entity.Camera">
+		UPDATE 
+	  	`camera` 
+	  	<set>
+	  		<trim prefix="" suffixOverrides=",">
+			  	<if test="camName != null">
+		  			`cam_name` = #{camName},
+		  		</if>
+		  		<if test="deviceSerial != null">
+		  			 `deviceSerial` = #{deviceSerial},
+		  		</if>
+			  	<if test="camMac != null">
+			  		`cam_mac` = #{camMac},
+			  	</if>
+			  	<if test="validateCode != null">
+				  `validateCode` = #{validateCode},
+			  	</if>
+			 	<if test="accessToken != null">
+			 		 `accessToken` = #{accessToken},
+			 	</if>
+			  	<if test="camTime != null">
+			  		 `cam_time` = #{camTime},	
+			  	</if>
+			  	<if test="channelNo != null">
+			  		 `channelNo` = #{channelNo},	
+			  	</if>
+			  	<if test="secret != null">
+			  		 `secret` = #{secret},	
+			  	</if>
+			  	<if test="appkey != null">
+			  		 `appkey` = #{appkey},	
+			  	</if>
+	  		</trim>
+	  	</set>
+		WHERE `id` = #{id} 
+	</update>
+	
+	<!-- 删除 -->
+	<delete id="delete" parameterType="Long">
+		 delete from camera where id = ${value}
+	</delete>
+
+</mapper>
