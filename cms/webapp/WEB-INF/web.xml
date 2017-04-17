@@ -37,7 +37,7 @@
   </servlet>
   <servlet>
     <servlet-name>CippeInit</servlet-name>
-    <servlet-class>com.mcpfp.web.common.init.StartInit</servlet-class>
+    <servlet-class>com.cms.web.common.init.StartInit</servlet-class>
     <init-param>
       <param-name>global-config-path</param-name>
       <param-value>config/global.cfg.xml</param-value>
@@ -63,7 +63,7 @@
   <servlet>
 	<servlet-name>uploadServlet</servlet-name>
 	<servlet-class>
-		com.mcpfp.servlet.UploadServlet
+		com.cms.servlet.UploadServlet
 	</servlet-class>
   </servlet>
   <servlet-mapping>

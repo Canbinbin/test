@@ -19,7 +19,7 @@
 		<!-- 通配符指定Mapper.xml -->
 		<property name="mapperLocations" value="classpath:${mybatis.mapper_location}" />
 		<!-- 自动扫描entity目录, 省掉Configuration.xml里的手工配置 -->
-		<property name="typeAliasesPackage" value="com.mcpfp.web.modules.entity" />
+		<property name="typeAliasesPackage" value="com.cms.web.modules.entity" />
 		<property value="org.springframework.util.LinkedCaseInsensitiveMap" name="typeAliases" />
 	</bean>
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
