@@ -1,4 +1,4 @@
-<%@page import="com.mcpfp.web.common.shiro.SystemAuthorizingRealm"%>
+<%@page import="com.cms.web.common.shiro.SystemAuthorizingRealm"%>
 <%@page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
 <%@page import="org.apache.commons.lang.ArrayUtils"%>
 <%@page import="org.apache.shiro.web.filter.authc.FormAuthenticationFilter"%>
@@ -6,7 +6,7 @@
 <%@page import="org.apache.shiro.SecurityUtils" %>
 <%@page import="org.apache.shiro.subject.Subject" %>
 <%@page import="org.springframework.context.ApplicationContext"%>
-<%@page import="com.mcpfp.web.common.util.SpringUtils"%>
+<%@page import="com.cms.web.common.util.SpringUtils"%>
 <%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <%
 String base = request.getContextPath();

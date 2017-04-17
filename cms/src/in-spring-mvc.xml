@@ -24,7 +24,7 @@
    
    <!-- 加载资源文件  其中包含变量信息，必须在Spring配置文件的最前面加载，即第一个加载-->
    <context:property-placeholder location="classpath:in-config.properties" />   
-   <context:component-scan base-package="com.mcpfp.web.**.controller" use-default-filters="false"> 
+   <context:component-scan base-package="com.cms.web.**.controller" use-default-filters="false"> 
          <context:include-filter type="annotation" 
                                  expression="org.springframework.stereotype.Controller"/> 
          <context:include-filter type="annotation" 
