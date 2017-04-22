@@ -30,8 +30,8 @@ public class Camera implements BaseModel, Serializable {
 	/** 名称 */
 	private String camName;
 	
-	/**  物理地址*/
-	private String camMac;
+//	/**  物理地址*/
+//	private String camMac;
 	
 	/** 设备序列号 */
 	private String deviceSerial;
@@ -52,6 +52,10 @@ public class Camera implements BaseModel, Serializable {
 	/** 创建时间 */
 	private java.util.Date camTime;
 	
+	private String tokenTime;
 	
+	private String liveAddress;
+	
+	private String hdAddress;
 
 }

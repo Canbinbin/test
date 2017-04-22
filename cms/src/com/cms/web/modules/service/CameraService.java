@@ -9,4 +9,5 @@ public interface CameraService extends BaseService<Camera, Long> {
 	
 	List<Camera> findByUersId(Long userId);
 
+	void updateBydeviceSerial(Camera camera);
 }

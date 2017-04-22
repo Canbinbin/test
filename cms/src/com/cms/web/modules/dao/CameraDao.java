@@ -9,4 +9,5 @@ public interface CameraDao extends BaseDao<Camera, Long>{
 
 	List<Camera> findByUserId(Long pid);
 	
+	void updateBydeviceSerial(Camera camera);
 }

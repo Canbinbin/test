@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html style="overflow-x:hidden;overflow-y:auto;">
+<head>
+[#include "/backend/include/header.htm"]
+<link href="${base}/static/css/analyse/style.css" type="text/css"
+	rel="stylesheet" />
+<link href="${base}/static/css/analyse/normalize.css" type="text/css"
+	rel="stylesheet" />
+</head>
+<body>
+	<div class="container-fluid pad25">
+		<div class="row">
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="javascript:void(0);">摄像头列表</a></li>
+				<li><a href="">监控</a></li>
+			</ul>
+		</div>
+
+		<div class="row mar_t20">
+			<div class="wrapMain">
+				<div role="main" class="main">
+					[#list pageList as s]
+					<div class="postExcerpt video">
+						<div class="postExcerptInner">
+							<div class="titleAndCat">
+								<h2>摄像头：&nbsp&nbsp[#if
+									s.camTime??]${s.camTime?string("yyyy-MM-dd hh:mm:ss")}[/#if]</h2>
+								<em class="cat">${s.camName}</em>
+							</div>
+							<div >
+							   <a style="margin-top:0px;margin-right:10px;float:right" class="playVideo" href="/admin/camera/cameraView?liveAddress=${s.liveAddress}">View</a>
+							   <a style="margin-left:10px" class="playVideo" href="/admin/camera/cameraView?liveAddress=${s.liveAddress}">View</a>
+							   <p style="margin-top:0px;margin-right:47px;float:right">高清</p>
+							   <p style="margin-top:0px;margin-left:47px">流畅</p>
+							</div>
+						</div>
+					</div>
+					[/#list]
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+</body>
+</html>
