@@ -16,7 +16,7 @@
 	</resultMap>
 
 	<select id="findAllInfo" resultMap="InfoResult">
-		select `id`,`title`,`score` from bookinfo where 1 = 1 		
+		select `id`,`title`,`score` from t_bookinfo where 1 = 1 		
 	</select>
 	
 	

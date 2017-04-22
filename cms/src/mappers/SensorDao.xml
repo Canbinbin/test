@@ -21,31 +21,31 @@
 	</resultMap>
 
 	<select id="findAll" resultMap="SensorResult">
-		select * from sensor where 1 = 1 order by sen_time		
+		select * from t_sensor where 1 = 1 order by sen_time		
 	</select>
 	
 	<select id="find" parameterType="Long" resultMap="SensorResult">
-		select * from sensor where 1 =1 and id=#{value}
+		select * from t_sensor where 1 =1 and id=#{value}
 	</select>
 	
 	<select id="findByUserId" parameterType="Long" resultMap="SensorResult">
-		select * from sensor where 1 =1 and user_id=#{value}
+		select * from t_sensor where 1 =1 and user_id=#{value}
 	</select>
 	
 	<!-- 分页查询 -->
     <select id="findPage" parameterType="Long" resultMap="SensorResult">
-        SELECT * FROM sensor where user_id=#{value}
+        SELECT * FROM t_sensor where user_id=#{value}
     </select>
 	<!-- 新增 -->
 	<insert id="insert" parameterType="Sensor" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
-		INSERT INTO `sensor` ( `id`, `user_id`,  `sen_name`,`sen_type`, `sen_chan`, `curve`, `sen_open`, `sen_time`, `org_id`)  
+		INSERT INTO `t_sensor` ( `id`, `user_id`,  `sen_name`,`sen_type`, `sen_chan`, `curve`, `sen_open`, `sen_time`, `org_id`)  
 		VALUES (#{id}, #{userId}, #{senName},  #{senType}, #{senChan},  #{curve}, #{senOpen}, #{senTime},#{orgId}) 
 	</insert>
 	
 	<!-- 修改 -->
 	<update id="update" parameterType="Sensor">
 		UPDATE 
-	  	`sensor` 
+	  	`t_sensor` 
 	  	<set>
 	  		<trim prefix="" suffixOverrides=",">
 			  	<if test="senName != null">
@@ -73,7 +73,7 @@
 	
 	<!-- 删除 -->
 	<delete id="delete" parameterType="Long">
-		 delete from sensor where id = ${value}
+		 delete from t_sensor where id = ${value}
 	</delete>
 
 </mapper>

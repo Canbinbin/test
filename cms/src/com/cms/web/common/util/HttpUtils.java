@@ -56,7 +56,7 @@ public final class HttpUtils {
     //传输超时时间，默认30秒
     private static final int CONNECT_TIMEOUT = 30000;
 	
-	private HttpUtils() {}
+	public HttpUtils() {}
 	
 	
 //	public static String post(String reqStr,String url,MediaType mediaType){

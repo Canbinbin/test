@@ -21,31 +21,31 @@
 	</resultMap>
 
 	<select id="findAll" resultMap="ActuatorResult">
-		select * from actuator where 1 = 1 order by act_time		
+		select * from t_actuator where 1 = 1 order by act_time		
 	</select>
 	
 	<select id="find" parameterType="Long" resultMap="ActuatorResult">
-		select * from actuator where 1 =1 and id=#{value}
+		select * from t_actuator where 1 =1 and id=#{value}
 	</select>
 	
 	<select id="findByUserId" parameterType="Long" resultMap="ActuatorResult">
-		select * from actuator where 1 =1 and user_id=#{value}
+		select * from t_actuator where 1 =1 and user_id=#{value}
 	</select>
 	
 	<!-- 分页查询 -->
     <select id="findPage" parameterType="Long" resultMap="ActuatorResult">
-        SELECT * FROM actuator where user_id=#{value}
+        SELECT * FROM t_actuator where user_id=#{value}
     </select>
 	<!-- 新增 -->
 	<insert id="insert" parameterType="Actuator" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
-		INSERT INTO `actuator` ( `id`, `user_id`,  `act_name`,`act_type`, `act_mac`, `act_order`, `act_open`, `act_time`, `org_id`)  
+		INSERT INTO `t_actuator` ( `id`, `user_id`,  `act_name`,`act_type`, `act_mac`, `act_order`, `act_open`, `act_time`, `org_id`)  
 		VALUES (#{id}, #{userId}, #{actName},  #{actType}, #{actMac},  #{actOrder}, #{actOpen}, #{actTime},#{orgId}) 
 	</insert>
 	
 	<!-- 修改 -->
 	<update id="update" parameterType="Actuator">
 		UPDATE 
-	  	`actuator` 
+	  	`t_actuator` 
 	  	<set>
 	  		<trim prefix="" suffixOverrides=",">
 			  	<if test="actName != null">
@@ -73,7 +73,7 @@
 	
 	<!-- 删除 -->
 	<delete id="delete" parameterType="Long">
-		 delete from actuator where id = ${value}
+		 delete from t_actuator where id = ${value}
 	</delete>
 
 </mapper>

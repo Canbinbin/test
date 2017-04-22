@@ -30,9 +30,10 @@ public class CameraServiceImpl extends BaseServiceImpl<Camera, Long> implements 
 		return cameraDao.findByUserId(pid);
 	}
 
-	
+	@Override
+	public void updateBydeviceSerial(Camera camera) {
 
-	
-
+		cameraDao.updateBydeviceSerial(camera);
+	}
 
 }
