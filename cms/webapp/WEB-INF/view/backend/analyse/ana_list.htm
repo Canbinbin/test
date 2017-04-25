@@ -23,30 +23,15 @@
 					<div class="postExcerpt photography">
 						<div class="postExcerptInner">
 							<div class="titleAndCat">
-								<h2>传感器：&nbsp&nbsp[#if
-									s.senTime??]${s.senTime?string("yyyy-MM-dd hh:mm:ss")}[/#if]</h2>
-								<em class="cat">${s.senName}</em>
+								<h2>节点：${s.name} &nbsp类型：${s.pointType}</h2>
+								<h2>${s.description}</h2>
+								<em class="cat">${s.updateTime}</em>
 							</div>
 							<div class="imgWrap">
 								<img src="/static/image/admin/timg.jpg" alt="Tulips" width="267"
 									height="190">
 							</div>
-							<a class="view" href="/admin/ana/viewSen?id=${s.id}">View</a>
-						</div>
-					</div>
-					[/#list] [#list actList as s]
-					<div class="postExcerpt photography">
-						<div class="postExcerptInner">
-							<div class="titleAndCat">
-								<h2>执行器：&nbsp&nbsp[#if
-									s.actTime??]${s.actTime?string("yyyy-MM-dd hh:mm:ss")}[/#if]</h2>
-								<em class="cat">${s.actName}</em>
-							</div>
-							<div class="imgWrap">
-								<img src="/static/image/admin/timg.jpg" alt="Tulips" width="267"
-									height="190">
-							</div>
-							<a class="view" href="/admin/ana/viewAct?id=${s.id}">View</a>
+							<a class="view" href="/admin/ana/view?uniqueId=${s.uniqueId}">View</a>
 						</div>
 					</div>
 					[/#list]

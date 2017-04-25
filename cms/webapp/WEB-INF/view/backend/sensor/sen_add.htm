@@ -7,50 +7,62 @@
 <div class="container-fluid pad25">
     <div class="row">
         <ul class="nav nav-tabs">
-            <li><a href="/admin/sen">传感器列表</a></li>
-            <li class="active"><a href="javascript:void(0);">传感器添加</a></li>
+            <li><a href="/admin/sen">节点列表</a></li>
+            <li class="active"><a href="javascript:void(0);">节点添加</a></li>
         </ul>
     </div>
 
     <div class="row mar_t20">
         <form id="myform" method="post" action="save">
             <div class="input_group">
-                <span class="input_text"><i class="red">*</i>传感器名称：</span>
-                <input type="text" name="senName" class="required" value="" />
+                <span class="input_text"><i class="red">*</i>节点名称：</span>
+                <input type="text" name="name" class="required" value="" />
             </div>
             <div class="input_group">
-                <span class="input_text"><i class="red">*</i>数据流通道	：</span>
-                <input type="text" name="senChan" class="required" value="" />
+                <span class="input_text"><i class="red">*</i>节点编号(Mac)：</span>
+                <input type="text" name="uniqueId" class="required" value="" />
             </div>
            
             <div class="input_group">
-                <span class="input_text"><i class="red">*</i>传感器类型：</span>
-                <select name="senType">
-                    <option value="温度" >温度</option>
-                    <option value="湿度" >湿度</option>
-                    <option value="光照" >光照</option>
+                <span class="input_text"><i class="red">*</i>节点类型：</span>
+                <select name="pointType">
+                [#list type as s]
+                    <option value="${s.id}">${s.pointTypeName}</option>
+                [/#list]
                 </select>
             </div>
             <div class="input_group">
-                <span class="input_text"><i class="red">*</i>曲线形状：</span>
-                <select name="curve">
-                    <option value="平滑" >平滑</option>
-                    <option value="阶梯" >阶梯</option>
+                <span class="input_text"><i class="red">*</i>父节点：</span>
+                <select name="parent">
+                   [#list parent as s]
+                    <option value="${s.uniqueId}">${s.name}(${s.uniqueId})</option>
+                   [/#list]
                 </select>
             </div>
-            <div class="input_group">
-                <span class="input_text"><i class="red">*</i>是否公开：</span>
-                <select name="senOpen">
-                   <option value="是" >是</option>
-                   <option value="否" >否</option>
-                    
-                </select>
+            <div class="input_group" style="height:120px">
+                <span class="input_text">节点描述：</span>
+                <textarea rows="3" cols="40" name="description" ></textarea>
             </div>
-            
+            <div class="panel-group" style="margin-left: 118px;width: 710px;">
+				<div class="panel panel-default">
+					<div class="panel-heading" style="background-color: #fff;border: 1px dashed #ddd">
+					    <button type="button" class="btn btn-info" aria-label="Left Align" id="addCommond">
+						   <span class="glyphicon glyphicon-plus" aria-hidden="true"> </span>添加命令
+						</button>
+					</div>
+					<div class="panel-body" id="adddiv">
+							<table class="table" id="addTable">
+								<th>命令</th><th>说明</th>
+							</table>
+					</div>
+				</div>
+			</div>
             <div class="input_group">
                 <span class="input_text">&nbsp;</span>
-                <span class="text"><input type="submit" class="btn" value="提交"></span>
+                <span class="text"><input type="button" class="btn" value="提交" id="addPoint"></span>
             </div>
+            <input type="hidden" id="allCommand" name="allCommand">
+            <input type="hidden" id="allDesc" name="allDesc">
         </form>
     </div>
 </div>
@@ -61,7 +73,45 @@
     $(function(){
     	 $("#myform").validate();
         //选择菜单
+         $("#adddiv").hide();
+         var addId=1;
+         $("#addCommond").click(function(){
+           //  layer.msg("添加命令");
+             $("#adddiv").show();
+             var addHtml = "";
+             addHtml += "<tr id=tr"+addId+"><td><textarea rows='3' cols='40' style='resize:none;' name='command"+addId+"' id='command"+addId+"'></textarea></td>";
+             addHtml += "<td><textarea rows='3' cols='40' style='resize:none;' name='desc"+addId+"' id='desc"+addId+"'></textarea></td>";
+             addHtml += "<td><button onclick='deleteCommand("+addId+")' type='button' class='btn btn-warning' style='margin-top:16px' name='delete"+addId+"' id='delete"+addId+"'>";
+             addHtml += "<span class='glyphicon glyphicon-trash' aria-hidden='true'> </span></button></td></tr>";
+             $("#addTable").append(addHtml);
+             addId++;
+         });
+         $("#addPoint").click(function(){
+            layer.msg("提交");
+            if(addId>1){
+               var desc="";
+               var com ="";
+               var spl = "|-|";//分隔符
+               var res = false;
+               for(var i=1;i<addId;i++){
+	               if($("#tr"+i+"").length > 0){
+	               		com += $("#command"+i+"").val()+spl;
+	               		desc += $("#desc"+i+"").val()+spl;
+	               		res = true;
+	               }
+               }
+               if(res){
+	               $("#allCommand").val(com);
+	               $("#allDesc").val(desc);
+               }
+            }
+            $("#myform").submit();
+         });
     });
+    function deleteCommand(addId){
+          layer.msg(addId);
+          $("#tr"+addId+"").remove();
+    }
 </script>
 
 </body>

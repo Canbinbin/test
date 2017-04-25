@@ -16,25 +16,28 @@
         <table class="table table-bordered table-hover" id="treeTable">
             <tbody>
                 <tr>
-                    <th class="text-center">传感器名称</th>
-                    <th class="text-center">传感器通道</th>
-                    <th class="text-center">传感器类型</th>
-                    <th class="text-center">曲线形状</th>
-                    <th class="text-center">是否公开</th>
+                    <th class="text-center">节点名称</th>
+                    <th class="text-center">节点编号(MAC)</th>
+                    <th class="text-center">节点类型</th>
+                    <th class="text-center">父节点</th>
+                    <th class="text-center">节点描述</th>
+                    <th class="text-center">创建时间</th>
                     <th class="text-center">最近修改时间</th>
                     <th class="text-center">操作</th>
                 </tr>
                  [#list pageList as s]
 	                <tr id="${s.id}" >
-	                    <td>${s.senName}</td>
-	                    <td>${s.senChan}</td>
-	                    <td>${s.senType}</td>
-	                    <td>${s.curve}</td>
-	                    <td>${s.senOpen}</td>
-	                    <td>[#if s.senTime??]${s.senTime?string("yyyy-MM-dd hh:mm:ss")}[/#if]</td>
-	                    <td>
-	                        <a href="/admin/sen/update?id=${s.id}">修改</a>
-	                        <a data-id="${s.id}" class="delete" href="javascript:void(0);">删除</a>
+	                    <td class="text-center">${s.name}</td>
+	                    <td class="text-center">${s.uniqueId}</td>
+	                    <td class="text-center">${s.pointType}</td>
+	                    <td class="text-center">${s.parent}</td>
+	                    <td class="text-center">${s.description}</td>
+	                    <td class="text-center">${s.createTime}</td>
+	                    <td class="text-center">${s.updateTime}</td>
+	                    <td class="text-center">
+	                        <a data-id="${s.uniqueId}" id="sendCom" href="javascript:void()">发命令</a>
+	                        <a href="/admin/sen/update?uniqueId=${s.uniqueId}">修改</a>
+	                        <a data-id="${s.uniqueId}" class="delete" href="javascript:void(0);">删除</a>
 	                    </td>
 	                </tr>
                 [/#list]
@@ -50,13 +53,27 @@
         $(".delete").on("click",function(){
             var $this=$(this);
             layer.confirm('确定删除？',{icon: 5},function(){
-                $.getJSON("/admin/sen/delete",{"id":$this.data("id")},function(rs){
+                $.getJSON("/admin/sen/delete",{"uniqueId":$this.data("id")},function(rs){
                     layer.msg(rs.msg);
                     if(rs.status>0){
                         location.reload();
                     }
                 });
             });
+        });
+        //发命令
+        $("#sendCom").on("click",function(){
+            var $this=$(this);
+          //  $.getJSON("/admin/sen/getCommand",{"uniqueId":$this.data("id")},function(rs){
+                  var html = "<a>hhhhh</a>" ;
+                  layer.open({
+				  type: 1,
+				  title:"请选择一下命令发送",
+				  skin: 'layui-layer-rim', //加上边框
+				  area: ['420px', '240px'], //宽高
+				  content: html
+				});
+           // });
         });
     });
 </script>
