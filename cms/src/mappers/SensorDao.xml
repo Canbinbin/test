@@ -4,48 +4,52 @@
 
 	<!-- 通用查询结果列-->
 	<sql id="Base_Column_List">
-		 id, user_id, sen_name, sen_type, sen_chan, curve, sen_open, sen_time,org_id
+		 id, unique_id, expire, filter_type, filter_value, point_type, description,command_resend_time,create_time,update_time,name,owner,parent
 	</sql>
 	
 	
 	<resultMap type="Sensor" id="SensorResult">
 		<id column="id" property="id"/>
-		<result column="user_id" property="userId"/>
-		<result column="sen_name" property="senName"/>
-		<result column="sen_type" property="senType"/>
-		<result column="sen_chan" property="senChan"/>
-		<result column="curve"  property="curve"/>
-		<result column="sen_open" property="senOpen"/>
-		<result column="sen_time" property="senTime"/>
-		<result column="org_id" property="orgId"/>
+		<result column="unique_id" property="uniqueId"/>
+		<result column="expire" property="expire"/>
+		<result column="filter_type" property="filterType"/>
+		<result column="filter_value" property="filterValue"/>
+		<result column="point_type"  property="pointTpe"/>
+		<result column="description" property="description"/>
+		<result column="command_resend_time" property="commandRendTime"/>
+		<result column="create_time" property="createTime"/>
+		<result column="update_time" property="updateTime"/>
+		<result column="name" property="name"/>
+		<result column="owner" property="owner"/>
+		<result column="parent" property="parent"/>
 	</resultMap>
 
 	<select id="findAll" resultMap="SensorResult">
-		select * from t_sensor where 1 = 1 order by sen_time		
+		select * from tb_point where 1 = 1 order by update_time		
 	</select>
 	
 	<select id="find" parameterType="Long" resultMap="SensorResult">
-		select * from t_sensor where 1 =1 and id=#{value}
+		select * from tb_point where 1 =1 and id=#{value}
 	</select>
 	
 	<select id="findByUserId" parameterType="Long" resultMap="SensorResult">
-		select * from t_sensor where 1 =1 and user_id=#{value}
+		select * from tb_point where 1 =1 and owner=#{value}
 	</select>
 	
 	<!-- 分页查询 -->
     <select id="findPage" parameterType="Long" resultMap="SensorResult">
-        SELECT * FROM t_sensor where user_id=#{value}
+        SELECT * FROM tb_point where user_id=#{value}
     </select>
 	<!-- 新增 -->
 	<insert id="insert" parameterType="Sensor" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
-		INSERT INTO `t_sensor` ( `id`, `user_id`,  `sen_name`,`sen_type`, `sen_chan`, `curve`, `sen_open`, `sen_time`, `org_id`)  
+		INSERT INTO `tb_point` ( `id`, `user_id`,  `sen_name`,`sen_type`, `sen_chan`, `curve`, `sen_open`, `sen_time`, `org_id`)  
 		VALUES (#{id}, #{userId}, #{senName},  #{senType}, #{senChan},  #{curve}, #{senOpen}, #{senTime},#{orgId}) 
 	</insert>
 	
 	<!-- 修改 -->
 	<update id="update" parameterType="Sensor">
 		UPDATE 
-	  	`t_sensor` 
+	  	`tb_point` 
 	  	<set>
 	  		<trim prefix="" suffixOverrides=",">
 			  	<if test="senName != null">
@@ -73,7 +77,7 @@
 	
 	<!-- 删除 -->
 	<delete id="delete" parameterType="Long">
-		 delete from t_sensor where id = ${value}
+		 delete from tb_point where id = ${value}
 	</delete>
 
 </mapper>

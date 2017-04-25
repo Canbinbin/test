@@ -8,51 +8,68 @@
 <div class="container-fluid pad25">
     <div class="row">
         <ul class="nav nav-tabs">
-            <li><a href="/admin/menu">传感器列表</a></li>
+            <li><a href="/admin/sen">传感器列表</a></li>
             <li class="active"><a href="javascript:void(0);">传感器修改</a></li>
         </ul>
     </div>
 
     <div class="row mar_t20">
         <form id="myform" method="post" action="updatesave">
-        <input type="hidden" name="id" class="required" value="${sensor.id}" />
-        <input type="hidden" name="userId" class="required" value="${sensor.userId}" />
             <div class="input_group">
-                <span class="input_text"><i class="red">*</i>传感器名称：</span>
-                <input type="text" name="senName" class="required" value="${sensor.senName}" />
+                <span class="input_text"><i class="red">*</i>节点名称：</span>
+                <input type="text" name="name" class="required" value="${point.name}" />
             </div>
             <div class="input_group">
-                <span class="input_text"><i class="red">*</i>数据流通道	：</span>
-                <input type="text" name="senChan" class="required" value="${sensor.senChan}" />
+                <span class="input_text"><i class="red">*</i>节点编号(Mac)：</span>
+                <input type="text" name="uniqueId" class="required" value="${point.uniqueId}" />
             </div>
            
             <div class="input_group">
-                <span class="input_text"><i class="red">*</i>传感器类型：</span>
-                <select name="senType">
-                    <option value="温度" [#if sensor.senType=='温度']selected[/#if]>温度</option>
-                    <option value="湿度" [#if sensor.senType=='湿度']selected[/#if]>湿度</option>
-                    <option value="光照" [#if sensor.senType=='光照']selected[/#if]>光照</option>
+                <span class="input_text"><i class="red">*</i>节点类型：</span>
+                <select name="pointType">
+                [#list type as s]
+                    [#if s.id == point.id]
+                       <option value="${s.id}" selected>${s.pointTypeName}</option>
+                    [#else]
+                       <option value="${s.id}">${s.pointTypeName}</option>
+                    [/#if]
+                [/#list]
                 </select>
             </div>
             <div class="input_group">
-                <span class="input_text"><i class="red">*</i>曲线形状：</span>
-                <select name="curve">
-                    <option value="平滑" [#if sensor.curve=="平滑"]selected[/#if]>平滑</option>
-                    <option value="阶梯" [#if sensor.curve=="阶梯"]selected[/#if]>阶梯</option>
+                <span class="input_text"><i class="red">*</i>父节点：</span>
+                <select name="parent">
+                   [#list parent as s]
+                      [#if s.uniqueId == point.uniqueId]
+	                    <option value="${s.uniqueId}" selected>${s.name}(${s.uniqueId})</option>
+	                  [#else]
+	                    <option value="${s.uniqueId}">${s.name}(${s.uniqueId})</option>
+	                   [/#if]
+                   [/#list]
                 </select>
             </div>
-            <div class="input_group">
-                <span class="input_text"><i class="red">*</i>是否公开：</span>
-                <select name="senOpen">
-                   <option value="是" [#if sensor.senOpen=="是"]selected[/#if]>是</option>
-                   <option value="否" [#if sensor.senOpen=="否"]selected[/#if] >否</option>
-                    
-                </select>
+            <div class="input_group" style="height:120px">
+                <span class="input_text"><i class="red">*</i>节点描述：</span>
+                <textarea rows="3" cols="40" name="description">${point.description}</textarea>
             </div>
+            <div class="panel-group" style="margin-left: 118px;width: 710px;">
+				<div class="panel panel-default">
+					<div class="panel-heading" style="background-color: #fff;border: 1px dashed #ddd">
+					    <button type="button" class="btn btn-info" aria-label="Left Align" id="addCommond">
+						   <span class="glyphicon glyphicon-plus" aria-hidden="true"> </span>添加命令
+						</button>
+					</div>
+					<div class="panel-body">
+							<table class="table" id="addTable">
+								<th>命令</th><th>说明</th>
+								
+							</table>
+					</div>
+				</div>
+			</div>
             <div class="input_group">
                 <span class="input_text">&nbsp;</span>
                 <span class="text"><input type="submit" class="btn" value="提交"></span>
-                <input type="hidden" name="id" value="${menu.id}" />
             </div>
         </form>
     </div>
@@ -63,9 +80,46 @@
 <script type="text/javascript">
     $(function(){
     	 $("#myform").validate();
-        //选择管理员
-        
+       
+        $("#addTable").hide();
+         var addId=1;
+         $("#addCommond").click(function(){
+           //  layer.msg("添加命令");
+             $("#addTable").show();
+             var addHtml = "";
+             addHtml += "<tr id=tr"+addId+"><td><textarea rows='3' cols='40' style='resize:none;' name='command"+addId+"' id='command"+addId+"'></textarea></td>";
+             addHtml += "<td><textarea rows='3' cols='40' style='resize:none;' name='desc"+addId+"' id='desc"+addId+"'></textarea></td>";
+             addHtml += "<td><button onclick='deleteCommand("+addId+")' type='button' class='btn btn-warning' style='margin-top:16px' name='delete"+addId+"' id='delete"+addId+"'>";
+             addHtml += "<span class='glyphicon glyphicon-trash' aria-hidden='true'> </span></button></td></tr>";
+             $("#addTable").append(addHtml);
+             addId++;
+         });
+         $("#addPoint").click(function(){
+            layer.msg("提交");
+            if(addId>1){
+               var desc="";
+               var com ="";
+               var spl = "|-|";//分隔符
+               var res = false;
+               for(var i=1;i<addId;i++){
+	               if($("#tr"+i+"").length > 0){
+	               		com += $("#command"+i+"").val()+spl;
+	               		desc += $("#desc"+i+"").val()+spl;
+	               		res = true;
+	               }
+               }
+               if(res){
+	               $("#allCommand").val(com);
+	               $("#allDesc").val(desc);
+               }
+            }
+            $("#myform").submit();
+         });
     });
+    function deleteCommand(addId){
+          layer.msg(addId);
+          $("#tr"+addId+"").remove();
+    }
 </script>
 
 </body>
