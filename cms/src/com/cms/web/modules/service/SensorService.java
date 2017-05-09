@@ -6,12 +6,15 @@ import java.util.Map;
 import cn.edu.jnu.fastbits.entity.CmdCandidateEntity;
 import cn.edu.jnu.fastbits.entity.CommandEntity;
 import cn.edu.jnu.fastbits.entity.PointEntity;
+import cn.edu.jnu.fastbits.entity.PointLogEntity;
+import cn.edu.jnu.fastbits.entity.PointSearchCondition;
 import cn.edu.jnu.fastbits.entity.PointTypeEntity;
 import cn.edu.jnu.fastbits.entity.ValueEntity;
-import cn.edu.jnu.fastbits.rest.Resp;
+import cn.edu.jnu.fastbits.rest.http.Page;
+import cn.edu.jnu.fastbits.rest.http.Resp;
 
-import com.framework.generic.service.BaseService;
 import com.cms.web.modules.entity.Sensor;
+import com.framework.generic.service.BaseService;
 
 public interface SensorService extends BaseService<Sensor, Long> {
 	
@@ -62,6 +65,35 @@ public interface SensorService extends BaseService<Sensor, Long> {
     Resp<List<CommandEntity>> queryCommands(String entityId);
 
 	Resp<Integer> addCmdCandidates(List<CmdCandidateEntity> list);
-
 	
+	/**
+     * 查询某个结点的所有候选命令
+     */
+    Resp<List<CmdCandidateEntity>> queryCmdCandidates(String entityId);
+
+    /**
+     * 修改候选命令
+     */
+    Resp<CmdCandidateEntity> updateCmdCandidate(Long id, CmdCandidateEntity entity);
+    
+    /**
+     * 删除候选命令
+     */
+    Resp<Integer> deleteCmdCandidate(Long id, String entityId);
+    /**
+     * 用户下发命令
+     * @param id 修改命令的ID
+     * @param entityId 结点的uniqueId
+     */
+    Resp<CommandEntity> sendCommand(Long id, String entityId);
+    /**
+     * 按 owner 查找日志
+     */
+    Resp<Page<PointLogEntity>> findPointLogByOwner(String owner, String sPageNow,String sPageSize);
+
+	Resp<Page<PointEntity>> findByUersId(Long userId, String pageNow,
+			String pageSize);
+
+	Resp<Page<PointEntity>> findPointByCondition(String owner,
+			PointSearchCondition condition);
 }

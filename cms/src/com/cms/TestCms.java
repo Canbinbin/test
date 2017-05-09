@@ -1,11 +1,6 @@
 package com.cms;
 
 
-import cn.edu.jnu.fastbits.entity.CmdCandidateEntity;
-import cn.edu.jnu.fastbits.entity.PointEntity;
-import cn.edu.jnu.fastbits.rest.MessageCode;
-import cn.edu.jnu.fastbits.rest.Resp;
-import cn.edu.jnu.fastbits.rest.api.upper.UpperFastbitsIO;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,6 +10,15 @@ import java.util.List;
 
 
 
+
+
+
+
+
+import cn.edu.jnu.fastbits.entity.CmdCandidateEntity;
+import cn.edu.jnu.fastbits.rest.api.upper.UpperFastbitsIO;
+import cn.edu.jnu.fastbits.rest.http.MessageCode;
+import cn.edu.jnu.fastbits.rest.http.Resp;
 
 import com.cms.config.UpperFastbitsIOSingleton;
 

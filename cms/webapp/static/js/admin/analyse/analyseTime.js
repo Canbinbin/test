@@ -31,6 +31,7 @@ function getData() {
 				html += "<td>"+da.numericalVal+"</id>";
 				html += "<td>"+da.longitude+"</id>";
 				html += "<td>"+da.latitude+"</id>";
+				html += "<td>"+(da[i].textVal==undefined?"无":da[i].textVal)+"</id>";
 				html += "<td>"+toDateTime(da.updateTime)+"</id>";
 				html += "<td>"+"正常"+"</td>";
 				$("#info").html(html);
@@ -76,6 +77,12 @@ for (var i = 1; i < 20; i++) {
 }
 
 option = {
+		tooltip: {
+	        trigger: 'axis',
+	        position: function (pt) {
+	            return [pt[0], '10%'];
+	        }
+	    },
 		title: {
 	        text: '节点实时数据展示'
 	    },

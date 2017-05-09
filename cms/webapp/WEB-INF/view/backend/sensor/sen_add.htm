@@ -87,7 +87,7 @@
              addId++;
          });
          $("#addPoint").click(function(){
-            layer.msg("提交");
+            layer.msg("提交中……");
             if(addId>1){
                var desc="";
                var com ="";
@@ -109,7 +109,7 @@
          });
     });
     function deleteCommand(addId){
-          layer.msg(addId);
+         // layer.msg(addId);
           $("#tr"+addId+"").remove();
     }
 </script>
