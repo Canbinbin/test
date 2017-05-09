@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html style="overflow-x:hidden;overflow-y:auto;">
+<head>
+[#include "/backend/include/header.htm"]
+<script src="${base}/static/js/admin/public/treeSelect.js"
+	type="text/javascript"></script>
+<script src="${base}/static/js/home/index/bootstrap.min.js"
+	type="text/javascript"></script>
+<script src="${base}/static/js/echarts.js" type="text/javascript"></script>
+
+<link href="${base}/static/css/analyse/style.css" type="text/css"
+	rel="stylesheet" />
+</head>
+<style>
+.mainCanva {
+	background: #FDF8F8 !important;
+}
+</style>
+<body>
+	<div class="container-fluid pad25">
+		<div class="row">
+			<ul class="nav nav-tabs">
+				<li><a href="/admin/ana">节点日志</a></li>
+			</ul>
+		</div>
+		<div class="row mar_t20">
+			<div class="wrapMain">
+				<div role="main" class="main">
+					<div class="col-md-12 column">
+						<h3>日志列表</h3>
+						<table class="table table-bordered table-hover">
+							<thead>
+								<tr>
+									<th>编号</th>
+									<th>所属节点</th>
+									<th>日志</th>
+									<th>时间</th>
+								</tr>
+							</thead>
+							<tbody>
+								[#if pageList??] [#list pageList as value]
+								<tr class="info" id="info">
+									<td id="id">${value.id}</td>
+									<td id="numericalVal">${value.entityId}</td>
+									<td id="longitude">${value.event}</td>
+									<td id="latitude">${value.createTime}</td>
+								</tr>
+								[/#list] [/#if]
+							</tbody>
+						</table>
+						<div class="text-right">
+							<ul class="pagination ">
+								<li [#if pageNow==1] class="disabled"[/#if]><a href="/admin/ana/log?sPageNow=${pageNow-1}&sPageSize=10">« 上一页</a></li>
+						  		[#if totalPages > 1]
+							    	[#list 1..totalPages as tt]
+						       		 <li [#if pageNow == tt] class="active"[/#if]><a href="/admin/ana/log?sPageNow=${tt}&sPageSize=10">${tt}</a></li>
+						       		 [/#list]
+								[/#if]
+								<li [#if pageNow gte totalPages] class="disabled"[/#if]><a href="/admin/ana/log?sPageNow=${pageNow+1}&sPageSize=10">下一页  «</a></li>
+								<li class="disabled controls"><a href="javascript:">当前
+										共 ${totalRows} 条</a></li>
+								<li></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$(function() {
+
+			});
+		</script>
+</body>

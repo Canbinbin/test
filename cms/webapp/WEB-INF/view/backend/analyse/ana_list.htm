@@ -7,15 +7,86 @@
 <link href="${base}/static/css/analyse/normalize.css" type="text/css"
 	rel="stylesheet" />
 </head>
+<style type="text/css">
+    .line{margin-bottom: 10px;}
+    .gutter-left{margin-left: 10px;}
+    .gutter-right{margin-right: 10px;}
+    .row .line:last-child{margin-bottom: 0px;}
+    .line .line_group .inp_text{width: 100px;}
+    .line .line_group .input-large{width: 200px;}
+    .table-vertical-middle td{vertical-align: middle !important;}
+    .line .line_group .inp_text, 
+    .line .line_group .inp_inp, 
+    .line .line_group .inp_text2,
+    .line .line_group select{float: none; display: inline-block;}   
+    .table .btn{line-height: 12px;} 
+    .table-fixed{table-layout: fixed;}
+    .operation-fixed{width: 320px;}
+	.td-ellipsis{width:350px;}
+	.td-narrow{width:50px;}    
+</style>
 <body>
 	<div class="container-fluid pad25">
 		<div class="row">
 			<ul class="nav nav-tabs">
-				<li class="active"><a href="javascript:void(0);">传感器列表</a></li>
+				<li class="active"><a href="/admin/ana">节点列表</a></li>
 				<li><a href="">数据分析</a></li>
 			</ul>
 		</div>
-
+		<div class="row mar_t20 bg_grey pad25">
+        <form id="searchForm" method="post" action="/admin/ana/findlist">
+            <div class="line">
+                <div class="line_group">
+                    <span class="inp_text">节点状态：</span>
+                    <select name="status">
+                        <option value="">---请选择---</option>
+                        <option value="1" [#if 1 == point.status]selected[/#if]>在线</option>
+                        <option value="-1" [#if -1 == point.status]selected[/#if]>下线</option>
+                    </select>
+                </div>
+                <div class="line_group">
+                    <span class="inp_text">所属类型：</span>
+                    <select name="pointType" >
+                        <option value="">---请选择---</option>
+                        [#if type??]
+                        [#list type as cate]
+                        <option value="${cate.id}" [#if cate.id == point.pointType]selected="selected"[/#if]>${cate.pointTypeName}</option>
+                        [/#list]
+                        [/#if]
+                    </select>
+                </div>
+                <div class="line_group">
+                    <span class="inp_text">节点名称：</span>
+                    <input class="inp_inp" type="text" name="name" value="${point.name}" />
+                </div>
+                <div class="line_group">
+                    <span class="inp_text">节点MAC：</span>
+                    <input class="inp_inp" type="text" name="uniqueId" value="${point.uniqueId}" />
+                </div>
+                <div class="line_group">
+                    <span class="inp_text">节点父节点：</span>
+                    <input class="inp_inp" type="text" name="parent" value="${point.parent}" />
+                </div>
+            </div>
+            <div class="line">
+                <div class="line_group">
+                    <span class="inp_text">创建时间：</span>
+                    <input id="createTimeStart" name="createTimeStart" value="" class="inp_inp Wdate" type="text" onclick="WdatePicker({maxDate:'#F{$dp.$D(\'createTimeEnd\')}'})" readonly/>
+                </div>
+                <div class="line_group">至
+                    <input id="createTimeEnd" name="createTimeEnd" value="" class="inp_inp Wdate" type="text" onclick="WdatePicker({minDate:'#F{$dp.$D(\'createTimeStart\')}'})" readonly/>
+                </div>
+                <div class="line_group">
+                    <span class="inp_text">修改时间：</span>
+                    <input id="updateTimeStart" name="updateTimeStart" value="" class="inp_inp Wdate" type="text" onclick="WdatePicker({maxDate:'#F{$dp.$D(\'updateTimeEnd\')}'})" readonly/>
+                </div>
+                <div class="line_group">至
+                    <input id="updateTimeEnd" name="updateTimeEnd" value="" class="inp_inp Wdate" type="text" onclick="WdatePicker({minDate:'#F{$dp.$D(\'updateTimeStart\')}'})" readonly/>    
+                </div>
+                <div class="line_group"><span class="inp_text"><input type="submit" id="searchBtn" class="btn" value="查询"/></span></div>
+            </div>
+        </form>
+    </div>
 		<div class="row mar_t20">
 			<div class="wrapMain">
 				<div role="main" class="main">
@@ -37,11 +108,33 @@
 					[/#list]
 				</div>
 			</div>
+			<div class="text-right">
+			[#if pageNow?? && totalPages??]
+				<ul class="pagination ">
+					<li [#if pageNow==1] class="disabled"[/#if]><a href="/admin/ana?sPageNow=${pageNow-1}&sPageSize=10">« 上一页</a></li>
+			  		[#if totalPages > 1]
+				    	[#list 1..totalPages as tt]
+			       		 <li [#if pageNow == tt] class="active"[/#if]><a href="/admin/ana?sPageNow=${tt}&sPageSize=10">${tt}</a></li>
+			       		 [/#list]
+					[/#if]
+					<li [#if pageNow gte totalPages] class="disabled"[/#if]><a href="/admin/ana?sPageNow=${pageNow+1}&sPageSize=10">下一页  «</a></li>
+					<li class="disabled controls"><a href="javascript:">当前
+							共 ${totalRows} 条</a></li>
+					<li></li>
+				</ul>
+				[/#if]
+				<input type="hidden" id="showmsg" value="${msg}">
+			</div>
 		</div>
 	</div>
 	</div>
 	<script type="text/javascript">
 		$(function() {
+		
+		    var msg = $("#showmsg").val();
+	        if(msg != ""){
+	            layer.msg(msg);
+	        }
 			//树形表
 			$("#treeTable").treeTable({
 				expandLevel : 10

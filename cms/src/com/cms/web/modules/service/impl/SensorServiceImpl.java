@@ -8,24 +8,23 @@ import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import cn.edu.jnu.fastbits.entity.CmdCandidateEntity;
+import cn.edu.jnu.fastbits.entity.CommandEntity;
+import cn.edu.jnu.fastbits.entity.PointEntity;
+import cn.edu.jnu.fastbits.entity.PointLogEntity;
+import cn.edu.jnu.fastbits.entity.PointSearchCondition;
+import cn.edu.jnu.fastbits.entity.PointTypeEntity;
+import cn.edu.jnu.fastbits.entity.ValueEntity;
+import cn.edu.jnu.fastbits.rest.api.upper.UpperFastbitsIO;
+import cn.edu.jnu.fastbits.rest.http.MessageCode;
+import cn.edu.jnu.fastbits.rest.http.Page;
+import cn.edu.jnu.fastbits.rest.http.Resp;
 
-
-
+import com.cms.config.UpperFastbitsIOSingleton;
 import com.cms.web.modules.dao.SensorDao;
 import com.cms.web.modules.entity.Sensor;
 import com.cms.web.modules.service.SensorService;
 import com.framework.generic.service.impl.BaseServiceImpl;
-
-import cn.edu.jnu.fastbits.entity.CmdCandidateEntity;
-import cn.edu.jnu.fastbits.entity.CommandEntity;
-import cn.edu.jnu.fastbits.entity.PointEntity;
-import cn.edu.jnu.fastbits.entity.PointTypeEntity;
-import cn.edu.jnu.fastbits.entity.ValueEntity;
-import cn.edu.jnu.fastbits.rest.MessageCode;
-import cn.edu.jnu.fastbits.rest.Resp;
-import cn.edu.jnu.fastbits.rest.api.upper.UpperFastbitsIO;
-
-import com.cms.config.UpperFastbitsIOSingleton;
 @Service("sensorService")
 public class SensorServiceImpl extends BaseServiceImpl<Sensor, Long> implements SensorService {
 	
@@ -52,6 +51,19 @@ public class SensorServiceImpl extends BaseServiceImpl<Sensor, Long> implements 
 		}
 		return resp;
 		
+	}
+	@Override
+	public Resp<Page<PointEntity>> findByUersId(Long userId, String pageNow,
+			String pageSize) {
+		Resp<Page<PointEntity>> resp = upperFastbitsIO.findPointByOwner(userId+"", pageNow, pageSize);
+		System.out.println("findPointByOwner:"+userId);
+		if (resp.getMsgCode().equals(MessageCode.SUCCESS)) {
+			System.out.println(resp.getData());
+		}
+		else {
+			System.out.println(resp.getMsgDesc());
+		}
+		return resp;
 	}
 	public String addPointEntity(PointEntity pointEntity){
 		String res;
@@ -225,4 +237,85 @@ public class SensorServiceImpl extends BaseServiceImpl<Sensor, Long> implements 
 		}
 		return resp;
 	}
+
+	@Override
+	public Resp<List<CmdCandidateEntity>> queryCmdCandidates(String entityId) {
+		System.out.println("queryCmdCandidates:"+entityId);
+		Resp<List<CmdCandidateEntity>> resp = upperFastbitsIO.queryCmdCandidates(entityId);
+		if (resp.getMsgCode().equals(MessageCode.SUCCESS)) {
+			System.out.println(resp.getData().toString());
+		}
+		else{
+			System.out.println(resp.getMsgDesc());
+		}
+		return resp;
+	}
+
+	@Override
+	public Resp<CmdCandidateEntity> updateCmdCandidate(Long id,
+			CmdCandidateEntity entity) {
+		System.out.println("updateCmdCandidate::id="+id+" entityId="+entity);
+		Resp<CmdCandidateEntity> resp = upperFastbitsIO.updateCmdCandidate(id, entity);
+		if (resp.getMsgCode().equals(MessageCode.SUCCESS)) {
+			System.out.println(resp.getData());
+		}
+		else{
+			System.out.println(resp.getMsgDesc());
+		}
+		return resp;
+	}
+
+	@Override
+	public Resp<Integer> deleteCmdCandidate(Long id, String entityId) {
+		System.out.println("deleteCmdCandidate:id="+id+" entityId="+entityId);
+		Resp<Integer> resp = upperFastbitsIO.deleteCmdCandidate(id, entityId);
+		if (resp.getMsgCode().equals(MessageCode.SUCCESS)) {
+			System.out.println(resp.getData());
+		}
+		else{
+			System.out.println(resp.getMsgDesc());
+		}
+		return resp;
+	}
+
+	@Override
+	public Resp<CommandEntity> sendCommand(Long id, String entityId) {
+		System.out.println("sendCommand:id="+id+" entityId="+entityId);
+		Resp<CommandEntity> resp = upperFastbitsIO.sendCommand(id, entityId);
+		if (resp.getMsgCode().equals(MessageCode.SUCCESS)) {
+			System.out.println(resp.getData());
+		}
+		else{
+			System.out.println(resp.getMsgDesc());
+		}
+		return resp;
+	}
+
+	@Override
+	public Resp<Page<PointLogEntity>> findPointLogByOwner(String owner,
+			String sPageNow, String sPageSize) {
+		System.out.println("findPointLogByOwner:ownerId="+owner);
+		Resp<Page<PointLogEntity>> resp  = upperFastbitsIO.findPointLogByOwner(owner, sPageNow, sPageSize);
+		if (resp.getMsgCode().equals(MessageCode.SUCCESS)) {
+			System.out.println(resp.getData().getData());
+		}
+		else {
+			System.out.println(resp.getMsgDesc());
+		}
+		return resp;
+	}
+	@Override
+	public Resp<Page<PointEntity>> findPointByCondition(String owner,PointSearchCondition condition) {
+		System.out.println("findPointLogByOwner:ownerId="+owner);
+		Resp<Page<PointEntity>> resp  = upperFastbitsIO.findPointByCondition(owner, condition);
+		if (resp.getMsgCode().equals(MessageCode.SUCCESS)) {
+			System.out.println(resp.getData().getData());
+		}
+		else {
+			System.out.println(resp.getMsgDesc());
+		}
+		return resp;
+	}
+
+	
 }

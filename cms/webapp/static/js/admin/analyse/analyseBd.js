@@ -26,6 +26,10 @@ function getDateByTime(){
 				 return;
 			 }
 			var da = res.data;
+			if(da.length <= 0){
+				layer.msg("该事件段无数据！请查询其他时间段");
+				return;
+			}
 			showDate(da);
 		}
 	});
@@ -37,7 +41,16 @@ $(document).ready(function(){
 	showDate("");
 });
 
-
+function toDateTime(timape){
+	var date = new Date(timape);
+	Y = date.getFullYear() + '-';
+	M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+	D = date.getDate() + ' ';
+	h = date.getHours() + ':';
+	m = date.getMinutes() + ':';
+	s = date.getSeconds(); 
+	return Y+M+D+h+m+s; //
+}
 function showDate(da){
 	var base = +new Date();
 	var oneDay = 1000;
@@ -45,10 +58,18 @@ function showDate(da){
 
 	if(da != "" && da.length>0){
 		var data=[];
+		var html = "";
 		for(var i = 0; i<da.length;i++){
 			date.push(da[i].updateTime.split(".")[0]);
 			data.push(da[i].numericalVal);
+			html += "<tr class='info'><td>"+da[i].id+"</td>";
+			html += "<td>"+da[i].numericalVal+"</td>";
+			html += "<td>"+da[i].longitude+"</td>";
+			html += "<td>"+da[i].latitude+"</td>";
+			html += "<td>"+(da[i].textVal==undefined?"无":da[i].textVal)+"</td>";
+			html += "<td>"+toDateTime(da[i].updateTime)+"</td></tr>";
 		}
+		$("#historyInfo").html(html);
 	}
 	else{
 		var data = [0];
@@ -87,7 +108,7 @@ function showDate(da){
 	    },
 	    yAxis: {
 	        type: 'value',
-	        boundaryGap: [0, '100%']
+	        boundaryGap: [0, '50%']
 	    },
 	    dataZoom: [{
 	        type: 'inside',

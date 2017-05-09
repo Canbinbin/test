@@ -52,6 +52,25 @@
                 <span class="input_text"><i class="red">*</i>节点描述：</span>
                 <textarea rows="3" cols="40" name="description">${point.description}</textarea>
             </div>
+            [#if cand??]
+            <div class="panel-group" style="margin-left: 118px;width: 710px;">
+				<div class="panel panel-default">
+					<div class="panel-body">
+							<table class="table" style="margin-bottom:-15px">
+								<th>命令</th><th>说明</th><th></th>
+								[#list cand as c]
+								    <tr id="show${c.id}">
+								      <td>${c.command}</td>
+								      <td>${c.description}</td>
+								      <td><button onclick="deleteCommandOn(this)" type="button" data-id="${c.id}" data-entityId="${c.entityId}" class="btn btn-warning">
+								          <span class="glyphicon glyphicon-trash" aria-hidden="true"> </span></button></td>
+								    </tr>
+								[/#list]
+							</table>
+					</div>
+				</div>
+			</div>
+			[/#if]
             <div class="panel-group" style="margin-left: 118px;width: 710px;">
 				<div class="panel panel-default">
 					<div class="panel-heading" style="background-color: #fff;border: 1px dashed #ddd">
@@ -69,8 +88,10 @@
 			</div>
             <div class="input_group">
                 <span class="input_text">&nbsp;</span>
-                <span class="text"><input type="submit" class="btn" value="提交"></span>
+                <span class="text"><input type="button" class="btn" value="提交" id="addPoint"></span>
             </div>
+            <input type="hidden" id="allCommand" name="allCommand">
+            <input type="hidden" id="allDesc" name="allDesc">
         </form>
     </div>
 </div>
@@ -117,8 +138,19 @@
          });
     });
     function deleteCommand(addId){
-          layer.msg(addId);
+        //  layer.msg(""+addId)
           $("#tr"+addId+"").remove();
+    }
+    function deleteCommandOn(e){
+         // layer.msg(""+id)
+          id = e.dataset.id;
+          entityId = e.dataset.entityid;
+          $.getJSON("/admin/sen/deleteCommand",{"id":id,"uniqueId":entityId},function(rs){
+                    layer.msg(rs.msg);
+                    if(rs.status==1){
+                        $("#show"+id+"").remove();;
+                    }
+          });
     }
 </script>
 
