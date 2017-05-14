@@ -29,7 +29,7 @@ public class ActuatorController extends BaseController {
 	
 	@RequestMapping(value="")
 	public String list(ModelMap model){
-		Long userId = getPrincipal().getUserId();
+		Long userId = getPrincipal().getOrgId();
 		List<Actuator> lists = actuatorService.findByUersId(userId);
 		model.put("pageList", lists);
 		return "/backend/actuator/act_list";

@@ -8,6 +8,7 @@ import cn.edu.jnu.fastbits.entity.CommandEntity;
 import cn.edu.jnu.fastbits.entity.PointEntity;
 import cn.edu.jnu.fastbits.entity.PointLogEntity;
 import cn.edu.jnu.fastbits.entity.PointSearchCondition;
+import cn.edu.jnu.fastbits.entity.PointStatusEntity;
 import cn.edu.jnu.fastbits.entity.PointTypeEntity;
 import cn.edu.jnu.fastbits.entity.ValueEntity;
 import cn.edu.jnu.fastbits.rest.http.Page;
@@ -96,4 +97,12 @@ public interface SensorService extends BaseService<Sensor, Long> {
 
 	Resp<Page<PointEntity>> findPointByCondition(String owner,
 			PointSearchCondition condition);
+	/**
+     * 查看设备状态
+     */
+    Resp<PointStatusEntity> queryPointStatus(String uniqueId);
+    /**
+     * 查询在线设备列表
+     */
+    Resp<Page<PointEntity>> queryOnlinePoints(String owner, String pageNow, String pageSize);
 }

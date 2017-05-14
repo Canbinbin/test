@@ -13,6 +13,7 @@ import cn.edu.jnu.fastbits.entity.CommandEntity;
 import cn.edu.jnu.fastbits.entity.PointEntity;
 import cn.edu.jnu.fastbits.entity.PointLogEntity;
 import cn.edu.jnu.fastbits.entity.PointSearchCondition;
+import cn.edu.jnu.fastbits.entity.PointStatusEntity;
 import cn.edu.jnu.fastbits.entity.PointTypeEntity;
 import cn.edu.jnu.fastbits.entity.ValueEntity;
 import cn.edu.jnu.fastbits.rest.api.upper.UpperFastbitsIO;
@@ -315,6 +316,26 @@ public class SensorServiceImpl extends BaseServiceImpl<Sensor, Long> implements 
 			System.out.println(resp.getMsgDesc());
 		}
 		return resp;
+	}
+
+	@Override
+	public Resp<PointStatusEntity> queryPointStatus(String uniqueId) {
+		System.out.println("queryPointStatus uniqueId="+uniqueId);
+		Resp<PointStatusEntity> resp  = upperFastbitsIO.queryPointStatus(uniqueId);
+		if (resp.getMsgCode().equals(MessageCode.SUCCESS)) {
+			System.out.println(resp.getData());
+		}
+		else {
+			System.out.println(resp.getMsgDesc());
+		}
+		return resp;
+	}
+
+	@Override
+	public Resp<Page<PointEntity>> queryOnlinePoints(String owner,
+			String pageNow, String pageSize) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

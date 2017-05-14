@@ -41,7 +41,7 @@
                     <select name="status">
                         <option value="">---请选择---</option>
                         <option value="1" [#if 1 == point.status]selected[/#if]>在线</option>
-                        <option value="-1" [#if -1 == point.status]selected[/#if]>下线</option>
+                        <option value="0" [#if 0 == point.status]selected[/#if]>下线</option>
                     </select>
                 </div>
                 <div class="line_group">
