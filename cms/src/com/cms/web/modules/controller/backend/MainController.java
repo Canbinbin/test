@@ -49,7 +49,6 @@ public class MainController extends BaseController {
 	//@RequiresPermissions("admin:main:index")
 	@RequestMapping(value = "")
 	public String index(HttpServletRequest request,ModelMap model){
-	//	SystemAuthorizingRealm.isValidateCodeLogin(request.getRemoteHost(), false, true);
 		model.addAttribute("navList", gylMenuService.findMenuBy(this.getPrincipal().getUserId(), null, MenuTypeEnum.NAV));
 		return "/backend/main/main";
 	}

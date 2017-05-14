@@ -43,7 +43,7 @@ public class AnalyseController extends BaseController {
 	
 	@RequestMapping(value="")
 	public String list(String sPageNow,String sPageSize,ModelMap model){
-		Long userId = getPrincipal().getUserId();
+		Long userId = getPrincipal().getOrgId();
 		Resp<Page<PointEntity>> lists = sensorService.findByUersId(userId, sPageNow, sPageSize);
 		if (!lists.getMsgCode().equals(MessageCode.SUCCESS)) {
 			model.put("msg", lists.getMsgDesc());
@@ -70,7 +70,7 @@ public class AnalyseController extends BaseController {
 		condition.setUniqueId(sensor.getUniqueId());
 		condition.setUpdateTimeEnd(sensor.getUpdateTimeEnd());
 		condition.setUpdateTimeStart(sensor.getUpdateTimeStart());
-		Long userId = getPrincipal().getUserId();
+		Long userId = getPrincipal().getOrgId();
 		Resp<Page<PointEntity>> lists = sensorService.findPointByCondition(userId+"", condition);
 		if (!lists.getMsgCode().equals(MessageCode.SUCCESS)) {
 			model.put("msg", lists.getMsgDesc());
@@ -87,7 +87,7 @@ public class AnalyseController extends BaseController {
 	@RequestMapping(value="/log",method = RequestMethod.GET,produces="application/json;charset=UTF-8")
 	public String findLog(String sPageNow,String sPageSize,ModelMap model){
 		
-		Long userId = getPrincipal().getUserId();
+		Long userId = getPrincipal().getOrgId();
 		Resp<Page<PointLogEntity>> lists = sensorService.findPointLogByOwner(userId+"", sPageNow, sPageSize);
 		if (!lists.getMsgCode().equals(MessageCode.SUCCESS)) {
 			model.put("msg", lists.getMsgDesc());

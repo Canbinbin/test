@@ -2,6 +2,7 @@
 var myChart1 = echarts.init(document.getElementById('main'));
 
 function getDateByTime(){
+	myChart1.showLoading();
 	var uniqueId = $("#getuniqueId").val();
 	endtime = $("#publishDateEnd").val();
 	starttime = $("#publishDateStart").val();
@@ -154,5 +155,6 @@ function showDate(da){
 	        }
 	    ]
 	};
+    myChart1.hideLoading();
 	myChart1.setOption(option);
 }

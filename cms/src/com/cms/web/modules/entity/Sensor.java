@@ -33,8 +33,13 @@ public class Sensor implements BaseModel, Serializable {
 	private String pointType;
 	
 	/** 节点创建时间 */
+	private Timestamp createTime;
+	
+	/** 节点创建时间 */
 	private String createTimeStart;
 	
+	/** 节点更新时间 */
+	private Timestamp updateTime;
 	/** 节点更新时间 */
 	private String updateTimeStart;
 	
@@ -49,5 +54,7 @@ public class Sensor implements BaseModel, Serializable {
 	
 	/** 父节点 */
 	private String parent;
+	
+	private String des;
 	
 }

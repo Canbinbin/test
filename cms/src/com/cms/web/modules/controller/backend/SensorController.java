@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.poi.hdf.extractor.data.LST;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,7 @@ import cn.edu.jnu.fastbits.entity.CmdCandidateEntity;
 import cn.edu.jnu.fastbits.entity.CommandEntity;
 import cn.edu.jnu.fastbits.entity.PointEntity;
 import cn.edu.jnu.fastbits.entity.PointSearchCondition;
+import cn.edu.jnu.fastbits.entity.PointStatusEntity;
 import cn.edu.jnu.fastbits.entity.PointTypeEntity;
 import cn.edu.jnu.fastbits.rest.http.MessageCode;
 import cn.edu.jnu.fastbits.rest.http.Page;
@@ -39,13 +41,31 @@ public class SensorController extends BaseController {
 
 	@RequestMapping(value="")
 	public String list(String sPageNow,String sPageSize,ModelMap model){
-		Long userId = getPrincipal().getUserId();
+		Long userId = getPrincipal().getOrgId();
 		Resp<Page<PointEntity>> lists = sensorService.findByUersId(userId, sPageNow, sPageSize);
 		if (!lists.getMsgCode().equals(MessageCode.SUCCESS)) {
 			model.put("msg", lists.getMsgDesc());
 		}
 		else{
-			model.put("pageList", lists.getData().getData());
+			List<PointEntity> pointEntities = lists.getData().getData();
+			List<Sensor> sensors = new ArrayList<Sensor>();
+			for (int i = 0; i < pointEntities.size(); i++) {
+				Sensor sensor = new Sensor();
+				sensor.setName(pointEntities.get(i).getName());
+				sensor.setUniqueId(pointEntities.get(i).getUniqueId());
+				sensor.setDes(pointEntities.get(i).getDescription());
+				sensor.setCreateTime(pointEntities.get(i).getCreateTime());
+				sensor.setUpdateTime(pointEntities.get(i).getUpdateTime());
+				Resp<PointStatusEntity> po = sensorService.queryPointStatus(sensor.getUniqueId());
+				if (po.getData().getStatus()==1) {
+					sensor.setStatus("在线");
+				}
+				else{
+					sensor.setStatus("下线");
+				}
+				sensors.add(sensor);
+			}
+			model.put("pageList", sensors);
 			model.put("totalPages", Integer.valueOf(lists.getData().getTotalPages()));
 			model.put("pageNow", Integer.valueOf(lists.getData().getPageNow()));
 			model.put("totalRows", Integer.valueOf(lists.getData().getTotalRows()));
@@ -70,7 +90,7 @@ public class SensorController extends BaseController {
 		condition.setPageNow((null==sPageNow)? "1":sPageNow);
 		condition.setPageSize((null==sPageSize)?"10":sPageSize);
 		
-		Long userId = getPrincipal().getUserId();
+		Long userId = getPrincipal().getOrgId();
 		Resp<Page<PointEntity>> lists = sensorService.findPointByCondition(userId+"", condition);
 		if (!lists.getMsgCode().equals(MessageCode.SUCCESS)) {
 			model.put("msg", lists.getMsgDesc());
@@ -90,7 +110,7 @@ public class SensorController extends BaseController {
 	@RequestMapping(value="/add")
 	public String add(ModelMap model){
 		Resp<List<PointTypeEntity>> resp = sensorService.findAllPointType();
-		Resp<List<PointEntity>> pResp = sensorService.findByUersId(getPrincipal().getUserId());
+		Resp<List<PointEntity>> pResp = sensorService.findByUersId(getPrincipal().getOrgId());
 		model.put("parent", pResp.getData());
 		model.put("type", resp.getData());
 		return "/backend/sensor/sen_add";
@@ -105,7 +125,7 @@ public class SensorController extends BaseController {
 			pointEntity.setPointType(pointType);
 			pointEntity.setParent(parent);
 			pointEntity.setDescription(description);
-			pointEntity.setOwner(getPrincipal().getUserId()+"");
+			pointEntity.setOwner(getPrincipal().getOrgId()+"");
 			pointEntity.setCommandResendTimes(3);
 			String msg = sensorService.addPointEntity(pointEntity);
 			Boolean sendBoolean = false;
@@ -146,7 +166,7 @@ public class SensorController extends BaseController {
 			pointEntity.setPointType(pointType);
 			pointEntity.setParent(parent);
 			pointEntity.setDescription(description);
-			pointEntity.setOwner(getPrincipal().getUserId()+"");
+			pointEntity.setOwner(getPrincipal().getOrgId()+"");
 			pointEntity.setCommandResendTimes(3);
 			Boolean sendBoolean = false;
 			String msg = sensorService.updatePoint(pointEntity.getUniqueId(), pointEntity);
@@ -175,6 +195,27 @@ public class SensorController extends BaseController {
 			this.addFlashMessage(redirectAttributes, MessageTypeEnum.ERROR, "传感器操作失败:"+e.getMessage());
 		}
 		return "redirect:/admin/sen";
+	}
+	@RequestMapping(value = "/getInfo",method = RequestMethod.GET,produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public String getInfo(String uniqueId,RedirectAttributes redirectAttributes){
+		try {
+			Resp<PointEntity> pointResp = sensorService.findPointById(uniqueId);
+			if (pointResp.getMsgCode().equals(MessageCode.SUCCESS)) {
+				Resp<List<PointTypeEntity>> type = sensorService.findAllPointType();
+				List<PointTypeEntity> pointTypeEntities = type.getData();
+				String typeName = pointTypeEntities.get(pointResp.getData().getPointType()-1).getPointTypeName();
+				pointResp.getData().setUnit(typeName);
+				List<PointEntity> list = new ArrayList<PointEntity>();
+				list.add(pointResp.getData());
+				return this.jsonPrint(1, pointResp.getMsgDesc(),list);
+			}
+			else {
+				return this.jsonPrint(-1, pointResp.getMsgDesc(), null);
+			}
+		} catch (Exception e) {
+			return this.jsonPrint(-1, "出错了……", null);
+		}
 	}
 	@RequestMapping(value = "/queryCommands",method = RequestMethod.GET,produces="application/json;charset=UTF-8")
 	@ResponseBody
@@ -219,7 +260,7 @@ public class SensorController extends BaseController {
 	@RequestMapping(value = "/update")
 	public String update(String uniqueId,ModelMap model){
 		Resp<List<PointTypeEntity>> resp = sensorService.findAllPointType();
-		Resp<List<PointEntity>> pResp = sensorService.findByUersId(getPrincipal().getUserId());
+		Resp<List<PointEntity>> pResp = sensorService.findByUersId(getPrincipal().getOrgId());
 		model.put("parent", pResp.getData());
 		model.put("type", resp.getData());
 		Resp<PointEntity> pointEntity = sensorService.findPointById(uniqueId);

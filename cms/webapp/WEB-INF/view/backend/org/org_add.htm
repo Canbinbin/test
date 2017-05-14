@@ -8,15 +8,15 @@
 <div class="container-fluid pad_t25">
     <div class="row">
         <ul class="nav nav-tabs">
-            <li><a href="/admin/org">部门列表</a></li>
-            <li class="active"><a href="javascript:void(0);">部门添加</a></li>
+            <li><a href="/admin/org">车间列表</a></li>
+            <li class="active"><a href="javascript:void(0);">车间添加</a></li>
         </ul>
     </div>
 
     <div class="row mar_t20">
         <form id="myform" method="post">
             <div class="input_group">
-                <span class="input_text"><i class="red">*</i>上级部门：</span>
+                <span class="input_text"><i class="red">*</i>上级车间：</span>
                   <input type="text" class="required" id="pname" value="[#if porg??]${porg.name}[/#if]" readonly="readonly" />
                 <input type="hidden" name="pid" value="[#if porg??]${porg.id}[/#if]" id="pid" />
             </div>
@@ -51,7 +51,7 @@
 <script type="text/javascript" src="${base}/static/js/admin/org/org_add.js"></script>
 <script type="text/javascript">
     $(function(){
-        //选择上级部门
+        //选择上级车间
         $.treeSelect("/admin/org/tree_select","treeDemo","pname","pid");
         
         //选择管理员

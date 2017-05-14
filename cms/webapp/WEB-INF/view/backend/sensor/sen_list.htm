@@ -37,7 +37,7 @@
                     <select name="status">
                         <option value="">---请选择---</option>
                         <option value="1" [#if 1 == point.status]selected[/#if]>在线</option>
-                        <option value="-1" [#if -1 == point.status]selected[/#if]>下线</option>
+                        <option value="0" [#if 0 == point.status]selected[/#if]>下线</option>
                     </select>
                 </div>
                 <div class="line_group">
@@ -89,23 +89,21 @@
                 <tr>
                     <th class="text-center">节点名称</th>
                     <th class="text-center">节点编号(MAC)</th>
-                    <th class="text-center">节点类型</th>
-                    <th class="text-center">父节点</th>
                     <th class="text-center">节点描述</th>
                     <th class="text-center">创建时间</th>
                     <th class="text-center">最近修改时间</th>
+                    <th class="text-center">节点状态</th>
                     <th class="text-center">命令操作</th>
                     <th class="text-center">操作</th>
                 </tr>
                  [#list pageList as s]
 	                <tr id="${s.id}" >
-	                    <td class="text-center">${s.name}</td>
+	                    <td class="text-center"><a data-id="${s.uniqueId}" id="" href="javascript:void(0);" class="getInfo">${s.name}</a></td>
 	                    <td class="text-center">${s.uniqueId}</td>
-	                    <td class="text-center">${s.pointType}</td>
-	                    <td class="text-center">${s.parent}</td>
-	                    <td class="text-center">${s.description}</td>
+	                    <td class="text-center">${s.des}</td>
 	                    <td class="text-center">${s.createTime}</td>
 	                    <td class="text-center">${s.updateTime}</td>
+	                    <td class="text-center">${s.status}</td>
 	                    <td class="text-center">
 	                        <a data-id="${s.uniqueId}" onclick="getCommand(this)" class="btn btn-info" href="javascript:void()">发命令</a>
 	                        <a data-id="${s.uniqueId}" id="" class="lastCommand btn btn-info" href="javascript:void(0);">上一次命令状态查询</a>
@@ -161,6 +159,23 @@
                     }
                 });
             });
+        });
+        //节点数据
+        $(".getInfo").on("click",function(){
+            var $this=$(this);
+                $.getJSON("/admin/sen/getInfo",{"uniqueId":$this.data("id")},function(rs){
+                    layer.msg(rs.msg);
+                    if(rs.status>0){
+                        var data = rs.data[0];
+                        var html = '节点名称：'+data.name+'<br/>'+'节点说明：'+data.description+'<br/>'+'节点MAC:'+data.uniqueId
+                            html += '<br/>'+'父节点MAC:'+data.parent+'<br/>'+'节点类型:'+data.unit+'<br/>'+'节点创建时间:'+data.createTime+'<br/>'+'节点修改时间:'+data.updateTime
+                        layer.open({
+						  title: '节点信息',
+						  area: ['500px', ''], //宽高
+						  content: html
+						});
+                    }
+                });
         });
         //上一次命令执行状态查询
         $(".lastCommand").on("click",function(){
