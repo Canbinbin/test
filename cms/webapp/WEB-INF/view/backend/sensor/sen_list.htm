@@ -67,17 +67,17 @@
             <div class="line">
                 <div class="line_group">
                     <span class="inp_text">创建时间：</span>
-                    <input id="createTimeStart" name="createTimeStart" value="" class="inp_inp Wdate" type="text" onclick="WdatePicker({maxDate:'#F{$dp.$D(\'createTimeEnd\')}'})" readonly/>
+                    <input id="createTimeStart" name="createTimeStart" value="${point.createTimeStart}" class="inp_inp Wdate" type="text" onclick="WdatePicker({maxDate:'#F{$dp.$D(\'createTimeEnd\')}'})" readonly/>
                 </div>
                 <div class="line_group">至
-                    <input id="createTimeEnd" name="createTimeEnd" value="" class="inp_inp Wdate" type="text" onclick="WdatePicker({minDate:'#F{$dp.$D(\'createTimeStart\')}'})" readonly/>
+                    <input id="createTimeEnd" name="createTimeEnd" value="${point.createTimeEnd}" class="inp_inp Wdate" type="text" onclick="WdatePicker({minDate:'#F{$dp.$D(\'createTimeStart\')}'})" readonly/>
                 </div>
                 <div class="line_group">
                     <span class="inp_text">修改时间：</span>
-                    <input id="updateTimeStart" name="updateTimeStart" value="" class="inp_inp Wdate" type="text" onclick="WdatePicker({maxDate:'#F{$dp.$D(\'updateTimeEnd\')}'})" readonly/>
+                    <input id="updateTimeStart" name="updateTimeStart" value="${point.updateTimeStart}" class="inp_inp Wdate" type="text" onclick="WdatePicker({maxDate:'#F{$dp.$D(\'updateTimeEnd\')}'})" readonly/>
                 </div>
                 <div class="line_group">至
-                    <input id="updateTimeEnd" name="updateTimeEnd" value="" class="inp_inp Wdate" type="text" onclick="WdatePicker({minDate:'#F{$dp.$D(\'updateTimeStart\')}'})" readonly/>    
+                    <input id="updateTimeEnd" name="updateTimeEnd" value="${point.updateTimeEnd}" class="inp_inp Wdate" type="text" onclick="WdatePicker({minDate:'#F{$dp.$D(\'updateTimeStart\')}'})" readonly/>    
                 </div>
                 <div class="line_group"><span class="inp_text"><input type="submit" id="searchBtn" class="btn" value="查询"/></span></div>
             </div>

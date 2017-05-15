@@ -31,7 +31,7 @@ function getData() {
 				html += "<td>"+da.numericalVal+"</id>";
 				html += "<td>"+da.longitude+"</id>";
 				html += "<td>"+da.latitude+"</id>";
-				html += "<td>"+(da[i].textVal==undefined?"无":da[i].textVal)+"</id>";
+				html += "<td>"+(da.textVal==undefined?"无":da.textVal)+"</id>";
 				html += "<td>"+toDateTime(da.updateTime)+"</id>";
 				html += "<td>"+"正常"+"</td>";
 				$("#info").html(html);
