@@ -96,7 +96,25 @@ public class SensorController extends BaseController {
 			model.put("msg", lists.getMsgDesc());
 		}
 		else {
-			model.put("pageList", lists.getData().getData());
+			List<PointEntity> pointEntities = lists.getData().getData();
+			List<Sensor> sensors = new ArrayList<Sensor>();
+			for (int i = 0; i < pointEntities.size(); i++) {
+				Sensor sen = new Sensor();
+				sen.setName(pointEntities.get(i).getName());
+				sen.setUniqueId(pointEntities.get(i).getUniqueId());
+				sen.setDes(pointEntities.get(i).getDescription());
+				sen.setCreateTime(pointEntities.get(i).getCreateTime());
+				sen.setUpdateTime(pointEntities.get(i).getUpdateTime());
+				Resp<PointStatusEntity> po = sensorService.queryPointStatus(sen.getUniqueId());
+				if (po.getData().getStatus()==1) {
+					sen.setStatus("在线");
+				}
+				else{
+					sen.setStatus("下线");
+				}
+				sensors.add(sen);
+			}
+			model.put("pageList", sensors);
 			model.put("totalPages", Integer.valueOf(lists.getData().getTotalPages()));
 			model.put("pageNow", Integer.valueOf(lists.getData().getPageNow()));
 			model.put("totalRows", Integer.valueOf(lists.getData().getTotalRows()));
