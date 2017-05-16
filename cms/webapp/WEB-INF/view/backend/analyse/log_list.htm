@@ -64,10 +64,13 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div><input type="hidden" id="showmsg" value="${msg}">
 		<script type="text/javascript">
 			$(function() {
-
+            var msg = $("#showmsg").val();
+	        if(msg != ""){
+	            layer.msg(msg);
+	        }
 			});
 		</script>
 </body>
