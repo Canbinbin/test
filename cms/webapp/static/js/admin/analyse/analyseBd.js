@@ -24,6 +24,7 @@ function getDateByTime(){
 			var res = JSON.parse(result);
 			if(res.status == "-1"){
 				 layer.msg(res.msg);
+				 myChart1.hideLoading();
 				 return;
 			 }
 			var da = res.data;
